@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Simple Homebrew Package Backup
+# Backs up only the packages you manually installed
+
+echo "🍺 Creating Homebrew package backup..."
+
+# Create backup file with timestamp
+BACKUP_FILE="$HOME/homebrew_packages_$(date +%Y%m%d).txt"
+
+{
+    echo "# Homebrew Package Backup - $(date)"
+    echo "# Run these commands on a new machine to restore your setup"
+    echo ""
+
+    # Add any custom taps first
+    if brew tap | grep -v '^homebrew/' | head -1 &>/dev/null; then
+        echo "# Add custom taps"
+        brew tap | grep -v '^homebrew/' | sed 's/^/brew tap /'
+        echo ""
+    fi
+
+    # Top-level formulae (packages you installed manually)
+    echo "# Install formulae (packages)"
+    brew leaves | sed 's/^/brew install /'
+    echo ""
+
+    # Installed casks (applications)
+    if brew list --cask &>/dev/null && [ "$(brew list --cask | wc -l)" -gt 0 ]; then
+        echo "# Install casks (applications)"
+        brew list --cask | sed 's/^/brew install --cask /'
+    fi
+
+} > "$BACKUP_FILE"
+
+echo "✅ Backup saved to: $BACKUP_FILE"
+echo ""
+echo "📋 Your manually installed packages:"
+echo "   • Formulae: $(brew leaves | wc -l)"
+echo "   • Casks: $(brew list --cask 2>/dev/null | wc -l || echo 0)"
+echo ""
+echo "💡 To restore on another machine:"
+echo "   cat $BACKUP_FILE"
+echo "   # Then copy & paste the commands"

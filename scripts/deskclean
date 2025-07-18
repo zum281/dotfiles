@@ -1,0 +1,96 @@
+#!/bin/zsh
+
+all_flag=false
+preview_flag=false
+
+usage() {
+  echo "Usage: $0 [-a] [-p]"
+  echo "  -a           Delete all screenshots without confirmation for each one"
+  echo "  -p           Show preview of files before delete (doesn't work with -a)"
+  exit 1
+}
+
+process_file() {
+  local current=$1
+  local total=$2
+  local filename=$3
+
+
+  echo "File $current of $total: ${file:t}"
+  if $preview_flag; then
+    viu $file
+  fi
+  echo "Delete the file? (y/n/q):"
+  read command
+
+  case $command in
+    "y")
+      rm "$file"
+      echo "File removed"
+      ((current++))
+      continue 2
+      ;;
+    "n")
+      echo "Keeping file"
+      ((current++))
+      continue 2
+      ;;
+    "q")
+      exit 0
+      ;;      
+    *)
+      echo "Invalid command. Type y to delete, n to keep, q to quit:"
+      ;;
+    esac
+
+}
+
+while getopts ":pa" opt; do
+  case $opt in
+    a) 
+      all_flag=true
+      ;;
+    p)
+      preview_flag=true
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG"
+      usage
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+setopt nullglob  # Enable nullglob just for this section
+
+files=(~/Desktop/{Screenshot,screenshot}*.png)
+
+# Check if any files were found
+if [ ${#files} -eq 0 ]; then
+    echo "No matching files found!"
+    exit 0
+fi
+
+unsetopt nullglob  # Restore default behavior
+
+total=${#files}
+
+
+
+
+current=1
+
+for file in $files; do
+
+if ! $all_flag; then
+    while true; do
+      process_file $current $total $file
+    done
+else
+  echo "Removing file: ${file:t}"
+  rm $file
+fi
+done
+
+echo "Processing complete!"
