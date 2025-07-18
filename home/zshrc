@@ -1,0 +1,180 @@
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+# Use starship prompt
+eval "$(starship init zsh)"
+
+# thefuck alias
+eval $(thefuck --alias)
+
+# fzf shell integration
+eval "$(fzf --zsh)"
+
+# use zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
+#####################
+### zinit plugins ###
+#####################
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit load wfxr/forgit
+zinit light so-fancy/diff-so-fancy
+
+
+###################
+### COMPLETIONS ###
+###################
+
+# Load completions
+autoload -U compinit && compinit
+zinit cdreplay -q
+_comp_options+=(globdots) # include hidden files
+
+# bun completions
+[ -s "/Users/fulvia.mourikis/.bun/_bun" ] && source "/Users/fulvia.mourikis/.bun/_bun"
+
+######################
+### History config ###
+######################
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# History keybindings
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+###############
+### Aliases ###
+###############
+
+alias w='nvim'
+alias w.='nvim .'
+alias l='clear'
+alias lg='lazygit'
+
+# use bat instead of cat
+alias cat='bat'
+
+# eza aliases
+alias ls="eza --color=always -l --all --git --icons=always --no-time --no-user"
+alias tree="eza --tree --color=always --all --icons=always --git --no-filesize --no-time --no-user --no-permissions --level=3"
+
+# git aliases
+alias g='git'
+alias gdiff='git diff --output-indicator-new=" " --output-indicator-old=" "'
+alias gds='gd --staged'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gu='git pull'
+alias gsw='git switch'
+alias gswd='gsw develop && gu && clean-branches && git branch'
+
+# yarn aliases
+alias y="yarn"
+alias yb="yarn build"
+alias yc="yarn clean"
+alias yd="yarn dev"
+alias yst="yarn start"
+alias ysd="yarn start:dev"
+alias ysp="yarn start:prod"
+alias ybp="yarn build:dev"
+alias ybp="yarn build:prod"
+
+# npm aliases
+alias n="npm install"
+alias nd="npm run dev"
+alias nb="npm run build"
+alias nst="npm start"
+alias nc="npm run clean"
+alias nt="npm run test"
+
+##########################
+### Completion styling ###
+##########################
+
+# case insensitive completions
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+# enable colors for completions
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# disable default zsh completion menu (replaced by fzf)
+zstyle ':completion:*' menu no
+
+# enable preview
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --all --grid --icons=always $realpath'
+
+# have previews work with zoxide
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --all --grid --icons=always $realpath'
+
+
+###########
+### Fzf ###
+###########
+
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+_fzf_comprun() {
+	local command=$1
+	shift
+
+	case "$command" in
+		cd)	fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+		export|unset) fzf --preview "eval 'echo \$' {}"	"$@" ;;
+		ssh)	fzf --preview 'dig {}'	"$@" ;;
+		*)	fzf --preview "--preview 'bat -n --color=always --line-range :500 {}'" "$@" ;;
+	esac
+}
+
+###########################
+### Catpuccin Theme fzf ###
+###########################
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
+--color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
+--color=selected-bg:#45475a \
+--color=border:#313244,label:#cdd6f4"
+
+#####################
+### Other options ###
+#####################
+
+# disable annoying bell
+unsetopt BEEP
+
+
