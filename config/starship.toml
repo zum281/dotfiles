@@ -1,4 +1,4 @@
-palette = "catppuccin_frappe"
+palette = "everforest"
 # Remove default newline between prompts
 add_newline = false
 
@@ -13,7 +13,7 @@ disabled = true
 # Directory configuration
 [directory]
 format = "[$path ]($style)"
-style = "pink"
+style = "purple"
 truncation_length = 3
 truncate_to_repo = false
 home_symbol = "~"
@@ -21,13 +21,13 @@ home_symbol = "~"
 # Git branch
 [git_branch]
 format = "[$branch(:$remote_branch) ]($style)"
-style = "lavender"
+style = "aqua"
 symbol = ""
 
 # Git status
 [git_status]
 format = "([\\[$all_status$ahead_behind\\] ]($style))"
-style = "lavender"
+style = "aqua"
 ahead = "↑${count}"
 behind = "↓${count}"
 up_to_date = ""
@@ -43,7 +43,7 @@ stashed = "󰏗"
 # Git state (merge, rebase, etc.)
 [git_state]
 format = "([\\($state( $progress_current of $progress_total)\\) ]($style))"
-style = "lavender"
+style = "aqua"
 cherry_pick = " CHERRY-PICK"
 rebase = "󰑖 REBASE"
 merge = " MERGE"
@@ -65,38 +65,40 @@ not_capable_style = "disabled"
 [bun]
 format = "[$symbol]($style)"
 symbol = " "
-style = "white"
+style = "fg"
 
 # Prompt character with error indication
 [character]
-success_symbol = "[󰄛](lavender)"
+success_symbol = "[󰄛](aqua)"
 error_symbol = "[󰄛](red)"
-vicmd_symbol = "[󰄛](lavender)"
+vicmd_symbol = "[󰄛](aqua)"
 
-[palettes.catppuccin_frappe]
-rosewater = "#f2d5cf"
-flamingo = "#eebebe"
-pink = "#f4b8e4"
-mauve = "#ca9ee6"
-red = "#e78284"
-maroon = "#ea999c"
-peach = "#ef9f76"
-yellow = "#e5c890"
-green = "#a6d189"
-teal = "#81c8be"
-sky = "#99d1db"
-sapphire = "#85c1dc"
-blue = "#8caaee"
-lavender = "#babbf1"
-text = "#c6d0f5"
-subtext1 = "#b5bfe2"
-subtext0 = "#a5adce"
-overlay2 = "#949cbb"
-overlay1 = "#838ba7"
-overlay0 = "#737994"
-surface2 = "#626880"
-surface1 = "#51576d"
-surface0 = "#414559"
-base = "#303446"
-mantle = "#292c3c"
-crust = "#232634"
+[palettes.everforest]
+# Background colors
+bg_dim = "#1e2326"
+bg0 = "#272e33"
+bg1 = "#2e383c"
+bg2 = "#374145"
+bg3 = "#414b50"
+bg4 = "#495156"
+bg5 = "#4f5b58"
+
+# Foreground colors
+fg = "#d3c6aa"
+red = "#e67e80"
+orange = "#e69875"
+yellow = "#dbbc7f"
+green = "#a7c080"
+blue = "#7fbbb3"
+aqua = "#83c092"
+purple = "#d699b6"
+
+# Grayed out colors
+grey0 = "#7a8478"
+grey1 = "#859289"
+grey2 = "#9da9a0"
+
+# Status line colors
+statusline1 = "#a7c080"
+statusline2 = "#d3c6aa"
+statusline3 = "#e67e80"
