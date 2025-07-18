@@ -1,0 +1,27 @@
+# =============================================================================
+# SHARED GIT CONFIG - Synced via dotfiles
+# =============================================================================
+#
+# HOW TO USE:
+# Add this to ~/.gitconfig:
+#    [include]
+#        path = ~/.gitconfig-shared
+#
+# =============================================================================
+
+[push]
+	autoSetupRemote = true
+[init]
+	defaultBranch = main
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RF
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[rebase]
+	updateRefs = true
