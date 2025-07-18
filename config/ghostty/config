@@ -2,7 +2,9 @@ macos-option-as-alt = true
 window-padding-x = 4
 window-padding-y = 4
 window-padding-balance = true
-font-family = "SauceCodePro NFM Medium"
+window-decoration = none
+font-family = SauceCodePro NF
+font-feature = +liga
 font-size = 18
 title = ""
 
