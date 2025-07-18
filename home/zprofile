@@ -1,3 +1,7 @@
+if command -v brew >/dev/null 2>&1; then
+    eval "$(brew shellenv)"
+fi
+
 export BUN_INSTALL="$HOME/.bun"
 export VOLTA_HOME="$HOME/.volta"
 export BREW_PATH="/opt/homebrew"
@@ -11,4 +15,3 @@ export PATH="$BREW_PATH/bin:$BUN_INSTALL/bin:$VOLTA_HOME/bin:$HOME/.local/bin:$P
    export EDITOR='nvim'
  fi
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
