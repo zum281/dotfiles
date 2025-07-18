@@ -161,14 +161,14 @@ _fzf_comprun() {
 }
 
 ###########################
-### Catpuccin Theme fzf ###
+### Everforest Theme fzf ###
 ###########################
 export FZF_DEFAULT_OPTS=" \
---color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
---color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
---color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
---color=selected-bg:#45475a \
---color=border:#313244,label:#cdd6f4"
+--color=bg+:#374145,bg:#272e33,spinner:#83c092,hl:#a7c080 \
+--color=fg:#d3c6aa,header:#a7c080,info:#7fbbb3,pointer:#83c092 \
+--color=marker:#d699b6,fg+:#d3c6aa,prompt:#dbbc7f,hl+:#a7c080 \
+--color=selected-bg:#414b50 \
+--color=border:#495156,label:#d3c6aa"
 
 #####################
 ### Other options ###
