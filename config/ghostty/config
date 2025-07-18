@@ -5,7 +5,46 @@ window-padding-balance = true
 font-family = "SauceCodePro NFM Medium"
 font-size = 18
 title = ""
-theme = catppuccin-frappe
+
+# Everforest Dark Medium theme
+background = 272e33
+foreground = d3c6aa
+cursor-color = d3c6aa
+selection-background = 414b50
+selection-foreground = d3c6aa
+
+# Black colors
+palette = 0=1e2326
+palette = 8=859289
+
+# Red colors
+palette = 1=e67e80
+palette = 9=e67e80
+
+# Green colors
+palette = 2=a7c080
+palette = 10=a7c080
+
+# Yellow colors
+palette = 3=dbbc7f
+palette = 11=dbbc7f
+
+# Blue colors
+palette = 4=7fbbb3
+palette = 12=7fbbb3
+
+# Magenta colors
+palette = 5=d699b6
+palette = 13=d699b6
+
+# Cyan colors
+palette = 6=83c092
+palette = 14=83c092
+
+# White colors
+palette = 7=d3c6aa
+palette = 15=d3c6aa
+
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
 mouse-hide-while-typing = true
@@ -17,18 +56,20 @@ macos-titlebar-style = tabs
 title = ""
 macos-titlebar-proxy-icon = hidden
 unfocused-split-opacity = 0.65
-unfocused-split-fill = #11111b
+unfocused-split-fill = #1e2326
 
 # keybindings
 keybind = cmd+s>r=reload_config
 keybind = cmd+s>x=close_surface
 keybind = global:ctrl+f=toggle_quick_terminal
+
 # tabs
 keybind = cmd+s>t=new_tab
 keybind = cmd+s>s=next_tab
 keybind = cmd+s>h=previous_tab
 keybind = cmd+s>comma=move_tab:-1
 keybind = cmd+s>period=move_tab:1
+
 # split
 keybind = cmd+s>v=new_split:down
 keybind = cmd+s>n=new_split:right
