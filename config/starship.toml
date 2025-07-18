@@ -1,0 +1,102 @@
+palette = "catppuccin_frappe"
+# Remove default newline between prompts
+add_newline = false
+
+# General prompt settings
+format = "$directory$git_branch$git_status$git_state$character"
+right_format = "$bun$nodejs"
+
+# Disable line break to keep everything on one line
+[line_break]
+disabled = true
+
+# Directory configuration
+[directory]
+format = "[$path ]($style)"
+style = "pink"
+truncation_length = 3
+truncate_to_repo = false
+home_symbol = "~"
+
+# Git branch
+[git_branch]
+format = "[$branch(:$remote_branch) ]($style)"
+style = "lavender"
+symbol = ""
+
+# Git status
+[git_status]
+format = "([\\[$all_status$ahead_behind\\] ]($style))"
+style = "lavender"
+ahead = "↑${count}"
+behind = "↓${count}"
+up_to_date = ""
+diverged = "↑${ahead_count}↓${behind_count}"
+conflicted = "󰞇${count}"
+deleted = "✘${count}"
+renamed = "󰁕${count}"
+modified = "󰷈${count}"
+staged = "✚${count}"
+untracked = "?${count}"
+stashed = "󰏗"
+
+# Git state (merge, rebase, etc.)
+[git_state]
+format = "([\\($state( $progress_current of $progress_total)\\) ]($style))"
+style = "lavender"
+cherry_pick = " CHERRY-PICK"
+rebase = "󰑖 REBASE"
+merge = " MERGE"
+revert = "󰕍 REVERT"
+bisect = " BISECT"
+
+# Node.js - only show in Node projects
+[nodejs]
+format = "[$symbol$version]($style)"
+style = "green"
+version_format = "v${major}"
+symbol = "󰎙 "
+detect_extensions = ["js", "mjs", "cjs", "ts", "tsx"]
+detect_files = ["package.json", ".nvmrc", ".node-version"]
+detect_folders = ["node_modules"]
+not_capable_style = "disabled"
+
+# Bun - only show in Bun projects
+[bun]
+format = "[$symbol]($style)"
+symbol = " "
+style = "white"
+
+# Prompt character with error indication
+[character]
+success_symbol = "[󰄛](lavender)"
+error_symbol = "[󰄛](red)"
+vicmd_symbol = "[󰄛](lavender)"
+
+[palettes.catppuccin_frappe]
+rosewater = "#f2d5cf"
+flamingo = "#eebebe"
+pink = "#f4b8e4"
+mauve = "#ca9ee6"
+red = "#e78284"
+maroon = "#ea999c"
+peach = "#ef9f76"
+yellow = "#e5c890"
+green = "#a6d189"
+teal = "#81c8be"
+sky = "#99d1db"
+sapphire = "#85c1dc"
+blue = "#8caaee"
+lavender = "#babbf1"
+text = "#c6d0f5"
+subtext1 = "#b5bfe2"
+subtext0 = "#a5adce"
+overlay2 = "#949cbb"
+overlay1 = "#838ba7"
+overlay0 = "#737994"
+surface2 = "#626880"
+surface1 = "#51576d"
+surface0 = "#414559"
+base = "#303446"
+mantle = "#292c3c"
+crust = "#232634"
