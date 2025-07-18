@@ -1,0 +1,45 @@
+macos-option-as-alt = true
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+font-family = "SauceCodePro NFM Medium"
+font-size = 18
+title = ""
+theme = catppuccin-frappe
+shell-integration-features = no-cursor,sudo,no-title
+cursor-style = block
+mouse-hide-while-typing = true
+background-opacity = 1
+background-blur-radius = 20
+mouse-scroll-multiplier = 2
+window-colorspace = "display-p3"
+macos-titlebar-style = tabs
+title = ""
+macos-titlebar-proxy-icon = hidden
+unfocused-split-opacity = 0.65
+unfocused-split-fill = #11111b
+
+# keybindings
+keybind = cmd+s>r=reload_config
+keybind = cmd+s>x=close_surface
+keybind = global:ctrl+f=toggle_quick_terminal
+# tabs
+keybind = cmd+s>t=new_tab
+keybind = cmd+s>s=next_tab
+keybind = cmd+s>h=previous_tab
+keybind = cmd+s>comma=move_tab:-1
+keybind = cmd+s>period=move_tab:1
+# split
+keybind = cmd+s>v=new_split:down
+keybind = cmd+s>n=new_split:right
+keybind = ctrl+t=goto_split:bottom
+keybind = ctrl+h=goto_split:top
+keybind = ctrl+e=goto_split:left
+keybind = ctrl+u=goto_split:right
+keybind = ctrl+shift+t=resize_split:down,50
+keybind = ctrl+shift+h=resize_split:up,50
+keybind = ctrl+shift+e=resize_split:left,50
+keybind = ctrl+shift+u=resize_split:right,50
+
+copy-on-select = clipboard
+quick-terminal-position = "center"
