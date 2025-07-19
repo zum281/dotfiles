@@ -75,14 +75,6 @@ keybind = cmd+s>period=move_tab:1
 # split
 keybind = cmd+s>v=new_split:down
 keybind = cmd+s>n=new_split:right
-keybind = ctrl+t=goto_split:bottom
-keybind = ctrl+h=goto_split:top
-keybind = ctrl+e=goto_split:left
-keybind = ctrl+u=goto_split:right
-keybind = ctrl+shift+t=resize_split:down,50
-keybind = ctrl+shift+h=resize_split:up,50
-keybind = ctrl+shift+e=resize_split:left,50
-keybind = ctrl+shift+u=resize_split:right,50
 
 copy-on-select = clipboard
 quick-terminal-position = "center"
