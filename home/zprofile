@@ -5,7 +5,8 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export VOLTA_HOME="$HOME/.volta"
 export BREW_PATH="/opt/homebrew"
-export PATH="$BREW_PATH/bin:$BUN_INSTALL/bin:$VOLTA_HOME/bin:$HOME/.local/bin:$PATH"
+export CARGO_PATH="$HOME/.cargo/bin"
+export PATH="$BREW_PATH/bin:$BUN_INSTALL/bin:$VOLTA_HOME/bin:$CARGO_PATH:$HOME/.local/bin:$PATH"
 
 
 # Preferred editor for local and remote sessions
