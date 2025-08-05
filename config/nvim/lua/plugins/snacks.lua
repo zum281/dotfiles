@@ -1,4 +1,4 @@
-local excluded = { "node_modules", ".git", ".next" }
+local excluded = { "node_modules", ".git", ".next", "localdb.sql", "localdb_old.sql" }
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
