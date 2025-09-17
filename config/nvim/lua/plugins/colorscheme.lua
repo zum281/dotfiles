@@ -1,16 +1,16 @@
 return {
-	"sainnhe/everforest",
+	"bluz71/vim-moonfly-colors",
+	name = "moonfly",
 	lazy = false,
 	priority = 1000,
 	config = function()
-		-- Everforest configuration
-		vim.g.everforest_background = "medium" -- hard, medium, soft
-		vim.g.everforest_better_performance = 1
-		vim.g.everforest_enable_italic = 1
-		vim.g.everforest_disable_italic_comment = 0
-		vim.g.everforest_transparent_background = 0 -- set to 1 if you want transparency
-
+		vim.g.moonflyCursorColor = true
+		vim.g.moonflyNormalFloat = true
+		vim.g.moonflyTransparent = true
+		vim.g.moonflyUnderlineMatchParen = true
+		vim.g.moonflyVirtualTextColor = true
+		vim.g.moonflyWinSeparator = 2
 		-- Apply the colorscheme
-		vim.cmd.colorscheme("everforest")
+		vim.cmd.colorscheme("moonfly")
 	end,
 }
