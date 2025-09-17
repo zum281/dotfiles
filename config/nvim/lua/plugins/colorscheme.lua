@@ -5,6 +5,7 @@ return {
 	priority = 1000,
 	config = function()
 		vim.g.moonflyCursorColor = true
+		vim.o.winborder = "single"
 		vim.g.moonflyNormalFloat = true
 		vim.g.moonflyTransparent = true
 		vim.g.moonflyUnderlineMatchParen = true
