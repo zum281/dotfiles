@@ -2,55 +2,40 @@ macos-option-as-alt = true
 window-padding-x = 4
 window-padding-y = 4
 window-padding-balance = true
-window-decoration = none
+#window-decoration = none
 font-family = SauceCodePro NF
 font-feature = +liga
-font-size = 18
+font-size = 16
 title = ""
 
-# Everforest Dark Medium theme
-background = 272e33
-foreground = d3c6aa
-cursor-color = d3c6aa
-selection-background = 414b50
-selection-foreground = d3c6aa
+background = #080808
+foreground = #bdbdbd
+selection-background = #b2ceee
+selection-foreground = #080808
+cursor-color = #8e8e8e
 
-# Black colors
-palette = 0=1e2326
-palette = 8=859289
+palette = 0=#323437
+palette = 1=#ff5d5d
+palette = 2=#8cc85f
+palette = 3=#e3c78a
+palette = 4=#80a0ff
+palette = 5=#cf87e8
+palette = 6=#79dac8
+palette = 7=#c6c6c6
 
-# Red colors
-palette = 1=e67e80
-palette = 9=e67e80
-
-# Green colors
-palette = 2=a7c080
-palette = 10=a7c080
-
-# Yellow colors
-palette = 3=dbbc7f
-palette = 11=dbbc7f
-
-# Blue colors
-palette = 4=7fbbb3
-palette = 12=7fbbb3
-
-# Magenta colors
-palette = 5=d699b6
-palette = 13=d699b6
-
-# Cyan colors
-palette = 6=83c092
-palette = 14=83c092
-
-# White colors
-palette = 7=d3c6aa
-palette = 15=d3c6aa
+palette = 8=#949494
+palette = 9=#ff5189
+palette = 10=#36c692
+palette = 11=#c6c684
+palette = 12=#74b2ff
+palette = 13=#ae81ff
+palette = 14=#85dc85
+palette = 15=#e4e4e4
 
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
 mouse-hide-while-typing = true
-background-opacity = 1
+background-opacity = 0.97
 background-blur-radius = 20
 mouse-scroll-multiplier = 2
 window-colorspace = "display-p3"
