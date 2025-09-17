@@ -1,4 +1,4 @@
-palette = "everforest"
+palette = "moonfly"
 # Remove default newline between prompts
 add_newline = false
 
@@ -13,7 +13,7 @@ disabled = true
 # Directory configuration
 [directory]
 format = "[$path ]($style)"
-style = "purple"
+style = "fern"
 truncation_length = 3
 truncate_to_repo = false
 home_symbol = "~"
@@ -21,13 +21,13 @@ home_symbol = "~"
 # Git branch
 [git_branch]
 format = "[$branch(:$remote_branch) ]($style)"
-style = "aqua"
+style = "lavender"
 symbol = ""
 
 # Git status
 [git_status]
 format = "([\\[$all_status$ahead_behind\\] ]($style))"
-style = "aqua"
+style = "lavender"
 ahead = "↑${count}"
 behind = "↓${count}"
 up_to_date = ""
@@ -43,7 +43,7 @@ stashed = "󰏗"
 # Git state (merge, rebase, etc.)
 [git_state]
 format = "([\\($state( $progress_current of $progress_total)\\) ]($style))"
-style = "aqua"
+style = "orange"
 cherry_pick = " CHERRY-PICK"
 rebase = "󰑖 REBASE"
 merge = " MERGE"
@@ -67,38 +67,15 @@ format = "[$symbol]($style)"
 symbol = " "
 style = "fg"
 
+
 # Prompt character with error indication
 [character]
-success_symbol = "[󰄛](aqua)"
+success_symbol = "[󰄛](blue)"
 error_symbol = "[󰄛](red)"
-vicmd_symbol = "[󰄛](aqua)"
+vicmd_symbol = "[󰄛](blue)"
 
-[palettes.everforest]
-# Background colors
-bg_dim = "#1e2326"
-bg0 = "#272e33"
-bg1 = "#2e383c"
-bg2 = "#374145"
-bg3 = "#414b50"
-bg4 = "#495156"
-bg5 = "#4f5b58"
-
-# Foreground colors
-fg = "#d3c6aa"
-red = "#e67e80"
-orange = "#e69875"
-yellow = "#dbbc7f"
-green = "#a7c080"
-blue = "#7fbbb3"
-aqua = "#83c092"
-purple = "#d699b6"
-
-# Grayed out colors
-grey0 = "#7a8478"
-grey1 = "#859289"
-grey2 = "#9da9a0"
-
-# Status line colors
-statusline1 = "#a7c080"
-statusline2 = "#d3c6aa"
-statusline3 = "#e67e80"
+[palettes.moonfly]
+fern = "#87d787"
+lavender = "#adadf3"
+orange = "#f09479"
+red = "#f07496"
