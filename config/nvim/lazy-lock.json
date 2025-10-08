@@ -30,5 +30,6 @@
   "render-markdown.nvim": { "branch": "main", "commit": "5f437a26a8a8b964eff683dd6f68bc2a0d38c5db" },
   "snacks.nvim": { "branch": "main", "commit": "d67a47739dfc652cfcf66c59e929c704a854b37a" },
   "trouble.nvim": { "branch": "main", "commit": "3fb3bd737be8866e5f3a170abc70b4da8b5dd45a" },
+  "warp.nvim": { "branch": "main", "commit": "a8759228957a7be7f45656fb97dfb96638b785e0" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" }
 }
