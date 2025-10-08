@@ -46,3 +46,7 @@ set("n", "<leader>pa", function()
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end)
+
+-- leap
+set({ "n", "x", "o" }, "s", "<Plug>(leap)")
+set("n", "S", "<Plug>(leap-from-window)")
