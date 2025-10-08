@@ -134,7 +134,7 @@ return {
 		},
 		-- search
 		{
-			'<leader>s"',
+			"<leader>sr",
 			function()
 				Snacks.picker.registers()
 			end,
