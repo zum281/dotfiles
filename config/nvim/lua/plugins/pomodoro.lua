@@ -10,12 +10,4 @@ return {
 		breaks_before_long = 4,
 		display_ui_on_break = false, -- Disable it if you only want to see the lualine
 	},
-	keys = {
-		{
-			---For which key usage
-			"<leader>pp",
-			"<cmd>PomodoroUI<cr>",
-			desc = "pomodoro",
-		},
-	},
 }

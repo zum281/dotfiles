@@ -28,30 +28,6 @@ return {
 			long_message_to_split = true,
 		},
 	},
-	keys = {
-		{ "<leader>sn", "", desc = "+noice" },
-		{
-			"<leader>snl",
-			function()
-				require("noice").cmd("last")
-			end,
-			desc = "Noice Last Message",
-		},
-		{
-			"<leader>snh",
-			function()
-				require("noice").cmd("history")
-			end,
-			desc = "Noice History",
-		},
-		{
-			"<leader>sna",
-			function()
-				require("noice").cmd("all")
-			end,
-			desc = "Noice All",
-		},
-	},
 	config = function(_, opts)
 		-- HACK: noice shows messages from before it was enabled,
 		-- but this is not ideal when Lazy is installing plugins,
