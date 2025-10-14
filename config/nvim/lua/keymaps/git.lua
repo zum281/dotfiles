@@ -9,4 +9,11 @@ wk.add({
 		end,
 		desc = "Lazygit",
 	},
+	{
+		"<leader>gb",
+		function()
+			vim.cmd.GitBlameToggle()
+		end,
+		desc = "blame",
+	},
 })
