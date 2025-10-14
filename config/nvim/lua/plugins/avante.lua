@@ -14,5 +14,4 @@ return {
 	},
 	build = "make",
 	opts = { provider = "copilot" },
-	keys = {},
 }
