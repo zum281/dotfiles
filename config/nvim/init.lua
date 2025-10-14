@@ -2,6 +2,7 @@ require("config.lazy")
 require("opts")
 require("keymaps")
 require("autocmd")
+require("utils.npm")
 
 -- lsp-config.lua
 

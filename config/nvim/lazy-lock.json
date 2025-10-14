@@ -39,6 +39,7 @@
   "quicktest.nvim": { "branch": "main", "commit": "3660999967f6fa2d839a56b169a51e2a94a3253b" },
   "render-markdown.nvim": { "branch": "main", "commit": "5f437a26a8a8b964eff683dd6f68bc2a0d38c5db" },
   "snacks.nvim": { "branch": "main", "commit": "d67a47739dfc652cfcf66c59e929c704a854b37a" },
+  "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
   "trouble.nvim": { "branch": "main", "commit": "3fb3bd737be8866e5f3a170abc70b4da8b5dd45a" },
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
   "warp.nvim": { "branch": "main", "commit": "a8759228957a7be7f45656fb97dfb96638b785e0" },
