@@ -1,3 +1,4 @@
+require("keymaps.ai")
 require("keymaps.buffers")
 require("keymaps.common")
 require("keymaps.diagnostics")
