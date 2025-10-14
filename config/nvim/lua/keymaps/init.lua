@@ -29,3 +29,7 @@ set("n", "<C-Right>", "<C-w>l", { desc = "Move to right window" })
 -- leap
 set({ "n", "x", "o" }, "s", "<Plug>(leap)")
 set("n", "S", "<Plug>(leap-from-window)")
+
+set("n", "K", function()
+	vim.lsp.buf.hover()
+end, { buffer = 0 })
