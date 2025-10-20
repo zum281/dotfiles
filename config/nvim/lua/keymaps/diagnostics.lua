@@ -2,8 +2,6 @@ local wk = require("which-key")
 
 wk.add({
 	{ "<leader>d", group = "diagnostigs", nowait = true, remap = false },
-	{ "<leader>dd", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-	{ "<leader>db", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Buffer Diagnostics (Trouble)" },
 	{
 		"<leader>d/",
 		function()
@@ -12,10 +10,11 @@ wk.add({
 		desc = "Diagnostics",
 	},
 	{
-		"<leader>dB/",
+		"<leader>db",
 		function()
 			Snacks.picker.diagnostics_buffer()
 		end,
 		desc = "Buffer Diagnostics",
 	},
+	{ "<leader>dd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
 })
