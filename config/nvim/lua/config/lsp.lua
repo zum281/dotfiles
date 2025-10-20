@@ -2,6 +2,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"ts_ls",
 	"emmet_ls",
+	"tailwind_ls",
 })
 
 -- vim.api.nvim_create_autocmd("LspAttach", {
