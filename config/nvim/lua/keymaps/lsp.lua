@@ -1,36 +1,35 @@
 local wk = require("which-key")
 wk.add({
-	{ "<leader>l", group = "lsp", remap = false, nowait = true },
 	{
-		"<leader>la",
+		"ga",
 		function()
 			vim.lsp.buf.code_action({ apply = true })
 		end,
 		desc = "Code actions",
 	},
 	{
-		"<leader>ld",
+		"gd",
 		function()
 			Snacks.picker.lsp_definitions()
 		end,
 		desc = "Goto Definition",
 	},
 	{
-		"<leader>lD",
+		"gD",
 		function()
 			Snacks.picker.lsp_declarations()
 		end,
 		desc = "Goto Declaration",
 	},
 	{
-		"<leader>li",
+		"gi",
 		function()
 			Snacks.picker.lsp_implementations()
 		end,
 		desc = "Goto Implementation",
 	},
 	{
-		"<leader>lr",
+		"gr",
 		function()
 			Snacks.picker.lsp_references()
 		end,
@@ -38,21 +37,21 @@ wk.add({
 		desc = "References",
 	},
 	{
-		"<leader>ls",
+		"gs",
 		function()
 			Snacks.picker.lsp_symbols()
 		end,
 		desc = "LSP Symbols",
 	},
 	{
-		"<leader>lw",
+		"gw",
 		function()
 			Snacks.picker.lsp_workspace_symbols()
 		end,
 		desc = "LSP Workspace Symbols",
 	},
 	{
-		"<leader>ly",
+		"gy",
 		function()
 			Snacks.picker.lsp_type_definitions()
 		end,
