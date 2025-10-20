@@ -49,6 +49,7 @@ vim.opt.mouse = "a" -- Enable mouse support
 vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
 vim.opt.modifiable = true -- Allow buffer modifications
 vim.opt.encoding = "UTF-8" -- Set encoding
+vim.opt.winborder = "rounded"
 
 -- Folding settings
 vim.opt.foldmethod = "expr" -- Use expression for folding
@@ -57,3 +58,4 @@ vim.opt.foldlevel = 99 -- Start with all folds open
 -- Split behavior
 vim.opt.splitbelow = true -- Horizontal splits go below
 vim.opt.splitright = true -- Vertical splits go right
+

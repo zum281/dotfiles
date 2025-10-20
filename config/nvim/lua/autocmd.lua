@@ -15,54 +15,29 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- organize imports on save
-local function organize_imports(bufnr)
-	local filetype = vim.bo.filetype
-
-	if filetype:match("^javascript") or filetype:match("^typescript") then
-		local clients = vim.lsp.get_clients({ bufnr = bufnr })
-		local ts_client = nil
-
-		for _, client in pairs(clients) do
-			if client.name == "tsserver" or client.name == "ts_ls" or client.name == "vtsls" then
-				ts_client = client
-				break
-			end
-		end
-
-		if ts_client then
-			local params = {
-				command = "_typescript.organize_imports",
-				arguments = { vim.api.nvim_buf_get_name(bufnr) },
-			}
-			local success = vim.lsp.buf_request_sync(bufnr, "workspace/executeCommand", params, 1000)
-			if not success then
-				vim.lsp.bug.code_action({
-					bufnr = bufnr,
-					context = {
-						only = { "source.organizeImports" },
-						apply = true,
-						timeout = 500,
-					},
-				})
-			end
-		end
-	end
-end
-
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.ts", "*.tsx", "*.js", "*.jsx" },
-	group = vim.api.nvim_create_augroup("TSSaveActions", { clear = true }),
-	callback = function(args)
-		organize_imports(args.buf)
-		require("conform").format({ bufnr = args.buf })
-	end,
-})
+	desc = "Format before save",
+	pattern = "*",
+	group = vim.api.nvim_create_augroup("FormatConfig", { clear = true }),
+	callback = function(ev)
+        local conform_opts = { bufnr = ev.buf, lsp_format = "fallback", timeout_ms = 2000 }
+        local client = vim.lsp.get_clients({ name = "ts_ls", bufnr = ev.buf })[1]
 
--- format on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*", "!*.ts", "!*.tsx", "!*.js", "!*.jsx" },
-	group = vim.api.nvim_create_augroup("GeneralFormatOnSave", { clear = true }),
-	callback = function(args)
-		require("conform").format({ bufnr = args.buf })
-	end,
+        if not client then
+            require("conform").format(conform_opts)
+            return
+        end
+
+        local request_result = client:request_sync("workspace/executeCommand", {
+            command = "_typescript.organizeImports",
+            arguments = { vim.api.nvim_buf_get_name(ev.buf) },
+        })
+
+        if request_result and request_result.err then
+            vim.notify(request_result.err.message, vim.log.levels.ERROR)
+            return
+        end
+
+        require("conform").format(conform_opts)
+    end,
 })
