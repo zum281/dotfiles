@@ -9,6 +9,7 @@ require("keymaps.notifications")
 require("keymaps.pomodoro")
 require("keymaps.quicktest")
 require("keymaps.splits")
+require("keymaps.todo")
 require("keymaps.ui")
 require("keymaps.warp")
 

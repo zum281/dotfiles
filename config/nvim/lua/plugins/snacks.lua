@@ -3,6 +3,12 @@ return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
+	dependencies = {
+		"folke/todo-comments.nvim",
+		config = function()
+			require("todo-comments").setup({})
+		end,
+	},
 	opts = {
 		animate = { enabled = true },
 		image = { enabled = true },
