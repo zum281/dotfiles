@@ -18,7 +18,5 @@ return {
 		vim.g.moonflyUnderlineMatchParen = true
 		vim.g.moonflyVirtualTextColor = true
 		vim.g.moonflyWinSeparator = 2
-		-- Apply the colorscheme
-		vim.cmd.colorscheme("moonfly")
 	end,
 }
