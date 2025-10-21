@@ -8,7 +8,7 @@ return {
 			black = "#000000",
 			bg = "#000000",
 			grey0 = "#4d5d8d",
-			grey11 = "#000000",
+			grey11 = "#121212",
 			grey16 = "#080808",
 		})
 		vim.g.moonflyCursorColor = true

@@ -74,18 +74,11 @@ wk.add({
 		desc = "Rename buffer",
 	},
 
-	-- diagnostics
+	-- diagnostics/debug
 
-	{ "<leader>d", group = "diagnostigs", nowait = true, remap = false },
+	{ "<leader>d", group = "diagnostigs", nowait = true },
 	{
-		"<leader>d/",
-		function()
-			Snacks.picker.diagnostics()
-		end,
-		desc = "Diagnostics",
-	},
-	{
-		"<leader>db",
+		"<leader>dD",
 		function()
 			Snacks.picker.diagnostics_buffer()
 		end,
