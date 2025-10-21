@@ -15,13 +15,13 @@ return {
 		formatters = {
 			prettier = {
 				prepend_args = {
-					"--bracket-same-line",
+					-- "--bracket-same-line",
 					"--html-whitespace-sensitivity=ignore",
 				},
 			},
 			prettierd = {
 				prepend_args = {
-					"--bracket-same-line",
+					-- "--bracket-same-line",
 					"--html-whitespace-sensitivity=ignore",
 				},
 			},
