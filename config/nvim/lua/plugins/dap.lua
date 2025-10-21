@@ -33,7 +33,57 @@ return {
 			end
 
 			-- Setup dap-ui with default configuration
-			dapui.setup()
+			dapui.setup({
+				icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
+				mappings = {
+					expand = { "<CR>", "<2-LeftMouse>" },
+					open = "o",
+					remove = "d",
+					edit = "e",
+					repl = "r",
+					toggle = "t",
+				},
+				element_mappings = {},
+				expand_lines = vim.fn.has("nvim-0.7") == 1,
+				force_buffers = true,
+				layouts = {
+					{
+						elements = {
+							-- Left sidebar: main debugging info
+							{ id = "scopes", size = 0.50 }, -- 50% of sidebar - variables in current scope
+							{ id = "watches", size = 0.30 }, -- 30% of sidebar - your custom watch expressions
+							{ id = "stacks", size = 0.20 }, -- 20% of sidebar - call stack
+						},
+						size = 50, -- sidebar width in columns
+						position = "left",
+					},
+				},
+				controls = {
+					enabled = true,
+					element = "repl",
+					icons = {
+						pause = "",
+						play = "",
+						step_into = "",
+						step_over = "",
+						step_out = "",
+						step_back = "",
+						run_last = "",
+						terminate = "",
+					},
+				},
+				floating = {
+					border = "rounded",
+					mappings = {
+						close = { "q", "<Esc>" },
+					},
+				},
+				render = {
+					max_type_length = nil,
+					max_value_lines = 100,
+					indent = 1,
+				},
+			})
 
 			-- Setup virtual text
 			require("nvim-dap-virtual-text").setup({})
@@ -98,6 +148,15 @@ return {
 			vim.keymap.set("n", "<leader>dh", function()
 				require("dap.ui.widgets").hover()
 			end, { desc = "Debug: Hover Variable" })
+
+			-- Add expression to watches
+			vim.keymap.set("n", "<leader>dw", function()
+				vim.ui.input({ prompt = "Watch expression: " }, function(expr)
+					if expr then
+						require("dapui").elements.watches.add(expr)
+					end
+				end)
+			end, { desc = "Debug: Add Watch" })
 		end,
 	},
 }
