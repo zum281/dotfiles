@@ -33,7 +33,6 @@ set("n", "<leader>n", function()
 end, { desc = "Notifications" })
 
 -- todo picker
-
 set("n", "<leader>o", function()
 	Snacks.picker.todo_comments()
 end, { desc = "todo" })
@@ -355,5 +354,15 @@ wk.add({
 			print("file:", path)
 		end,
 		desc = "yank full file path",
+	},
+
+	-- ui
+	{ "<leader>u", group = "ui", remap = false, nowait = true },
+	{
+		"<leader>uc",
+		function()
+			Snacks.picker.colorschemes()
+		end,
+		desc = "colorschemes",
 	},
 })
