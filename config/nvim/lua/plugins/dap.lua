@@ -15,11 +15,10 @@ return {
 				ensure_installed = {
 					"js-debug-adapter",
 				},
-				-- Automatically configure adapters installed via Mason
 				automatic_setup = true,
-				handlers = {}, -- Use default handlers
 			})
 
+			-- Mason installs js-debug-adapter but we need to set up the adapter types
 			for _, adapter in ipairs({ "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }) do
 				dap.adapters[adapter] = {
 					type = "server",
@@ -32,7 +31,6 @@ return {
 				}
 			end
 
-			-- Setup dap-ui with default configuration
 			dapui.setup({
 				icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
 				mappings = {
@@ -44,18 +42,18 @@ return {
 					toggle = "t",
 				},
 				element_mappings = {},
-				expand_lines = vim.fn.has("nvim-0.7") == 1,
+				expand_lines = true,
 				force_buffers = true,
 				layouts = {
 					{
 						elements = {
-							-- Left sidebar: main debugging info
-							{ id = "scopes", size = 0.50 }, -- 50% of sidebar - variables in current scope
-							{ id = "watches", size = 0.30 }, -- 30% of sidebar - your custom watch expressions
-							{ id = "stacks", size = 0.20 }, -- 20% of sidebar - call stack
+							-- sidebar: main debugging info
+							{ id = "scopes", size = 0.50 },
+							{ id = "watches", size = 0.30 },
+							{ id = "stacks", size = 0.20 },
 						},
 						size = 50, -- sidebar width in columns
-						position = "left",
+						position = "right",
 					},
 				},
 				controls = {
@@ -85,36 +83,86 @@ return {
 				},
 			})
 
-			-- Setup virtual text
 			require("nvim-dap-virtual-text").setup({})
+
+			-- Store original colorscheme
+			local original_colorscheme = "moonfly"
+			local debug_colorscheme = "kanagawa-paper-ink"
 
 			-- Automatically open/close dap-ui when debugging starts/ends
 			dap.listeners.after.event_initialized["dapui_config"] = function()
+				-- Change colorscheme when debugging starts
+				vim.cmd.colorscheme(debug_colorscheme)
 				dapui.open()
 			end
 			dap.listeners.before.event_terminated["dapui_config"] = function()
+				-- Restore original colorscheme when debugging ends
+				vim.cmd.colorscheme(original_colorscheme)
 				dapui.close()
 			end
 			dap.listeners.before.event_exited["dapui_config"] = function()
+				-- Restore original colorscheme when debugging ends
+				vim.cmd.colorscheme(original_colorscheme)
 				dapui.close()
+			end
+
+			-- Helper function to detect available browser
+			local function get_browser_path()
+				-- Check for Chrome
+				local chrome_path = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+				if vim.fn.executable(chrome_path) == 1 then
+					return chrome_path
+				end
+
+				-- Check for Brave
+				local brave_path = "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+				if vim.fn.executable(brave_path) == 1 then
+					return brave_path
+				end
+
+				return nil
 			end
 
 			-- Debug configurations for TypeScript/React
 			for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
 				dap.configurations[language] = {
-					-- Debug web app in Brave
+					-- Auto-detect browser
 					{
 						type = "pwa-chrome",
 						request = "launch",
-						name = "Launch Brave to debug client",
-						url = "http://localhost:5173", -- Vite's default port
+						name = "Launch Browser (Auto-detect)",
+						url = "http://localhost:5173",
+						webRoot = "${workspaceFolder}/src",
+						runtimeExecutable = get_browser_path(),
+						sourceMaps = true,
+						protocol = "inspector",
+						skipFiles = { "<node_internals>/**", "node_modules/**" },
+					},
+					-- Explicit Chrome
+					{
+						type = "pwa-chrome",
+						request = "launch",
+						name = "Launch Chrome",
+						url = "http://localhost:5173",
+						webRoot = "${workspaceFolder}/src",
+						runtimeExecutable = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+						sourceMaps = true,
+						protocol = "inspector",
+						skipFiles = { "<node_internals>/**", "node_modules/**" },
+					},
+					-- Explicit Brave
+					{
+						type = "pwa-chrome",
+						request = "launch",
+						name = "Launch Brave",
+						url = "http://localhost:5173",
 						webRoot = "${workspaceFolder}/src",
 						runtimeExecutable = "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
 						sourceMaps = true,
 						protocol = "inspector",
 						skipFiles = { "<node_internals>/**", "node_modules/**" },
 					},
-					-- Attach to an already running browser instance
+					-- Attach to running browser
 					{
 						type = "pwa-chrome",
 						request = "attach",
@@ -127,13 +175,20 @@ return {
 					},
 				}
 			end
+
 			-- Keymaps for debugging
 			vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
 			vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debug: Start/Continue" })
 			vim.keymap.set("n", "<leader>di", dap.step_into, { desc = "Debug: Step Into" })
 			vim.keymap.set("n", "<leader>do", dap.step_over, { desc = "Debug: Step Over" })
 			vim.keymap.set("n", "<leader>dO", dap.step_out, { desc = "Debug: Step Out" })
-			vim.keymap.set("n", "<leader>dt", dap.terminate, { desc = "Debug: Terminate" })
+			vim.keymap.set("n", "<leader>dt", function()
+				dap.terminate()
+				-- Manually restore colorscheme when terminating
+				vim.schedule(function()
+					vim.cmd.colorscheme(original_colorscheme)
+				end)
+			end, { desc = "Debug: Terminate" })
 			vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Debug: Toggle UI" })
 
 			-- Optional: Keymaps for dap-ui specific functions
