@@ -2,6 +2,8 @@ vim.lsp.enable({
 	"lua_ls",
 	"ts_ls",
 	"emmet_ls",
+	"css_ls",
+	"css_vars_ls",
 	"tailwind_ls",
 })
 
