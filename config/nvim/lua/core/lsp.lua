@@ -5,6 +5,7 @@ vim.lsp.enable({
 	"css_ls",
 	"css_vars_ls",
 	"tailwind_ls",
+	"sql_ls",
 })
 
 vim.diagnostic.config({
