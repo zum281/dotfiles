@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- organize imports on save
+-- organize imports on save TYPESCRIPT
 vim.api.nvim_create_autocmd("BufWritePre", {
 	desc = "Format before save",
 	pattern = "*",

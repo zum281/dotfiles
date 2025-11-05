@@ -31,6 +31,16 @@ return {
 				}
 			end
 
+			-- Go adapter configuration
+			dap.adapters.go = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = "go-debug-adapter",
+					args = { "${port}" },
+				},
+			}
+
 			dapui.setup({
 				icons = { expanded = "▾", collapsed = "▸", current_frame = "▸" },
 				mappings = {
@@ -175,6 +185,36 @@ return {
 					},
 				}
 			end
+
+			-- DAP configurations for go
+			dap.configurations.go = {
+				{
+					type = "go",
+					name = "Debug",
+					request = "launch",
+					program = "${file}",
+				},
+				{
+					type = "go",
+					name = "Debug Package",
+					request = "launch",
+					program = "${fileDirname}",
+				},
+				{
+					type = "go",
+					name = "Debug Test (go test -v)",
+					request = "launch",
+					mode = "test",
+					program = "${file}",
+				},
+				{
+					type = "go",
+					name = "Attach to Process",
+					mode = "local",
+					request = "attach",
+					processId = require("dap.utils").pick_process,
+				},
+			}
 
 			-- Keymaps for debugging
 			vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })

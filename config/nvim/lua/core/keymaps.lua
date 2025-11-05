@@ -41,6 +41,11 @@ end, { desc = "todo" })
 set({ "n", "v" }, "<", "<gv", { desc = "indent left" })
 set({ "n", "v" }, ">", ">gv", { desc = "indent right" })
 
+-- Run golangci-lint on current project
+vim.keymap.set("n", "gl", function()
+	vim.cmd("!golangci-lint run")
+end, { desc = "Go: Run golangci-lint" })
+
 wk.add({
 	-- ai
 	{ "<leader>a", group = "ai", remap = false, nowait = true },

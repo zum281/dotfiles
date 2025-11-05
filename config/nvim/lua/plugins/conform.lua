@@ -11,6 +11,7 @@ return {
 			css = { "prettierd", "prettier", stop_after_first = true },
 			json = { "prettierd", "prettier", stop_after_first = true },
 			markdown = { "prettierd", "prettier", stop_after_first = true },
+			go = { "goimports" },
 		},
 		formatters = {
 			prettier = {
