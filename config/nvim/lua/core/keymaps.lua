@@ -36,7 +36,7 @@ vim.keymap.set("n", "gl", function()
 end, { desc = "Go: Run golangci-lint" })
 
 set("n", "<leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-set("n", "<leader>,", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
+set("n", "<leader>b", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
 
 set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "File explorer" })
 
@@ -53,16 +53,15 @@ wk.add({
 	{ "<leader>am", "<cmd>AvanteShowRepoMap<cr>", desc = "show repo map" },
 
 	-- buffers
-	{ "<leader>b", group = "buffers", nowait = true, remap = false },
 	{
-		"<leader>bd",
+		"bd",
 		function()
 			Snacks.bufdelete()
 		end,
 		desc = "Delete buffer",
 	},
 	{
-		"<leader>bx",
+		"bx",
 		function()
 			local current = vim.api.nvim_get_current_buf()
 			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -75,23 +74,22 @@ wk.add({
 	},
 	{ "<S-h>", "<cmd>bprevious<cr>", desc = "Previous buffer" },
 	{ "<S-t>", "<cmd>bnext<cr>", desc = "Next buffer" },
-	{ "<leader>b[", "<cmd>bprevious<cr>", desc = "Previous buffer" },
-	{ "<leader>b]", "<cmd>bnext<cr>", desc = "Next buffer" },
+	{ "b[", "<cmd>bprevious<cr>", desc = "Previous buffer" },
+	{ "b]", "<cmd>bnext<cr>", desc = "Next buffer" },
 
 	{ "<leader>d", group = "diagnostics", nowait = true },
 	{ "<leader>dd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
 
 	--git
-	{ "<leader>g", group = "git", nowait = true, remap = false },
 	{
-		"<leader>gg",
+		"<leader>g",
 		function()
 			Snacks.lazygit()
 		end,
 		desc = "Lazygit",
 	},
 	{
-		"<leader>gb",
+		"gb",
 		"<cmd>Gitsigns toggle_current_line_blame<cr>",
 		desc = "blame",
 	},
@@ -102,25 +100,6 @@ wk.add({
 		"<leader>//",
 		"<cmd>Telescope live_grep<cr>",
 		desc = "Live grep",
-	},
-	{
-		"<leader>/b",
-		function()
-			require("telescope.builtin").live_grep({
-				grep_open_files = true,
-			})
-		end,
-		desc = "Grep open buffers",
-	},
-	{
-		"<leader>/f",
-		"<cmd>Telescope find_files<cr>",
-		desc = "Find files",
-	},
-	{
-		"<leader>/w",
-		"<cmd>Telescope grep_string<cr>",
-		desc = "Grep word under cursor",
 	},
 	{
 		"<leader>/c",
@@ -138,24 +117,9 @@ wk.add({
 		desc = "Search history",
 	},
 	{
-		"<leader>/H",
-		"<cmd>Telescope help_tags<cr>",
-		desc = "Help pages",
-	},
-	{
-		"<leader>/j",
-		"<cmd>Telescope jumplist<cr>",
-		desc = "Jumplist",
-	},
-	{
 		"<leader>/k",
 		"<cmd>Telescope keymaps<cr>",
 		desc = "Keymaps",
-	},
-	{
-		"<leader>/l",
-		"<cmd>Telescope current_buffer_fuzzy_find<cr>",
-		desc = "Buffer lines",
 	},
 	{
 		"<leader>/m",
@@ -176,11 +140,6 @@ wk.add({
 		"<leader>/r",
 		"<cmd>Telescope registers<cr>",
 		desc = "Registers",
-	},
-	{
-		"<leader>/R",
-		"<cmd>Telescope resume<cr>",
-		desc = "Resume last picker",
 	},
 	{ "<leader>/x", ":nohlsearch<CR>", desc = "Clear search highlights" },
 	{
