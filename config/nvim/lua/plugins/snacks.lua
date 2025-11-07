@@ -10,19 +10,12 @@ return {
 		scroll = { enabled = true },
 		animate = { enabled = true },
 		words = { enabled = true },
-		lazygit = { enabled = true },
 		bufdelete = { enabled = true },
 		rename = { enabled = true },
 		image = { enabled = true },
+		lazygit = { enabled = true },
 	},
 	keys = {
-		{
-			"<leader>gg",
-			function()
-				Snacks.lazygit()
-			end,
-			desc = "Lazygit",
-		},
 		{
 			"<leader>n",
 			function()
