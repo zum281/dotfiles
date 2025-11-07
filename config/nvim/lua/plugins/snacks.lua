@@ -1,110 +1,48 @@
-local excluded = { "node_modules", ".git", ".next", "localdb.sql", "localdb_old.sql" }
 return {
 	"folke/snacks.nvim",
 	priority = 1000,
 	lazy = false,
-	dependencies = {
-		"folke/todo-comments.nvim",
-		config = function()
-			require("todo-comments").setup({})
-		end,
-	},
 	opts = {
-		animate = { enabled = true },
-		image = { enabled = true },
 		bigfile = { enabled = true },
-		explorer = { enabled = true },
-		indent = { enabled = true },
-		input = { enabled = true },
-		lazygit = { enabled = true },
-		notifier = {
-			enabled = true,
-			timeout = 3000,
-		},
-		picker = {
-			enabled = true,
-			sources = {
-				files = {
-					hidden = true,
-					ignored = true,
-					exclude = excluded,
-				},
-				grep = {
-					hidden = true,
-					ignored = true,
-					exclude = excluded,
-				},
-				explorer = {
-					hidden = true,
-					ignored = true,
-					exclude = excluded,
-				},
-			},
-		},
-		quickfile = { enabled = true },
-		scope = { enabled = true },
-		scroll = { enabled = true },
+		notifier = { enabled = true, timeout = 3000 },
 		statuscolumn = { enabled = true },
-		terminal = { enabled = true },
-		toggle = { enabled = true },
-		win = { enabled = true },
+		indent = { enabled = true },
+		scroll = { enabled = true },
+		animate = { enabled = true },
 		words = { enabled = true },
-		zen = { enabled = true },
+		lazygit = { enabled = true },
+		bufdelete = { enabled = true },
+		rename = { enabled = true },
+		image = { enabled = true },
 	},
 	keys = {
 		{
-			"<leader><space>",
+			"<leader>gg",
 			function()
-				Snacks.picker.smart()
+				Snacks.lazygit()
 			end,
-			desc = "smart",
+			desc = "Lazygit",
 		},
 		{
-			"<leader>,",
+			"<leader>n",
 			function()
-				Snacks.picker.buffers()
+				Snacks.notifier.show_history()
 			end,
-			desc = "buffers",
-		},
-		{
-			"<leader>e",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "explorer",
-		},
-		{
-			"<leader>z",
-			function()
-				Snacks.zen()
-			end,
-			desc = "zen",
-		},
-		{
-			"<leader>Z",
-			function()
-				Snacks.zen.zoom()
-			end,
-			desc = "zoom",
+			desc = "Notification History",
 		},
 	},
 	init = function()
 		vim.api.nvim_create_autocmd("User", {
 			pattern = "VeryLazy",
 			callback = function()
-				-- Setup some globals for debugging (lazy-loaded)
+				-- Keep debug helpers
 				_G.dd = function(...)
 					Snacks.debug.inspect(...)
 				end
 				_G.bt = function()
 					Snacks.debug.backtrace()
 				end
-				vim.print = _G.dd -- Override print to use snacks for `:=` command
-
-				-- Create some toggle mappings
-				Snacks.toggle.option("wrap", { name = "wrap" }):map("<leader>uw")
-				Snacks.toggle.option("relativenumber", { name = "relative numbers" }):map("<leader>uL")
-				Snacks.toggle.line_number():map("<leader>ul")
+				vim.print = _G.dd
 			end,
 		})
 	end,

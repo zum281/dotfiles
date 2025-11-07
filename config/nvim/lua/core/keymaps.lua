@@ -27,17 +27,6 @@ set("n", "<S-Down>", "yyddp", { desc = "move line down" })
 -- delete without yanking
 set({ "n", "v" }, "<leader>D", '"_d', { desc = "delete without yanking" })
 
--- notifications picker
-set("n", "<leader>n", function()
-	Snacks.picker.notifications()
-end, { desc = "Notifications" })
-
--- todo picker
-set("n", "<leader>o", function()
-	Snacks.picker.todo_comments()
-end, { desc = "todo" })
-
--- keep selection when indenting
 set({ "n", "v" }, "<", "<gv", { desc = "indent left" })
 set({ "n", "v" }, ">", ">gv", { desc = "indent right" })
 
@@ -45,6 +34,15 @@ set({ "n", "v" }, ">", ">gv", { desc = "indent right" })
 vim.keymap.set("n", "gl", function()
 	vim.cmd("!golangci-lint run")
 end, { desc = "Go: Run golangci-lint" })
+
+set("n", "<leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+set("n", "<leader>,", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
+
+set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "File explorer" })
+
+set("n", "<leader>n", function()
+	Snacks.notifier.show_history()
+end, { desc = "Notification history" })
 
 wk.add({
 	-- ai
@@ -61,34 +59,26 @@ wk.add({
 		function()
 			Snacks.bufdelete()
 		end,
-		desc = "Delete Buffer",
+		desc = "Delete buffer",
 	},
-	{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "delete buffers right" },
-	{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "delete buffers left" },
-	{ "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "previous buffer" },
-	{ "<S-t>", "<cmd>BufferLineCycleNext<cr>", desc = "next buffer" },
-	{ "<leader>b[", "<cmd>BufferLineCyclePrev<cr>", desc = "previous buffer" },
-	{ "<leader>b]", "<cmd>BufferLineCycleNext<cr>", desc = "next buffer" },
-	{ "<leader>b(", "<cmd>BufferLineMovePrev<cr>", desc = "move buffer left" },
-	{ "<leader>b)", "<cmd>BufferLineMoveNext<cr>", desc = "move buffer right" },
 	{
-		"<leader>bR",
+		"<leader>bx",
 		function()
-			Snacks.rename.rename_file()
+			local current = vim.api.nvim_get_current_buf()
+			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+				if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
+					vim.api.nvim_buf_delete(buf, {})
+				end
+			end
 		end,
-		desc = "Rename buffer",
+		desc = "Close all other buffers",
 	},
+	{ "<S-h>", "<cmd>bprevious<cr>", desc = "Previous buffer" },
+	{ "<S-t>", "<cmd>bnext<cr>", desc = "Next buffer" },
+	{ "<leader>b[", "<cmd>bprevious<cr>", desc = "Previous buffer" },
+	{ "<leader>b]", "<cmd>bnext<cr>", desc = "Next buffer" },
 
-	-- diagnostics/debug
-
-	{ "<leader>d", group = "diagnostigs", nowait = true },
-	{
-		"<leader>dD",
-		function()
-			Snacks.picker.diagnostics_buffer()
-		end,
-		desc = "Buffer Diagnostics",
-	},
+	{ "<leader>d", group = "diagnostics", nowait = true },
 	{ "<leader>dd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
 
 	--git
@@ -110,148 +100,89 @@ wk.add({
 	{ "<leader>/", group = "grep", nowait = true, remap = true },
 	{
 		"<leader>//",
-		function()
-			Snacks.picker.grep()
-		end,
-		desc = "Grep",
-	},
-	{
-		"<leader>/a",
-		function()
-			Snacks.picker.autocmds()
-		end,
-		desc = "Autocmds",
+		"<cmd>Telescope live_grep<cr>",
+		desc = "Live grep",
 	},
 	{
 		"<leader>/b",
 		function()
-			Snacks.picker.grep_buffers()
+			require("telescope.builtin").live_grep({
+				grep_open_files = true,
+			})
 		end,
-		desc = "Grep Open Buffers",
-	},
-	{
-		"<leader>/c",
-		function()
-			Snacks.picker.command_history()
-		end,
-		desc = "Command History",
-	},
-	{
-		"<leader>/C",
-		function()
-			Snacks.picker.commands()
-		end,
-		desc = "Commands",
+		desc = "Grep open buffers",
 	},
 	{
 		"<leader>/f",
-		function()
-			Snacks.picker.files()
-		end,
-		desc = "Files",
+		"<cmd>Telescope find_files<cr>",
+		desc = "Find files",
+	},
+	{
+		"<leader>/w",
+		"<cmd>Telescope grep_string<cr>",
+		desc = "Grep word under cursor",
+	},
+	{
+		"<leader>/c",
+		"<cmd>Telescope command_history<cr>",
+		desc = "Command history",
+	},
+	{
+		"<leader>/C",
+		"<cmd>Telescope commands<cr>",
+		desc = "Commands",
 	},
 	{
 		"<leader>/h",
-		function()
-			Snacks.picker.search_history()
-		end,
-		desc = "Search History",
+		"<cmd>Telescope search_history<cr>",
+		desc = "Search history",
 	},
 	{
 		"<leader>/H",
-		function()
-			Snacks.picker.help()
-		end,
-		desc = "Help Pages",
-	},
-	{
-		"<leader>/i",
-		function()
-			Snacks.picker.icons()
-		end,
-		desc = "Icons",
+		"<cmd>Telescope help_tags<cr>",
+		desc = "Help pages",
 	},
 	{
 		"<leader>/j",
-		function()
-			Snacks.picker.jumps()
-		end,
-		desc = "Jumps",
+		"<cmd>Telescope jumplist<cr>",
+		desc = "Jumplist",
 	},
 	{
 		"<leader>/k",
-		function()
-			Snacks.picker.keymaps()
-		end,
+		"<cmd>Telescope keymaps<cr>",
 		desc = "Keymaps",
 	},
 	{
 		"<leader>/l",
-		function()
-			Snacks.picker.lines()
-		end,
-		desc = "Buffer Lines",
+		"<cmd>Telescope current_buffer_fuzzy_find<cr>",
+		desc = "Buffer lines",
 	},
 	{
 		"<leader>/m",
-		function()
-			Snacks.picker.marks()
-		end,
+		"<cmd>Telescope marks<cr>",
 		desc = "Marks",
 	},
 	{
 		"<leader>/M",
-		function()
-			Snacks.picker.man()
-		end,
-		desc = "Man Pages",
-	},
-	{
-		"<leader>/p",
-		function()
-			Snacks.picker.lazy()
-		end,
-		desc = "Search for Plugin Spec",
+		"<cmd>Telescope man_pages<cr>",
+		desc = "Man pages",
 	},
 	{
 		"<leader>/q",
-		function()
-			Snacks.picker.qflist()
-		end,
-		desc = "Quickfix List",
+		"<cmd>Telescope quickfix<cr>",
+		desc = "Quickfix list",
 	},
 	{
 		"<leader>/r",
-		function()
-			Snacks.picker.registers()
-		end,
+		"<cmd>Telescope registers<cr>",
 		desc = "Registers",
 	},
 	{
 		"<leader>/R",
-		function()
-			Snacks.picker.resume()
-		end,
-		desc = "Resume",
-	},
-	{
-		"<leader>/u",
-		function()
-			Snacks.picker.undo()
-		end,
-		desc = "Undo History",
-	},
-	{
-		"<leader>/w",
-		function()
-			Snacks.picker.grep_word()
-		end,
-		desc = "Visual selection or word",
-		mode = { "n", "x" },
+		"<cmd>Telescope resume<cr>",
+		desc = "Resume last picker",
 	},
 	{ "<leader>/x", ":nohlsearch<CR>", desc = "Clear search highlights" },
-
-	-- lsp
 	{
 		"ga",
 		function()
@@ -261,82 +192,24 @@ wk.add({
 	},
 	{
 		"gd",
-		function()
-			Snacks.picker.lsp_definitions()
-		end,
+		"<cmd>Telescope lsp_definitions<cr>",
 		desc = "Goto Definition",
 	},
 	{
-		"gD",
-		function()
-			Snacks.picker.lsp_declarations()
-		end,
-		desc = "Goto Declaration",
-	},
-	{
 		"gi",
-		function()
-			Snacks.picker.lsp_implementations()
-		end,
+		"<cmd>Telescope lsp_implementations<cr>",
 		desc = "Goto Implementation",
 	},
 	{
 		"gr",
-		function()
-			Snacks.picker.lsp_references()
-		end,
-		nowait = true,
+		"<cmd>Telescope lsp_references<cr>",
 		desc = "References",
 	},
 	{
-		"gs",
-		function()
-			Snacks.picker.lsp_symbols()
-		end,
-		desc = "LSP Symbols",
-	},
-	{
-		"gw",
-		function()
-			Snacks.picker.lsp_workspace_symbols()
-		end,
-		desc = "LSP Workspace Symbols",
-	},
-	{
 		"gy",
-		function()
-			Snacks.picker.lsp_type_definitions()
-		end,
-		desc = "Goto T[y]pe Definition",
+		"<cmd>Telescope lsp_type_definitions<cr>",
+		desc = "Goto Type Definition",
 	},
-
-	-- tests
-	{
-		"<leader>t",
-		group = "test",
-		remap = false,
-		nowait = true,
-	},
-	{
-		"<leader>tt",
-		function()
-			local qt = require("quicktest")
-
-			qt.run_all()
-		end,
-		desc = "run all",
-	},
-	{
-		"<leader>tx",
-		function()
-			local qt = require("quicktest")
-
-			qt.cancel_current_run()
-		end,
-		desc = "cancel current run",
-	},
-
-	-- splits
 	{ "<leader>s", group = "split", remap = false, nowait = true },
 	{ "<leader>sv", ":vsplit<CR>", desc = "Split window vertically" },
 	{ "<leader>sh", ":split<CR>", desc = "Split window horizontally" },
@@ -358,9 +231,8 @@ wk.add({
 	{ "<leader>u", group = "ui", remap = false, nowait = true },
 	{
 		"<leader>uc",
-		function()
-			Snacks.picker.colorschemes()
-		end,
+		"<cmd>Telescope colorscheme<cr>",
 		desc = "colorschemes",
 	},
+	{ "<leader>uw", "<cmd>set wrap!<cr>", desc = "Toggle wrap" },
 })
