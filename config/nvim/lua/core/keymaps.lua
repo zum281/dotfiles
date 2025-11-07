@@ -13,10 +13,6 @@ set("n", "<C-Down>", "<C-w>j", { desc = "Move to bottom window" })
 set("n", "<C-Up>", "<C-w>k", { desc = "Move to top window" })
 set("n", "<C-Right>", "<C-w>l", { desc = "Move to right window" })
 
--- leap
-set({ "n", "x", "o" }, "s", "<Plug>(leap)")
-set("n", "S", "<Plug>(leap-from-window)")
-
 -- quit all
 set("n", "<leader>q", "<cmd>qa!<CR>", { desc = "quit all" })
 
@@ -186,12 +182,13 @@ wk.add({
 		desc = "yank full file path",
 	},
 
+	{ "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undo tree" },
 	-- ui
-	{ "<leader>u", group = "ui", remap = false, nowait = true },
+	{ "<leader>U", group = "ui", remap = false, nowait = true },
 	{
-		"<leader>uc",
+		"<leader>Uc",
 		"<cmd>Telescope colorscheme<cr>",
 		desc = "colorschemes",
 	},
-	{ "<leader>uw", "<cmd>set wrap!<cr>", desc = "Toggle wrap" },
+	{ "<leader>Uw", "<cmd>set wrap!<cr>", desc = "Toggle wrap" },
 })
