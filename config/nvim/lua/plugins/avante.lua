@@ -1,5 +1,6 @@
 return {
 	"yetone/avante.nvim",
+	enabled = false,
 	dependencies = {
 		"nvim-tree/nvim-web-devicons",
 		"stevearc/dressing.nvim",
