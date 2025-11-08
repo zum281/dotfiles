@@ -7,7 +7,9 @@ return {
 		require("moonfly").custom_colors({
 			black = "#000000",
 			bg = "#000000",
-			grey0 = "#4d5d8d",
+			grey0 = "#3a3a3a",
+			-- grey0 = "#404040"
+			-- grey0 = "#2c2c2c",
 			grey11 = "#121212",
 			grey16 = "#080808",
 		})
