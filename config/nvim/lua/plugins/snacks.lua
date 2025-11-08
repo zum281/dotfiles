@@ -14,6 +14,32 @@ return {
 		rename = { enabled = true },
 		image = { enabled = true },
 		lazygit = { enabled = true },
+		dashboard = {
+			enabled = true,
+			preset = {
+				keys = {
+					{ icon = " ", key = "a", desc = "new", action = ":ene | startinsert" },
+					{ icon = " ", key = "r", desc = "recent", action = ":Telescope oldfiles" },
+					{
+						icon = " ",
+						key = "g",
+						desc = "git",
+						action = function()
+							Snacks.lazygit()
+						end,
+					},
+					{ icon = " ", key = ".", desc = "files", action = ":Telescope find_files" },
+					{ icon = " ", key = "/", desc = "grep", action = ":Telescope live_grep" },
+					{ icon = " ", key = "e", desc = "oil", action = ":Oil" },
+					{ icon = " ", key = "<c-y>", desc = "yazi", action = ":Yazi cwd" },
+					{ icon = " ", key = "c", desc = "config", action = ":e $MYVIMRC" },
+					{ icon = " ", key = "q", desc = "quit", action = ":qa" },
+				},
+			},
+			sections = {
+				{ section = "keys", gap = 1, padding = 1 },
+			},
+		},
 	},
 	keys = {
 		{

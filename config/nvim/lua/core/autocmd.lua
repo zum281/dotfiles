@@ -57,3 +57,13 @@ vim.api.nvim_create_autocmd("BufRead", {
 		vim.opt_local.relativenumber = false
 	end,
 })
+
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		local arg = vim.fn.argv(0)
+		if arg == "." or vim.fn.isdirectory(arg) == 1 then
+			-- Open dashboard instead
+			require("snacks").dashboard()
+		end
+	end,
+})
