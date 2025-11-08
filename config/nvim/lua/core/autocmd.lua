@@ -49,21 +49,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, { buffer = 0 })
 	end,
 })
-
-vim.api.nvim_create_autocmd("BufRead", {
-	pattern = "oil:///*",
-	callback = function()
-		vim.opt_local.number = false
-		vim.opt_local.relativenumber = false
-	end,
-})
-
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		local arg = vim.fn.argv(0)
-		if arg == "." or vim.fn.isdirectory(arg) == 1 then
-			-- Open dashboard instead
-			require("snacks").dashboard()
-		end
-	end,
-})
