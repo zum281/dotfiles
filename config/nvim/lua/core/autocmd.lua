@@ -49,3 +49,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, { buffer = 0 })
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufRead", {
+	pattern = "oil:///*",
+	callback = function()
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+	end,
+})

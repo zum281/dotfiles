@@ -96,8 +96,8 @@ bindkey '^n' history-search-forward
 ### Aliases ###
 ###############
 
-alias w='nvim'
-alias w.='nvim .'
+alias vi='nvim'
+alias vim='nvim'
 alias l='clear'
 alias lg='lazygit'
 
