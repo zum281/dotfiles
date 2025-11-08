@@ -50,14 +50,14 @@ wk.add({
 
 	-- buffers
 	{
-		"bd",
+		"Bd",
 		function()
 			Snacks.bufdelete()
 		end,
 		desc = "Delete buffer",
 	},
 	{
-		"bx",
+		"Bx",
 		function()
 			local current = vim.api.nvim_get_current_buf()
 			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -70,8 +70,8 @@ wk.add({
 	},
 	{ "<S-h>", "<cmd>bprevious<cr>", desc = "Previous buffer" },
 	{ "<S-t>", "<cmd>bnext<cr>", desc = "Next buffer" },
-	{ "b[", "<cmd>bprevious<cr>", desc = "Previous buffer" },
-	{ "b]", "<cmd>bnext<cr>", desc = "Next buffer" },
+	{ "B[", "<cmd>bprevious<cr>", desc = "Previous buffer" },
+	{ "B]", "<cmd>bnext<cr>", desc = "Next buffer" },
 
 	{ "<leader>d", group = "diagnostics", nowait = true },
 	{ "<leader>dd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
