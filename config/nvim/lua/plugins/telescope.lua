@@ -15,7 +15,7 @@ return {
 			defaults = {
 				prompt_prefix = "> ",
 				selection_caret = "> ",
-				layout_strategy = "vertical",
+				layout_strategy = "horizontal",
 				layout_config = {},
 				file_ignore_patterns = {
 					"node_modules",
