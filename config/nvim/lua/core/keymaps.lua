@@ -1,194 +1,84 @@
 local set = vim.keymap.set
-local wk = require("which-key")
 
 -- Center screen when jumping
-set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
-set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
-set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
-set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
-
--- Better window navigation
-set("n", "<C-Left>", "<C-w>h", { desc = "Move to left window" })
-set("n", "<C-Down>", "<C-w>j", { desc = "Move to bottom window" })
-set("n", "<C-Up>", "<C-w>k", { desc = "Move to top window" })
-set("n", "<C-Right>", "<C-w>l", { desc = "Move to right window" })
+set("n", "n", "nzzzv", { desc = "next search result" })
+set("n", "N", "Nzzzv", { desc = "previous search result" })
+set("n", "<C-d>", "<C-d>zz", { desc = "half page down" })
+set("n", "<C-u>", "<C-u>zz", { desc = "half page up" })
 
 -- quit all
-set("n", "<leader>q", "<cmd>qa!<CR>", { desc = "quit all" })
+set("n", "<leader>q", "<cmd>qa!<cr>", { desc = "quit all" })
 
--- move lines
-set("n", "<S-Up>", "yyddkP", { desc = "move line up" })
-set("n", "<S-Down>", "yyddp", { desc = "move line down" })
 
--- delete without yanking
-set({ "n", "v" }, "<leader>D", '"_d', { desc = "delete without yanking" })
+-- clear search highlights
+set({ "n", "v" }, "<C-x>", ":nohlsearch<cr>", { desc = "clear search highlights" })
 
-set({ "n", "v" }, "<", "<gv", { desc = "indent left" })
-set({ "n", "v" }, ">", ">gv", { desc = "indent right" })
+-- lsp code actions
+set("n", "ga", function()
+  vim.lsp.buf.code_action({ apply = true })
+end, { desc = "code actions" })
+
+
+-- split
+set("n", "<leader>Sv", ":vsplit<cr>", { desc = "split vertical" })
+set("n", "<leader>Sh", ":ssplit<cr>", { desc = "split horizontal" })
+
+
+-- explorer
+set("n", "<leader>e", ":Ex<cr>")
+set("n", "<leader>f", function() MiniFiles.open() end)
+
+-- picker
+set('n', '<leader><space>', function() Snacks.picker.smart() end, { desc = 'find files' })
+set('n', '<leader>/', function() Snacks.picker.grep() end, { desc = 'live grep' })
+set('n', '<leader>b', function() Snacks.picker.buffers() end, { desc = 'buffers' })
+set('n', 'gr', function() Snacks.picker.lsp_references() end, { desc = 'lsp references' })
+set('n', 'gi', function() Snacks.picker.lsp_implementations() end, { desc = 'lsp implementations' })
+set('n', 'gd', function() Snacks.picker.lsp_definitions() end, { desc = 'lsp definitions' })
+set('n', 'gy', function() Snacks.picker.lsp_type_definitions() end, { desc = 'lsp type definitions' })
+set('n', 'gli', function() Snacks.picker.lsp_incoming_calls() end, { desc = 'lsp ingoing calls' })
+set('n', 'glo', function() Snacks.picker.lsp_outgoing_calls() end, { desc = 'lsp ingoing calls' })
+
+-- git
+set("n", "gb", function() Snacks.git.blame_line() end, { desc = 'git blame' })
+set("n", "<leader>g", function() Snacks.lazygit() end, { desc = 'lazygit' })
+
+-- scratch
+set("n", "<leader>s", function() Snacks.scratch.select() end, { desc = 'scratch buffer select' })
+set("n", "<leader>.", function() Snacks.scratch() end, { desc = 'scratch buffer toggle' })
+
 
 -- Run golangci-lint on current project
-vim.keymap.set("n", "gl", function()
+set("n", "gl", function()
 	vim.cmd("!golangci-lint run")
 end, { desc = "Go: Run golangci-lint" })
 
-set("n", "<leader><space>", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-set("n", "<leader>b", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
 
-set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "File explorer" })
+-- buffers
+set({"n", "v"}, "Bd", function() Snacks.bufdelete() end, { desc = "delete buffer" })
+set({"n", "v"}, "Bx", function()
+  local current = vim.api.nvim_get_current_buf()
+  for _,buf in ipairs(vim.api.nvim_list_bufs()) do
+    if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
+      vim.api.nvim_buf_delete(buf, {})
+    end
+  end
+end, { desc = "delete all buffers except current" })
 
-set("n", "<leader>n", function()
-	Snacks.notifier.show_history()
-end, { desc = "Notification history" })
+set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "previous buffer"})
+set("n", "<S-t>", "<cmd>bnext<cr>", { desc = "next buffer"})
+set("n", "B[", "<cmd>bprevious<cr>", { desc = "previous buffer"})
+set("n", "B]", "<cmd>bnext<cr>", { desc = "next buffer"})
 
-wk.add({
-	-- ai
-	-- { "<leader>a", group = "ai", remap = false, nowait = true },
-	-- { "<leader>ai", "<cmd>AvanteToggle<cr>", desc = "toggle chat" },
-	-- { "<leader>as", "<cmd>AvanteStop<cr>", desc = "stop" },
-	-- { "<leader>ah", "<cmd>AvanteHistory<cr>", desc = "history" },
-	-- { "<leader>am", "<cmd>AvanteShowRepoMap<cr>", desc = "show repo map" },
+-- diagnostics
+set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "line diagnostics" })
 
-	-- buffers
-	{
-		"Bd",
-		function()
-			Snacks.bufdelete()
-		end,
-		desc = "Delete buffer",
-	},
-	{
-		"Bx",
-		function()
-			local current = vim.api.nvim_get_current_buf()
-			for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-				if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
-					vim.api.nvim_buf_delete(buf, {})
-				end
-			end
-		end,
-		desc = "Close all other buffers",
-	},
-	{ "<S-h>", "<cmd>bprevious<cr>", desc = "Previous buffer" },
-	{ "<S-t>", "<cmd>bnext<cr>", desc = "Next buffer" },
-	{ "B[", "<cmd>bprevious<cr>", desc = "Previous buffer" },
-	{ "B]", "<cmd>bnext<cr>", desc = "Next buffer" },
-
-	{ "<leader>d", group = "diagnostics", nowait = true },
-	{ "<leader>dd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
-
-	--git
-	{
-		"<leader>g",
-		function()
-			Snacks.lazygit()
-		end,
-		desc = "Lazygit",
-	},
-	{
-		"gb",
-		"<cmd>Gitsigns toggle_current_line_blame<cr>",
-		desc = "blame",
-	},
-	-- grep
-
-	{ "<leader>/", group = "grep", nowait = true, remap = true },
-	{
-		"<leader>//",
-		"<cmd>Telescope live_grep<cr>",
-		desc = "Live grep",
-	},
-	{
-		"<leader>/c",
-		"<cmd>Telescope command_history<cr>",
-		desc = "Command history",
-	},
-	{
-		"<leader>/C",
-		"<cmd>Telescope commands<cr>",
-		desc = "Commands",
-	},
-	{
-		"<leader>/h",
-		"<cmd>Telescope search_history<cr>",
-		desc = "Search history",
-	},
-	{
-		"<leader>/k",
-		"<cmd>Telescope keymaps<cr>",
-		desc = "Keymaps",
-	},
-	{
-		"<leader>/m",
-		"<cmd>Telescope marks<cr>",
-		desc = "Marks",
-	},
-	{
-		"<leader>/M",
-		"<cmd>Telescope man_pages<cr>",
-		desc = "Man pages",
-	},
-	{
-		"<leader>/q",
-		"<cmd>Telescope quickfix<cr>",
-		desc = "Quickfix list",
-	},
-	{
-		"<leader>/r",
-		"<cmd>Telescope registers<cr>",
-		desc = "Registers",
-	},
-	{ "<leader>/x", ":nohlsearch<CR>", desc = "Clear search highlights" },
-	{
-		"ga",
-		function()
-			vim.lsp.buf.code_action({ apply = true })
-		end,
-		desc = "Code actions",
-	},
-	{
-		"gd",
-		"<cmd>Telescope lsp_definitions<cr>",
-		desc = "Goto Definition",
-	},
-	{
-		"gi",
-		"<cmd>Telescope lsp_implementations<cr>",
-		desc = "Goto Implementation",
-	},
-	{
-		"gr",
-		"<cmd>Telescope lsp_references<cr>",
-		desc = "References",
-	},
-	{
-		"gy",
-		"<cmd>Telescope lsp_type_definitions<cr>",
-		desc = "Goto Type Definition",
-	},
-	{ "<leader>s", group = "split", remap = false, nowait = true },
-	{ "<leader>sv", ":vsplit<CR>", desc = "Split window vertically" },
-	{ "<leader>sh", ":split<CR>", desc = "Split window horizontally" },
-
-	-- yank
-	{ "<leader>y", group = "yank", remap = false, nowait = true },
-	{ "<leader>yy", ":keepjumps normal! ggyG<cr>", desc = "yank all buffer content" },
-	{
-		"<leader>yp",
-		function()
-			local path = vim.fn.expand("%:p")
-			vim.fn.setreg("+", path)
-			print("file:", path)
-		end,
-		desc = "yank full file path",
-	},
-
-	{ "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undo tree" },
-	-- ui
-	{ "<leader>U", group = "ui", remap = false, nowait = true },
-	{
-		"<leader>Uc",
-		"<cmd>Telescope colorscheme<cr>",
-		desc = "colorschemes",
-	},
-	{ "<leader>Uw", "<cmd>set wrap!<cr>", desc = "Toggle wrap" },
-})
+-- yank
+set("n", "<leader>yy",":keepjumps normal! ggyG<cr>",{desc = "yank all"} )
+set("n", "<leader>yp",
+  function()
+	  local path = vim.fn.expand("%:p")
+		vim.fn.setreg("+", path)
+		print("file:", path)
+	end,
+{desc = "yank path"} )
