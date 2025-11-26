@@ -14,6 +14,7 @@ return {
 		neotest.setup({
 			adapters = {
 				vitest({
+					dap = { adapter_name = "pwa-node" },
 					filter_dir = function(name, rel_path, root)
 						return name ~= "node_modules"
 					end,
@@ -40,7 +41,7 @@ return {
 		{
 			"<leader>tw",
 			function()
-				require("neotest").run.run({ jestCommand = "jest --watch" })
+				require("neotest").run.run({ vitestCommand = "vitest --watch" })
 			end,
 			desc = "watch",
 		},
