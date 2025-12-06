@@ -35,8 +35,8 @@ else
     precmd() { vcs_info }
     zstyle ':vcs_info:git:*' formats '%b '
     setopt PROMPT_SUBST
-    # PROMPT='%F{#7fbbb3}%~%f %F{#e67e80}${vcs_info_msg_0_}%f%F{#a7c080}$%f '
-    PROMPT='%F{#d3c6aa}%f%F{#7fbbb3}%~%f%F{#d3c6aa}%f %F{#e67e80}${vcs_info_msg_0_}%f%F{#a7c080}%f '
+    # PROMPT='%F{#80a0ff}%~%f %F{#ff5189}${vcs_info_msg_0_}%f%F{#80a0ff}$%f '
+    PROMPT='%F{#cfcfb0}%f%F{#80a0ff}%~%f%F{#cfcfb0}%f %F{#ff5189}${vcs_info_msg_0_}%f%F{#80a0ff}%f '
 fi
 
 # thefuck alias
@@ -69,9 +69,6 @@ zinit light so-fancy/diff-so-fancy
 autoload -U compinit && compinit
 zinit cdreplay -q
 _comp_options+=(globdots) # include hidden files
-
-# bun completions
-[ -s "/Users/fulvia.mourikis/.bun/_bun" ] && source "/Users/fulvia.mourikis/.bun/_bun"
 
 ######################
 ### History config ###
@@ -137,6 +134,10 @@ alias nst="npm start"
 alias nc="npm run clean"
 alias nt="npm run test"
 
+# custom scripts aliases
+alias cb="clean-branches"
+alias ss="show-scripts"
+
 ##########################
 ### Completion styling ###
 ##########################
@@ -180,7 +181,7 @@ _fzf_comprun() {
 ### Everforest Theme fzf ###
 ###########################
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-  --color bg:#080808 \
+  --color bg:#000000 \
   --color bg+:#262626 \
   --color border:#2e2e2e \
   --color fg:#b2b2b2 \
@@ -216,7 +217,5 @@ if [[ ! -n $TMUX  ]]; then
   tmux a
 fi
 
-# Only load bun completions if bun is installed
-if command -v bun >/dev/null 2>&1 && [[ -f "$HOME/.bun/_bun" ]]; then
-    source "$HOME/.bun/_bun"
-fi
+# clean tmux sessions on exit
+trap 'tmux detach-client' EXIT
