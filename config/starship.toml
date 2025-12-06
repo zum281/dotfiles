@@ -3,8 +3,8 @@ palette = "moonfly"
 add_newline = false
 
 # General prompt settings
-format = "$directory$git_branch$git_status$git_state$character"
-right_format = "$bun$nodejs"
+format = "$directory$git_branch$git_state$character"
+right_format = "$git_status$nodejs"
 
 # Disable line break to keep everything on one line
 [line_break]
@@ -13,7 +13,7 @@ disabled = true
 # Directory configuration
 [directory]
 format = "[$path ]($style)"
-style = "fern"
+style = "blue"
 truncation_length = 3
 truncate_to_repo = false
 home_symbol = "~"
@@ -21,7 +21,7 @@ home_symbol = "~"
 # Git branch
 [git_branch]
 format = "[$branch(:$remote_branch) ]($style)"
-style = "lavender"
+style = "red"
 symbol = ""
 
 # Git status
@@ -53,7 +53,7 @@ bisect = " BISECT"
 # Node.js - only show in Node projects
 [nodejs]
 format = "[$symbol$version]($style)"
-style = "green"
+style = "fern"
 version_format = "v${major}"
 symbol = "󰎙 "
 detect_extensions = ["js", "mjs", "cjs", "ts", "tsx"]
@@ -61,18 +61,11 @@ detect_files = ["package.json", ".nvmrc", ".node-version"]
 detect_folders = ["node_modules"]
 not_capable_style = "disabled"
 
-# Bun - only show in Bun projects
-[bun]
-format = "[$symbol]($style)"
-symbol = " "
-style = "fg"
-
-
 # Prompt character with error indication
 [character]
-success_symbol = "[󰄛](blue)"
-error_symbol = "[󰄛](red)"
-vicmd_symbol = "[󰄛](blue)"
+success_symbol = "[ ](blue)"
+error_symbol = "[ ](red)"
+vicmd_symbol = "[ ](blue)"
 
 [palettes.moonfly]
 fern = "#87d787"
