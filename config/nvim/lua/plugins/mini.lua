@@ -8,8 +8,8 @@ return {
 		require("mini.statusline").setup({
 			content = {
 				active = function()
-					vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { fg = "#77A1FF", bg = "#000000" })
-					vim.api.nvim_set_hl(0, "MiniStatuslineDevinfo", { fg = "#77A1FF", bg = "#000000" })
+					vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { fg = "#80a0ff", bg = "#000000" })
+					vim.api.nvim_set_hl(0, "MiniStatuslineDevinfo", { fg = "#80a0ff", bg = "#000000" })
 
 					local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 9999 })
 					local filename = vim.fs.basename(vim.api.nvim_buf_get_name(0))
