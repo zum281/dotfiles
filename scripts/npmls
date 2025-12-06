@@ -1,0 +1,71 @@
+#!/bin/bash
+
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+YELLOW='\033[1;33m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+find_package_json() {
+local current_dir="$PWD"
+
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    local git_root=$(git rev-parse --show-toplevel)
+    if [ -f "$git_root/package.json" ]; then
+      echo "$git_root/package.json"
+      return 0
+    fi
+  fi
+
+  while [ "$current_dir" != "/" ] && [ "$current_dir" != "$HOME" ]; do
+    if [ -f "$current_dir/package.json" ]; then
+      echo "$current_dir/package.json"
+      return 0
+    fi
+    current_dir=$(dirname "$current_dir")
+  done
+
+  return 1
+}
+
+parse_scripts_basic() {
+  local file="$1"
+
+  sed -n '/"scripts":/,/}/p' "$file" | \
+    grep -E '^\s*"[^"]+":' | \
+    sed 's/^[[:space:]]*//' | \
+    sed 's/"//g' | \
+    sed 's/,$//' | \
+    while IFS=: read -r name command; do
+      printf "${BLUE}%-20s${NC} %s\n" "$name" "$command"
+    done
+}
+
+format_scripts() {
+  local file="$1"
+
+  if command -v jq &> /dev/null; then
+    jq -r '.scripts | to_entries[] | "\u001b[34m\(.key)\u001b[0m: \(.value)"' "$file"
+  else
+    echo -e "${YELLOW}note: jq not installed. using basic parsing.${NC}"
+    parse_scripts_basic "$file"
+  fi
+}
+main() {
+  packagejson=$(find_package_json)
+
+  echo -e "${GREEN}found package.json at $packagejson.${NC}\n"
+
+  if [ $? -eq 0 ]; then
+    if grep -q '"scripts"' "$packagejson"; then
+      format_scripts "$packagejson"
+    else
+      echo -e "${YELLOW}no scripts in package.json${NC}"
+    fi
+  else
+    echo -e "${RED}no package.json found for $PWD.${NC}"
+    exit 1
+  fi
+}
+
+main
