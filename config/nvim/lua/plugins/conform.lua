@@ -12,6 +12,7 @@ return {
 			json = { "prettierd", "prettier", stop_after_first = true },
 			markdown = { "prettierd", "prettier", stop_after_first = true },
 			go = { "goimports" },
+			c = { "clang-format" },
 		},
 		formatters = {
 			prettier = {

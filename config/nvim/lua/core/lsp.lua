@@ -1,5 +1,6 @@
 vim.lsp.enable({
 	"bash_ls",
+	"clang_ls",
 	"lua_ls",
 	"ts_ls",
 	"emmet_ls",
@@ -7,6 +8,7 @@ vim.lsp.enable({
 	"css_vars_ls",
 	"tailwind_ls",
 	"yaml_ls",
+	"go_ls",
 })
 
 vim.diagnostic.config({
