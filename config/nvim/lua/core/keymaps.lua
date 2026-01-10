@@ -116,3 +116,6 @@ set("n", "<leader>yp", function()
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end, { desc = "yank path" })
+
+-- claude code
+set("n", "<leader>cc", "<cmd>ClaudeCode<CR>", { desc = "Toggle Claude Code" })
