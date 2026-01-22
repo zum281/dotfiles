@@ -48,28 +48,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local opts = { buffer = ev.buffer }
 		local set = vim.keymap.set
 
-		set("n", "gr", function()
-			Snacks.picker.lsp_references()
-		end, vim.tbl_extend("force", opts, { desc = "lsp references" }))
-
-		set("n", "gi", function()
-			Snacks.picker.lsp_implementations()
-		end, vim.tbl_extend("force", opts, { desc = "lsp implementations" }))
-
 		set("n", "gd", function()
 			Snacks.picker.lsp_definitions()
 		end, vim.tbl_extend("force", opts, { desc = "lsp definitions" }))
-
-		set("n", "gy", function()
-			Snacks.picker.lsp_type_definitions()
-		end, vim.tbl_extend("force", opts, { desc = "lsp type definitions" }))
-
-		set("n", "K", function()
-			vim.lsp.buf.hover()
-		end, vim.tbl_extend("force", opts, { desc = "hover" }))
-
-		set("n", "ga", function()
-			vim.lsp.buf.code_action({ apply = false })
-		end, vim.tbl_extend("force", opts, { desc = "code actions" }))
 	end,
 })

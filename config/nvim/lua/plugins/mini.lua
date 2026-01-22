@@ -73,6 +73,15 @@ return {
 				miniclue.gen_clues.registers(),
 				miniclue.gen_clues.windows(),
 				miniclue.gen_clues.z(),
+
+				-- LSP keymaps
+				{ mode = "n", keys = "grn", desc = "Rename symbol" },
+				{ mode = "n", keys = "gra", desc = "Code action" },
+				{ mode = "x", keys = "gra", desc = "Code action" },
+				{ mode = "n", keys = "grr", desc = "References" },
+				{ mode = "n", keys = "gri", desc = "Implementation" },
+				{ mode = "n", keys = "grt", desc = "Type definition" },
+				{ mode = "n", keys = "gO", desc = "Document symbols" },
 			},
 		})
 	end,
