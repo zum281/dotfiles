@@ -41,15 +41,3 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		require("conform").format(conform_opts)
 	end,
 })
-
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = augroup,
-	callback = function(ev)
-		local opts = { buffer = ev.buffer }
-		local set = vim.keymap.set
-
-		set("n", "gd", function()
-			Snacks.picker.lsp_definitions()
-		end, vim.tbl_extend("force", opts, { desc = "lsp definitions" }))
-	end,
-})
