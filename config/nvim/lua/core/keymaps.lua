@@ -95,7 +95,8 @@ set("n", "<leader>hp", function()
 end, { desc = "preview hunk" })
 set("n", "hq", function()
 	require("gitsigns").setqflist("all")
-end, { desc = "changed files to quickfix" })
+	vim.cmd("Trouble quickfix")
+end, { desc = "changed files to trouble" })
 
 -- scratch
 set("n", "<leader>s", function()
@@ -108,17 +109,26 @@ end, { desc = "scratch buffer toggle" })
 -- alternate buffer
 set("n", "<leader>a", "<cmd>b#<CR>", { desc = "alternate buf" })
 
--- quickfix list
-set("n", "<leader>o", "<cmd>copen<CR>", { desc = "open quickfix" })
-set("n", "<leader>O", "<cmd>cclose<CR>", { desc = "close quickfix" })
-set("n", "]q", "<cmd>cnext<CR>", { desc = "next quickfix" })
-set("n", "[q", "<cmd>cprev<CR>", { desc = "prev quickfix" })
-set("n", "]Q", "<cmd>clast<CR>", { desc = "last quickfix" })
-set("n", "[Q", "<cmd>cfirst<CR>", { desc = "first quickfix" })
-
--- location list (buffer-local quickfix)
-set("n", "]l", "<cmd>lnext<CR>", { desc = "next loclist" })
-set("n", "[l", "<cmd>lprev<CR>", { desc = "prev loclist" })
+-- trouble
+set("n", "<leader>o", "<cmd>Trouble diagnostics toggle<cr>", { desc = "diagnostics" })
+set("n", "<leader>O", "<cmd>Trouble close<cr>", { desc = "close trouble" })
+set("n", "]q", function()
+	require("trouble").next({ skip_groups = true, jump = true })
+end, { desc = "next trouble item" })
+set("n", "[q", function()
+	require("trouble").prev({ skip_groups = true, jump = true })
+end, { desc = "prev trouble item" })
+set("n", "]Q", function()
+	require("trouble").last({ skip_groups = true, jump = true })
+end, { desc = "last trouble item" })
+set("n", "[Q", function()
+	require("trouble").first({ skip_groups = true, jump = true })
+end, { desc = "first trouble item" })
+set("n", "gO", "<cmd>Trouble symbols<cr>", { desc = "document symbols" })
+set("n", "<leader>xs", "<cmd>Trouble symbols toggle<cr>", { desc = "symbols" })
+set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "loclist" })
+set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", { desc = "quickfix" })
+set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>", { desc = "todos" })
 
 -- Run golangci-lint on current project
 set("n", "gl", function()
@@ -145,9 +155,13 @@ set("n", "B]", "<cmd>bnext<cr>", { desc = "next buffer" })
 
 -- diagnostics
 set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "line diagnostics" })
-set("n", "<leader>dq", function()
-	vim.diagnostic.setqflist()
-end, { desc = "diagnostics to quickfix" })
+set("n", "<leader>dq", "<cmd>Trouble diagnostics toggle<cr>", { desc = "diagnostics to trouble" })
+
+-- lsp (trouble)
+set("n", "grr", "<cmd>Trouble lsp_references<cr>", { desc = "lsp references" })
+set("n", "grd", "<cmd>Trouble lsp_definitions<cr>", { desc = "lsp definitions" })
+set("n", "gri", "<cmd>Trouble lsp_implementations<cr>", { desc = "lsp implementations" })
+set("n", "grt", "<cmd>Trouble lsp_type_definitions<cr>", { desc = "lsp type definitions" })
 set("n", "<leader>rg", ":grep ", { desc = "grep search" })
 
 -- yank
