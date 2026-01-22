@@ -44,6 +44,7 @@ eval $(thefuck --alias)
 
 # fzf shell integration
 eval "$(fzf --zsh)"
+bindkey '^F' fzf-file-widget
 
 # use zoxide
 eval "$(zoxide init --cmd cd zsh)"
@@ -213,9 +214,5 @@ if [[ ! -n $TMUX  ]]; then
   if [[ -z "$session_ids" ]]; then
     tmux new-session
   fi
-
   tmux a
 fi
-
-# clean tmux sessions on exit
-trap 'tmux detach-client' EXIT

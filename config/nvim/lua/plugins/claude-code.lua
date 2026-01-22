@@ -53,8 +53,8 @@ return {
 			-- Keymaps
 			keymaps = {
 				toggle = {
-					normal = "<C-i>",
-					terminal = "<C-i>",
+					normal = "<C-g>",
+					terminal = "<C-g>",
 					variants = {
 						continue = "<leader>cC",
 						verbose = "<leader>cV",

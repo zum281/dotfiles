@@ -52,8 +52,11 @@ vim.opt.foldlevel = 99
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-
 vim.g.netrw_keepdir = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 30
-vim.g.netrw_localcopydircmd = 'cp -r'
+vim.g.netrw_localcopydircmd = "cp -r"
+
+-- grep with ripgrep
+vim.opt.grepprg = "rg --vimgrep --smart-case"
+vim.opt.grepformat = "%f:%l:%c:%m"
