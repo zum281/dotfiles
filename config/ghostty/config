@@ -52,7 +52,7 @@ keybind = global:ctrl+f=toggle_quick_terminal
 
 # tabs
 keybind = cmd+s>t=new_tab
-keybind = cmd+s>s=next_tab
+keybind = cmd+s>l=next_tab
 keybind = cmd+s>h=previous_tab
 keybind = cmd+s>comma=move_tab:-1
 keybind = cmd+s>period=move_tab:1

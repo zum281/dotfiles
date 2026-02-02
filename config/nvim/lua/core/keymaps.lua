@@ -3,52 +3,35 @@ local set = vim.keymap.set
 -- Center screen when jumping
 set("n", "n", "nzzzv", { desc = "next search result" })
 set("n", "N", "Nzzzv", { desc = "previous search result" })
-set("n", "<C-j>", "<C-d>zz", { desc = "half page down" })
-set("n", "<C-k>", "<C-u>zz", { desc = "half page up" })
-
--- jump list
-set("n", "<C-a>", "<C-i>", { desc = "jump forward" })
+set("n", "<C-d>", "<C-d>zz", { desc = "half page down" })
+set("n", "<C-u>", "<C-u>zz", { desc = "half page up" })
 
 -- quit all
 set("n", "<leader>q", "<cmd>qa!<cr>", { desc = "quit all" })
 
 -- clear search highlights
-set({ "n", "v" }, "<C-x>", ":nohlsearch<cr>", { desc = "clear search highlights" })
+set({ "n", "v" }, "<Esc><Esc>", ":nohlsearch<cr>", { desc = "clear search highlights" })
 
 -- split
 set("n", "<leader>Sv", ":vsplit<cr>", { desc = "split vertical" })
 set("n", "<leader>Sh", ":ssplit<cr>", { desc = "split horizontal" })
 
 -- window navigation (smart-splits)
-set("n", "<C-e>", function()
+set("n", "<C-h>", function()
 	require("smart-splits").move_cursor_left()
 end, { desc = "window left" })
-set("n", "<C-u>", function()
+set("n", "<C-l>", function()
 	require("smart-splits").move_cursor_right()
 end, { desc = "window right" })
-set("n", "<C-h>", function()
+set("n", "<C-k>", function()
 	require("smart-splits").move_cursor_up()
 end, { desc = "window up" })
-set("n", "<C-t>", function()
+set("n", "<C-j>", function()
 	require("smart-splits").move_cursor_down()
 end, { desc = "window down" })
 
 -- explorer
 set("n", "-", "<cmd>Oil<cr>", { desc = "oil" })
-set("n", "<leader>f", ":Ex<cr>")
-set("n", "<leader>e", function()
-	require("oil").open_float()
-end, { desc = "oil float" })
-set("n", "<Esc>", function()
-	if vim.bo.filetype == "oil" then
-		require("oil").close()
-	end
-end, { desc = "oil close float" })
-set("n", "q", function()
-	if vim.bo.filetype == "oil" then
-		require("oil").close()
-	end
-end, { desc = "oil close float" })
 
 -- picker
 set("n", "<leader><space>", function()
@@ -149,9 +132,7 @@ set({ "n", "v" }, "Bx", function()
 end, { desc = "delete all buffers except current" })
 
 set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "previous buffer" })
-set("n", "<S-t>", "<cmd>bnext<cr>", { desc = "next buffer" })
-set("n", "B[", "<cmd>bprevious<cr>", { desc = "previous buffer" })
-set("n", "B]", "<cmd>bnext<cr>", { desc = "next buffer" })
+set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "next buffer" })
 
 -- diagnostics
 set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "line diagnostics" })
