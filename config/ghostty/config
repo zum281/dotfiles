@@ -47,19 +47,6 @@ unfocused-split-fill = #1e2326
 
 # keybindings
 keybind = cmd+s>r=reload_config
-keybind = cmd+s>x=close_surface
-keybind = global:ctrl+f=toggle_quick_terminal
-
-# tabs
-keybind = cmd+s>t=new_tab
-keybind = cmd+s>l=next_tab
-keybind = cmd+s>h=previous_tab
-keybind = cmd+s>comma=move_tab:-1
-keybind = cmd+s>period=move_tab:1
-
-# split
-keybind = cmd+s>v=new_split:down
-keybind = cmd+s>n=new_split:right
 
 copy-on-select = clipboard
 quick-terminal-position = "center"
