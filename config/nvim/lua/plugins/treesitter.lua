@@ -13,7 +13,8 @@ return {
         "lua",
         "markdown",
         "bash",
-        "gitignore"
+        "gitignore",
+        "c"
       },
       sync_install = false,
       auto_install = true,

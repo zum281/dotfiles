@@ -55,11 +55,6 @@ return {
 				toggle = {
 					normal = "<C-g>",
 					terminal = "<C-g>",
-					variants = {
-						continue = "<leader>cC",
-						verbose = "<leader>cV",
-						resume = "<leader>cR",
-					},
 				},
 				window_navigation = true,
 				scrolling = true,

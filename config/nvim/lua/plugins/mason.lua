@@ -3,6 +3,9 @@ return {
 	opts = {
 		ensure_installed = {
 			"js-debug-adapter",
+			"clangd",
+			"clang-format",
+			"codelldb",
 		},
 	},
 }

@@ -124,6 +124,44 @@ return {
 				dapui.close()
 			end
 
+			-- Configure codelldb adapter (C/C++)
+			dap.adapters.codelldb = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = "codelldb",
+					args = { "--port", "${port}" },
+				},
+			}
+
+			-- C debug configurations
+			dap.configurations.c = {
+				{
+					type = "codelldb",
+					request = "launch",
+					name = "Debug Executable",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = false,
+				},
+				{
+					type = "codelldb",
+					request = "launch",
+					name = "Debug Executable (with args)",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+					end,
+					args = function()
+						local input = vim.fn.input("Arguments: ")
+						return vim.split(input, " ", { trimempty = true })
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = false,
+				},
+			}
+
 			-- Configure vscode-js-debug adapter
 			dap.adapters["pwa-node"] = {
 				type = "server",
