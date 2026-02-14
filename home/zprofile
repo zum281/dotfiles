@@ -2,11 +2,10 @@ if command -v brew >/dev/null 2>&1; then
     eval "$(brew shellenv)"
 fi
 
-export BUN_INSTALL="$HOME/.bun"
 export VOLTA_HOME="$HOME/.volta"
 export BREW_PATH="/opt/homebrew"
 export CARGO_PATH="$HOME/.cargo/bin"
-export PATH="$BREW_PATH/bin:$BUN_INSTALL/bin:$VOLTA_HOME/bin:$CARGO_PATH:$HOME/.local/bin:$PATH"
+export PATH="$BREW_PATH/bin:$VOLTA_HOME/bin:$CARGO_PATH:$HOME/.local/bin:$PATH"
 
 
 # Preferred editor for local and remote sessions
