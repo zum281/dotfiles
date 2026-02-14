@@ -6,6 +6,9 @@ return {
 			"clangd",
 			"clang-format",
 			"codelldb",
+			"bash-language-server",
+			"shellcheck",
+			"beautysh",
 		},
 	},
 }
