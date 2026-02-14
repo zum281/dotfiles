@@ -21,6 +21,8 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+source ~/s/dotfiles/less_colors
+
 ##############
 ### PROMPT ###
 ##############
@@ -71,6 +73,7 @@ autoload -U compinit && compinit
 zinit cdreplay -q
 _comp_options+=(globdots) # include hidden files
 
+
 ######################
 ### History config ###
 ######################
@@ -94,10 +97,7 @@ bindkey '^n' history-search-forward
 ### Aliases ###
 ###############
 
-alias vi='nvim'
-alias vim='nvim'
-alias l='clear'
-alias lg='lazygit'
+source ~/s/dotfiles/aliases
 
 # use bat instead of cat
 alias cat='bat'
@@ -105,39 +105,6 @@ alias cat='bat'
 # eza aliases
 alias ls="eza --color=always -l --all --git --icons=always --no-time --no-user"
 alias tree="eza --tree --color=always --all --icons=always --git --no-filesize --no-time --no-user --no-permissions --level=3"
-
-# git aliases
-alias g='git'
-alias gdiff='git diff --output-indicator-new=" " --output-indicator-old=" "'
-alias gds='gd --staged'
-alias gp='git push'
-alias gpf='git push --force-with-lease'
-alias gu='git pull'
-alias gsw='git switch'
-alias gswd='gsw develop && gu && clean-branches && git branch'
-
-# yarn aliases
-alias y="yarn"
-alias yb="yarn build"
-alias yc="yarn clean"
-alias yd="yarn dev"
-alias yst="yarn start"
-alias ysd="yarn start:dev"
-alias ysp="yarn start:prod"
-alias ybp="yarn build:dev"
-alias ybp="yarn build:prod"
-
-# npm aliases
-alias n="npm install"
-alias nd="npm run dev"
-alias nb="npm run build"
-alias nst="npm start"
-alias nc="npm run clean"
-alias nt="npm run test"
-
-# custom scripts aliases
-alias cb="clean-branches"
-alias ss="show-scripts"
 
 ##########################
 ### Completion styling ###
@@ -216,3 +183,4 @@ if [[ ! -n $TMUX  ]]; then
   fi
   tmux a
 fi
+

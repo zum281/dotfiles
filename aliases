@@ -1,0 +1,40 @@
+alias rm='rm -i'
+alias type='type -a'
+
+# application aliases
+alias vi='nvim'
+alias vim='nvim'
+alias lg='lazygit'
+
+# git aliases
+alias g='git'
+alias gdiff='git diff --output-indicator-new=" " --output-indicator-old=" "'
+alias gds='gd --staged'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
+alias gu='git pull'
+alias gsw='git switch'
+alias gswd='gsw develop && gu && clean-branches && git branch'
+
+# yarn aliases
+alias y="yarn"
+alias yb="yarn build"
+alias yc="yarn clean"
+alias yd="yarn dev"
+alias yst="yarn start"
+alias ysd="yarn start:dev"
+alias ysp="yarn start:prod"
+alias ybp="yarn build:dev"
+alias ybp="yarn build:prod"
+
+# npm aliases
+alias n="npm install"
+alias nd="npm run dev"
+alias nb="npm run build"
+alias nst="npm start"
+alias nc="npm run clean"
+alias nt="npm run test"
+
+# custom scripts aliases
+alias cb="clean-branches"
+alias ss="show-scripts"
