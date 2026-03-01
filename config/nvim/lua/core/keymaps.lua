@@ -6,15 +6,8 @@ set("n", "N", "Nzzzv", { desc = "previous search result" })
 set("n", "<C-d>", "<C-d>zz", { desc = "half page down" })
 set("n", "<C-u>", "<C-u>zz", { desc = "half page up" })
 
--- quit all
-set("n", "<leader>q", "<cmd>qa!<cr>", { desc = "quit all" })
-
 -- clear search highlights
 set({ "n", "v" }, "<Esc><Esc>", ":nohlsearch<cr>", { desc = "clear search highlights" })
-
--- split
-set("n", "<leader>Sv", ":vsplit<cr>", { desc = "split vertical" })
-set("n", "<leader>Sh", ":ssplit<cr>", { desc = "split horizontal" })
 
 -- window navigation (smart-splits)
 set("n", "<C-h>", function()
@@ -51,14 +44,18 @@ end, { desc = "git blame" })
 set("n", "<leader>G", function()
 	Snacks.lazygit()
 end, { desc = "lazygit" })
-
--- neogit
-set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = "neogit status" })
-set("n", "<leader>gc", "<cmd>Neogit commit<cr>", { desc = "neogit commit" })
-set("n", "<leader>gp", "<cmd>Neogit pull<cr>", { desc = "neogit pull" })
-set("n", "<leader>gP", "<cmd>Neogit push<cr>", { desc = "neogit push" })
-set("n", "<leader>gl", "<cmd>Neogit log<cr>", { desc = "neogit log" })
-set("n", "<leader>gb", "<cmd>Neogit branch<cr>", { desc = "neogit branch" })
+set("n", "<leader>gs", function()
+	Snacks.picker.git_status()
+end, { desc = "git status" })
+set("n", "<leader>gl", function()
+	Snacks.picker.git_log()
+end, { desc = "git log" })
+set("n", "<leader>gb", function()
+	Snacks.picker.git_branches()
+end, { desc = "git branches" })
+set("n", "<leader>gd", function()
+	require("gitsigns").diffthis()
+end, { desc = "git diff" })
 
 -- gitsigns
 set("n", "g]", function()
@@ -70,9 +67,15 @@ end, { desc = "prev hunk" })
 set("n", "<leader>hs", function()
 	require("gitsigns").stage_hunk()
 end, { desc = "stage hunk" })
+set("n", "<leader>hS", function()
+	require("gitsigns").stage_buffer()
+end, { desc = "stage buffer" })
 set("n", "<leader>hr", function()
 	require("gitsigns").reset_hunk()
-end, { desc = "reset junk" })
+end, { desc = "reset hunk" })
+set("n", "<leader>hR", function()
+	require("gitsigns").reset_buffer()
+end, { desc = "reset buffer" })
 set("n", "<leader>hp", function()
 	require("gitsigns").preview_hunk()
 end, { desc = "preview hunk" })
@@ -88,9 +91,6 @@ end, { desc = "scratch buffer select" })
 set("n", "<leader>.", function()
 	Snacks.scratch()
 end, { desc = "scratch buffer toggle" })
-
--- alternate buffer
-set("n", "<leader>a", "<cmd>b#<CR>", { desc = "alternate buf" })
 
 -- trouble
 set("n", "<leader>o", "<cmd>Trouble diagnostics toggle<cr>", { desc = "diagnostics" })
@@ -113,11 +113,6 @@ set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "loclist" })
 set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", { desc = "quickfix" })
 set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>", { desc = "todos" })
 
--- Run golangci-lint on current project
-set("n", "gl", function()
-	vim.cmd("!golangci-lint run")
-end, { desc = "Go: Run golangci-lint" })
-
 -- buffers
 set({ "n", "v" }, "<leader>bd", function()
 	Snacks.bufdelete()
@@ -136,7 +131,6 @@ set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "next buffer" })
 
 -- diagnostics
 set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "line diagnostics" })
-set("n", "<leader>dq", "<cmd>Trouble diagnostics toggle<cr>", { desc = "diagnostics to trouble" })
 
 -- lsp (trouble)
 set("n", "grr", "<cmd>Trouble lsp_references<cr>", { desc = "lsp references" })
