@@ -44,7 +44,6 @@ vim.opt.mouse = "a"
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.modifiable = true
 vim.opt.encoding = "UTF-8"
-vim.opt.winborder = "rounded"
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldlevel = 99

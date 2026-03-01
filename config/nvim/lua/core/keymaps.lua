@@ -76,7 +76,7 @@ end, { desc = "reset junk" })
 set("n", "<leader>hp", function()
 	require("gitsigns").preview_hunk()
 end, { desc = "preview hunk" })
-set("n", "hq", function()
+set("n", "<leader>hq", function()
 	require("gitsigns").setqflist("all")
 	vim.cmd("Trouble quickfix")
 end, { desc = "changed files to trouble" })
@@ -119,10 +119,10 @@ set("n", "gl", function()
 end, { desc = "Go: Run golangci-lint" })
 
 -- buffers
-set({ "n", "v" }, "Bd", function()
+set({ "n", "v" }, "<leader>bd", function()
 	Snacks.bufdelete()
 end, { desc = "delete buffer" })
-set({ "n", "v" }, "Bx", function()
+set({ "n", "v" }, "<leader>bx", function()
 	local current = vim.api.nvim_get_current_buf()
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 		if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then

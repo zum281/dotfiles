@@ -9,6 +9,7 @@ vim.lsp.enable({
 	"tailwind_ls",
 	"yaml_ls",
 	"go_ls",
+	"sql_ls",
 })
 
 vim.diagnostic.config({

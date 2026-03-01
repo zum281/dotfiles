@@ -35,7 +35,8 @@ return {
 			},
 			use_icons = true,
 		})
-		require("mini.indentscope").setup()
+		require("mini.pairs").setup()
+	require("mini.indentscope").setup()
 		local miniclue = require("mini.clue")
 		miniclue.setup({
 			triggers = {
