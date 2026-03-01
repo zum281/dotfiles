@@ -46,13 +46,10 @@ eval "$(zoxide init --cmd cd zsh)"
 #####################
 ### zinit plugins ###
 #####################
-zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light zdharma-continuum/fast-syntax-highlighting
-zinit ice depth=1
-zinit load wfxr/forgit
 zinit light so-fancy/diff-so-fancy
 
 
