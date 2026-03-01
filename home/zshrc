@@ -31,7 +31,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{#cfcfb0}%f%F{#80a0ff}%~%f%F{#cfcfb0}%f %F{#ff5189}${vcs_info_msg_0_}%f%F{#80a0ff}%f '
+PROMPT='%F{#cfcfb0}%f%F{#ae81ff}%~%f%F{#cfcfb0}%f %F{#ff5189}${vcs_info_msg_0_}%f%F{#ae81ff}%f '
 
 # thefuck alias
 eval $(thefuck --alias)
@@ -139,18 +139,18 @@ _fzf_comprun() {
 ###########################
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color bg:#000000 \
-  --color bg+:#262626 \
-  --color border:#2e2e2e \
+  --color bg+:#3a3a3a \
+  --color border:#3a3a3a \
   --color fg:#b2b2b2 \
   --color fg+:#e4e4e4 \
-  --color gutter:#262626 \
-  --color header:#80a0ff \
+  --color gutter:#3a3a3a \
+  --color header:#ae81ff \
   --color hl+:#f09479 \
   --color hl:#f09479 \
   --color info:#cfcfb0 \
   --color marker:#f09479 \
   --color pointer:#ff5189 \
-  --color prompt:#80a0ff \
+  --color prompt:#ae81ff \
   --color spinner:#36c692
 "
 #####################

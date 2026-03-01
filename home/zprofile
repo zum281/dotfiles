@@ -2,6 +2,8 @@ if command -v brew >/dev/null 2>&1; then
     eval "$(brew shellenv)"
 fi
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 export VOLTA_HOME="$HOME/.volta"
 export BREW_PATH="/opt/homebrew"
 export CARGO_PATH="$HOME/.cargo/bin"
