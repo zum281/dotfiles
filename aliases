@@ -1,5 +1,6 @@
 alias rm='rm -i'
 alias type='type -a'
+alias grep='grep --color=auto'
 
 # application aliases
 alias vi='nvim'
