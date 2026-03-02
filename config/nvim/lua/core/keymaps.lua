@@ -79,10 +79,10 @@ end, { desc = "reset buffer" })
 set("n", "<leader>hp", function()
 	require("gitsigns").preview_hunk()
 end, { desc = "preview hunk" })
-set("n", "<leader>hq", function()
+set("n", "<leader>gg", function()
 	require("gitsigns").setqflist("all")
-	vim.cmd("Trouble quickfix")
-end, { desc = "changed files to trouble" })
+	vim.cmd("copen")
+end, { desc = "changed files" })
 
 -- scratch
 set("n", "<leader>s", function()
@@ -92,37 +92,14 @@ set("n", "<leader>.", function()
 	Snacks.scratch()
 end, { desc = "scratch buffer toggle" })
 
--- trouble
-set("n", "<leader>o", "<cmd>Trouble diagnostics<cr>", { desc = "diagnostics" })
-set("n", "q]", function()
-	require("trouble").next({ skip_groups = true, jump = true })
-end, { desc = "next trouble item" })
-set("n", "q[", function()
-	require("trouble").prev({ skip_groups = true, jump = true })
-end, { desc = "prev trouble item" })
-set("n", "Q]", function()
-	require("trouble").last({ skip_groups = true, jump = true })
-end, { desc = "last trouble item" })
-set("n", "Q[", function()
-	require("trouble").first({ skip_groups = true, jump = true })
-end, { desc = "first trouble item" })
-set("n", "gO", "<cmd>Trouble symbols<cr>", { desc = "document symbols" })
-set("n", "<leader>xs", "<cmd>Trouble symbols toggle<cr>", { desc = "symbols" })
-set("n", "<leader>xl", "<cmd>Trouble loclist toggle<cr>", { desc = "loclist" })
-set("n", "<leader>xq", "<cmd>Trouble quickfix toggle<cr>", { desc = "quickfix" })
-set("n", "<leader>xt", "<cmd>Trouble todo toggle<cr>", { desc = "todos" })
+-- todos
+set("n", "<leader>xt", "<cmd>TodoQuickFix<cr>", { desc = "todos" })
 
 set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "previous buffer" })
 set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "next buffer" })
 
 -- diagnostics
 set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "line diagnostics" })
-
--- lsp (trouble)
-set("n", "grr", "<cmd>Trouble lsp_references<cr>", { desc = "lsp references" })
-set("n", "grd", "<cmd>Trouble lsp_definitions<cr>", { desc = "lsp definitions" })
-set("n", "gri", "<cmd>Trouble lsp_implementations<cr>", { desc = "lsp implementations" })
-set("n", "grt", "<cmd>Trouble lsp_type_definitions<cr>", { desc = "lsp type definitions" })
 
 -- yank
 set("n", "<leader>yy", ":keepjumps normal! ggyG<cr>", { desc = "yank all" })
