@@ -3,11 +3,8 @@ vim.bo.makeprg = "clang -std=c99 -Wall -Wextra -Werror -g -fsanitize=address,und
 local set = vim.keymap.set
 local terminal_buf = nil
 
--- Build: compile current file, populate quickfix with errors
-set("n", "<leader>mb", "<cmd>make<cr>", { buffer = 0, desc = "build" })
-
 -- Run: execute compiled binary in a bottom split terminal
-set("n", "<leader>mr", function()
+set("n", "<leader>r", function()
 	local bin = "./" .. vim.fn.expand("%:r")
 
 	-- Close existing terminal buffer if it exists
