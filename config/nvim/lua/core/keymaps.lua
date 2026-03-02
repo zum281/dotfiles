@@ -9,6 +9,19 @@ set("n", "<C-u>", "<C-u>zz", { desc = "half page up" })
 -- clear search highlights
 set({ "n", "v" }, "<Esc><Esc>", ":nohlsearch<cr>", { desc = "clear search highlights" })
 
+-- buffers
+set({ "n", "v" }, "<leader>bd", function()
+	Snacks.bufdelete()
+end, { desc = "delete buffer" })
+set({ "n", "v" }, "<leader>bx", function()
+	local current = vim.api.nvim_get_current_buf()
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
+			vim.api.nvim_buf_delete(buf, {})
+		end
+	end
+end, { desc = "delete all buffers except current" })
+
 -- window navigation (smart-splits)
 set("n", "<C-h>", function()
 	require("smart-splits").move_cursor_left()
@@ -36,6 +49,18 @@ end, { desc = "live grep" })
 set("n", "<leader>b", function()
 	Snacks.picker.buffers()
 end, { desc = "buffers" })
+set("n", "<leader>m", function()
+	Snacks.picker.man()
+end, { desc = "man pages" })
+set("n", "<leader>fk", function()
+	Snacks.picker.keymaps()
+end, { desc = "keymaps" })
+set("n", "<leader>fh", function()
+	Snacks.picker.help()
+end, { desc = "help" })
+set("n", "<leader>fc", function()
+	Snacks.picker.commands()
+end, { desc = "commands" })
 
 -- git
 set("n", "gb", function()
@@ -54,7 +79,7 @@ set("n", "<leader>gb", function()
 	Snacks.picker.git_branches()
 end, { desc = "git branches" })
 set("n", "<leader>gd", function()
-	require("gitsigns").diffthis()
+	Snacks.picker.git_diff()
 end, { desc = "git diff" })
 
 -- gitsigns
@@ -102,8 +127,8 @@ set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "next buffer" })
 set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "line diagnostics" })
 
 -- yank
-set("n", "<leader>yy", ":keepjumps normal! ggyG<cr>", { desc = "yank all" })
-set("n", "<leader>yp", function()
+set("n", "<leader>ya", ":keepjumps normal! ggyG<cr>", { desc = "yank all" })
+set("n", "<leader>yy", function()
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
 	print("file:", path)
