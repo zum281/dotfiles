@@ -31,7 +31,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{#cfcfb0}%f%F{#ae81ff}%~%f%F{#cfcfb0}%f %F{#ff5189}${vcs_info_msg_0_}%f%F{#ae81ff}%f '
+PROMPT='%F{#cfcfb0}%f%F{#ae81ff}%~%f%F{#cfcfb0}%f %F{#b2b2b2}${vcs_info_msg_0_}%f%F{#ae81ff}%f '
 
 # thefuck alias
 eval $(thefuck --alias)
