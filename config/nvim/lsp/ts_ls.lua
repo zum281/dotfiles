@@ -20,8 +20,8 @@ return {
 			implementationsCodeLens = { enabled = true },
 			inlayHints = {
 				includeInlayParameterNameHints = "literals", -- "none" | "literals" | "all"
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayVariableTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = false,
+				includeInlayVariableTypeHints = false,
 				includeInlayEnumMemberValueHints = true,
 			},
 		},
@@ -30,8 +30,8 @@ return {
 			implementationsCodeLens = { enabled = true },
 			inlayHints = {
 				includeInlayParameterNameHints = "literals",
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayVariableTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = false,
+				includeInlayVariableTypeHints = false,
 				includeInlayEnumMemberValueHints = true,
 			},
 		},
