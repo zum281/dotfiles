@@ -23,7 +23,9 @@ vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.showmatch = true
 vim.opt.matchtime = 2
-vim.opt.cmdheight = 2
+vim.opt.cmdheight = 1
+vim.opt.ruler = false
+vim.opt.shortmess:append("S")
 
 vim.opt.showmode = false
 vim.opt.pumheight = 20
