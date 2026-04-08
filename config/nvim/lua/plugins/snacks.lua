@@ -7,6 +7,7 @@ return {
 		animate = { enabled = true },
 		picker = {
 			enabled = true,
+			layout = "ivy_split",
 			sources = {
 				smart = {
 					multi = {
@@ -18,6 +19,9 @@ return {
 						file = { filename_first = true },
 					},
 				},
+				keymaps = { hidden = "preview" },
+				commands = { hidden = "preview" },
+				git_branches = { hidden = "preview" },
 			},
 		},
 		git = { enabled = true },
