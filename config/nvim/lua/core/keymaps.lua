@@ -125,6 +125,14 @@ set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "next buffer" })
 
 -- diagnostics
 set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "line diagnostics" })
+set("n", "grd", function()
+	vim.lsp.buf.definition({
+		on_list = function(options)
+			vim.fn.setqflist({}, " ", options)
+			vim.cmd.copen()
+		end,
+	})
+end, { desc = "lsp definitions" })
 
 -- yank
 set("n", "<leader>ya", ":keepjumps normal! ggyG<cr>", { desc = "yank all" })
