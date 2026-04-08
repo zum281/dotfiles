@@ -53,6 +53,17 @@ return {
 		})
 		require("mini.pairs").setup()
 		require("mini.indentscope").setup()
+		require("mini.surround").setup({
+			mappings = {
+				add = "gza",
+				delete = "gzd",
+				replace = "gzr",
+				find = "gzf",
+				find_left = "gzF",
+				highlight = "gzh",
+				update_n_lines = "gzn",
+			},
+		})
 		local miniclue = require("mini.clue")
 		miniclue.setup({
 			triggers = {
@@ -88,6 +99,10 @@ return {
 
 				{ mode = "n", keys = "z" },
 				{ mode = "x", keys = "z" },
+
+				-- surround
+				{ mode = "n", keys = "gz" },
+				{ mode = "x", keys = "gz" },
 			},
 			clues = {
 				miniclue.gen_clues.builtin_completion(),
