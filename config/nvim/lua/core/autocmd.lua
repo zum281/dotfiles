@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = augroup,
 	callback = function()
-		vim.highlight.on_yank()
+		vim.hl.on_yank()
 	end,
 })
 
@@ -39,5 +39,13 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		end
 
 		require("conform").format(conform_opts)
+	end,
+})
+
+-- code lens
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = augroup,
+	callback = function(ev)
+		vim.lsp.codelens.enable(true, { bufnr = ev.buf })
 	end,
 })

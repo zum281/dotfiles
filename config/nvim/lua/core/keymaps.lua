@@ -133,3 +133,16 @@ set("n", "<leader>yy", function()
 	vim.fn.setreg("+", path)
 	print("file:", path)
 end, { desc = "yank path" })
+
+-- inlay hints
+set("n", "<leader>ih", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "toggle inlay hints" })
+
+-- code lens
+set("n", "<leader>cl", function()
+	local enabled = vim.lsp.codelens.is_enabled({ bufnr = 0 })
+	vim.lsp.codelens.enable(not enabled, { bufnr = 0 })
+end, { desc = "toggle code lens" })
+
+set("n", "<leader>cr", vim.lsp.codelens.run, { desc = "run code lens" })

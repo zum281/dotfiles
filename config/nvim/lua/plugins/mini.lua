@@ -36,6 +36,13 @@ return {
 			},
 			use_icons = true,
 		})
+		local ai = require("mini.ai")
+		ai.setup({
+			custom_textobjects = {
+				F = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
+				c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
+			},
+		})
 		require("mini.pairs").setup()
 	require("mini.indentscope").setup()
 		local miniclue = require("mini.clue")
@@ -61,6 +68,12 @@ return {
 				{ mode = "x", keys = '"' },
 				{ mode = "i", keys = "<C-r>" },
 				{ mode = "c", keys = "<C-r>" },
+
+				-- text objects
+				{ mode = "o", keys = "a" },
+				{ mode = "o", keys = "i" },
+				{ mode = "x", keys = "a" },
+				{ mode = "x", keys = "i" },
 
 				-- window
 				{ mode = "n", keys = "<C-w>" },

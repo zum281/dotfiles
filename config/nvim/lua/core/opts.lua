@@ -25,16 +25,12 @@ vim.opt.showmatch = true
 vim.opt.matchtime = 2
 vim.opt.cmdheight = 2
 
-vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.showmode = false
 vim.opt.pumheight = 20
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = ""
-vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
 
-vim.opt.hidden = true
-vim.opt.errorbells = false
 vim.opt.backspace = "indent,eol,start"
 vim.opt.autochdir = false
 vim.opt.iskeyword:append("-")
@@ -43,7 +39,6 @@ vim.opt.selection = "exclusive"
 vim.opt.mouse = "a"
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.modifiable = true
-vim.opt.encoding = "UTF-8"
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldlevel = 99
@@ -59,3 +54,8 @@ vim.g.netrw_localcopydircmd = "cp -r"
 -- grep with ripgrep
 vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.grepformat = "%f:%l:%c:%m"
+
+-- suppress provider warnings
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0

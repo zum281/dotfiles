@@ -1,3 +1,5 @@
+vim.lsp.inlay_hint.enable(true)
+
 vim.lsp.enable({
 	"bash_ls",
 	"clang_ls",
