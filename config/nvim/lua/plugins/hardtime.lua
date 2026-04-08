@@ -5,6 +5,12 @@ return {
 	opts = {
 		restriction_mode = "hint",
 		max_count = 4,
+		disabled_keys = {
+			["<Up>"] = { "" },
+			["<Down>"] = { "" },
+			["<Left>"] = { "" },
+			["<Right>"] = { "" },
+		},
 		disabled_filetypes = {
 			"oil",
 			"NeogitStatus",
