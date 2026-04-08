@@ -13,8 +13,8 @@ return {
 			markdown = { "prettierd", "prettier", stop_after_first = true },
 			go = { "goimports" },
 			c = { "clang-format" },
-			sh = { "beautysh" },
-			bash = { "beautysh" },
+			sh = { "shfmt" },
+			bash = { "shfmt" },
 		},
 		formatters = {
 			prettier = {

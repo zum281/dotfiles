@@ -8,7 +8,7 @@ return {
 			"codelldb",
 			"bash-language-server",
 			"shellcheck",
-			"beautysh",
+			"shfmt",
 		},
 	},
 }
