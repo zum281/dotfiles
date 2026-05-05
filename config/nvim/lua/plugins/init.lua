@@ -1,0 +1,35 @@
+vim.pack.add({
+	"https://www.github.com/echasnovski/mini.nvim",
+	"https://github.com/mason-org/mason.nvim",
+	"https://github.com/stevearc/conform.nvim",
+	"https://github.com/esmuellert/nvim-eslint",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
+	"https://github.com/mrjones2014/smart-splits.nvim",
+	"https://github.com/github/copilot.vim",
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/greggh/claude-code.nvim",
+	"https://github.com/windwp/nvim-ts-autotag",
+	"https://github.com/sindrets/diffview.nvim",
+	"https://github.com/NeogitOrg/neogit",
+	"https://github.com/lewis6991/gitsigns.nvim",
+	"https://github.com/kdheepak/lazygit.nvim",
+	"https://github.com/nvim-neotest/neotest",
+	"https://github.com/nvim-neotest/nvim-nio",
+	"https://github.com/antoinemadec/FixCursorHold.nvim",
+	"https://github.com/marilari88/neotest-vitest",
+})
+
+require('plugins.mini')
+require('plugins.mason')
+require('plugins.conform')
+require('plugins.eslint')
+require('plugins.treesitter')
+require('plugins.smart-splits')
+require('plugins.copilot')
+require('plugins.claude-code')
+require('plugins.autotag')
+require('plugins.gitsigns')
+require('plugins.diffview')
+require('plugins.neogit')
+require('plugins.lazygit')
+require('plugins.neotest')

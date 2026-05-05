@@ -1,11 +1,8 @@
-vim.g.mapleader = " "
-
 vim.opt.number = true
-vim.opt.relativenumber = false
 vim.opt.cursorline = true
 vim.opt.wrap = true
 vim.opt.scrolloff = 10
-vim.opt.sidescrolloff = 8
+vim.opt.sidescrolloff = 10
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -19,45 +16,50 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
-vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
 vim.opt.showmatch = true
-vim.opt.matchtime = 2
 vim.opt.cmdheight = 1
-vim.opt.ruler = false
-vim.opt.shortmess:append("S")
-
+vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.showmode = false
-vim.opt.pumheight = 20
+vim.opt.pumheight = 10
+vim.opt.pumblend = 10
+vim.opt.winblend = 0
 vim.opt.conceallevel = 0
-vim.opt.concealcursor = ""
-vim.opt.synmaxcol = 300
+vim.opt.concealcursor = "" -- do not hide cursorline in markup
+vim.opt.fillchars = { eob = " " } -- hide ~ on empty lines
 
+-- undo directory
+local undodir = vim.fn.expand("~/.vim/undodir")
+if vim.fn.isdirectory(undodir) == 0
+  then vim.fn.mkdir(undodir, "p")
+end
+
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.swapfile = false
+vim.opt.undofile = true
+vim.opt.undodir = undodir
+vim.opt.autoread = true
+vim.opt.autowrite = false
+
+vim.opt.hidden = true
+vim.opt.errorbells = false
 vim.opt.backspace = "indent,eol,start"
 vim.opt.autochdir = false
 vim.opt.iskeyword:append("-")
-vim.opt.path:append("**")
-vim.opt.selection = "exclusive"
+vim.opt.path:append("**") -- include subdirs in search
+vim.opt.selection = "inclusive"
 vim.opt.mouse = "a"
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.modifiable = true
+vim.opt.encoding = "UTF-8"
 
 vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.expr()"
 vim.opt.foldlevel = 99
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
-vim.g.netrw_keepdir = 0
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 30
-vim.g.netrw_localcopydircmd = "cp -r"
-
--- grep with ripgrep
-vim.opt.grepprg = "rg --vimgrep --smart-case"
-vim.opt.grepformat = "%f:%l:%c:%m"
-
--- suppress provider warnings
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_ruby_provider = 0
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"

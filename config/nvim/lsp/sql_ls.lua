@@ -1,9 +1,7 @@
 return {
-	cmd = { "sqls" },
-	filetypes = { "sql" },
-	settings = {
-		sqls = {
-			connections = {},
-		},
-	},
+  cmd = { "sqls" },
+  filetypes = { "sql" },
+  settings = {
+    sqls = { connections = {} },
+  },
 }

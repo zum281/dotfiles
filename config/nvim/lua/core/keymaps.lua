@@ -1,156 +1,139 @@
 local set = vim.keymap.set
 
--- Center screen when jumping
-set("n", "n", "nzzzv", { desc = "next search result" })
-set("n", "N", "Nzzzv", { desc = "previous search result" })
-set("n", "<C-d>", "<C-d>zz", { desc = "half page down" })
-set("n", "<C-u>", "<C-u>zz", { desc = "half page up" })
+vim.g.mapleader = " " -- space for leader
+vim.g.maplocalleader = " " -- space for localleader
+
+-- better movement in wrapped text
+set("n", "j", function()
+	return vim.v.count == 0 and "gj" or "j"
+end, { expr = true, silent = true, desc = "Down (wrap-aware)" })
+set("n", "k", function()
+	return vim.v.count == 0 and "gk" or "k"
+end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
+
+
+-- window / tmux pane navigation (smart-splits)
+set("n", "<C-h>", function() require("smart-splits").move_cursor_left() end,  { desc = "Move to left split/pane" })
+set("n", "<C-j>", function() require("smart-splits").move_cursor_down() end,  { desc = "Move to lower split/pane" })
+set("n", "<C-k>", function() require("smart-splits").move_cursor_up() end,    { desc = "Move to upper split/pane" })
+set("n", "<C-l>", function() require("smart-splits").move_cursor_right() end, { desc = "Move to right split/pane" })
 
 -- clear search highlights
 set({ "n", "v" }, "<Esc><Esc>", ":nohlsearch<cr>", { desc = "clear search highlights" })
 
--- buffers
-set({ "n", "v" }, "<leader>bd", function()
-	Snacks.bufdelete()
-end, { desc = "delete buffer" })
-set({ "n", "v" }, "<leader>bx", function()
-	local current = vim.api.nvim_get_current_buf()
-	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-		if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
-			vim.api.nvim_buf_delete(buf, {})
-		end
-	end
-end, { desc = "delete all buffers except current" })
 
--- window navigation (smart-splits)
-set("n", "<C-h>", function()
-	require("smart-splits").move_cursor_left()
-end, { desc = "window left" })
-set("n", "<C-l>", function()
-	require("smart-splits").move_cursor_right()
-end, { desc = "window right" })
-set("n", "<C-k>", function()
-	require("smart-splits").move_cursor_up()
-end, { desc = "window up" })
-set("n", "<C-j>", function()
-	require("smart-splits").move_cursor_down()
-end, { desc = "window down" })
+set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
+set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
 
--- explorer
-set("n", "-", "<cmd>Oil<cr>", { desc = "oil" })
+set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
+set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+set("n", "<leader>bd", function() require("mini.bufremove").delete() end, { desc = "Delete buffer" })
 
--- picker
-set("n", "<leader><space>", function()
-	Snacks.picker.smart()
-end, { desc = "find files" })
-set("n", "<leader>/", function()
-	Snacks.picker.grep()
-end, { desc = "live grep" })
-set("n", "<leader>b", function()
-	Snacks.picker.buffers()
-end, { desc = "buffers" })
-set("n", "<leader>m", function()
-	Snacks.picker.man()
-end, { desc = "man pages" })
-set("n", "<leader>fk", function()
-	Snacks.picker.keymaps()
-end, { desc = "keymaps" })
-set("n", "<leader>fh", function()
-	Snacks.picker.help()
-end, { desc = "help" })
-set("n", "<leader>fc", function()
-	Snacks.picker.commands()
-end, { desc = "commands" })
+set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
--- git
-set("n", "gb", function()
-	Snacks.git.blame_line()
-end, { desc = "git blame" })
-set("n", "<leader>G", function()
-	Snacks.lazygit()
-end, { desc = "lazygit" })
-set("n", "<leader>gs", function()
-	Snacks.picker.git_status()
-end, { desc = "git status" })
-set("n", "<leader>gl", function()
-	Snacks.picker.git_log()
-end, { desc = "git log" })
-set("n", "<leader>gb", function()
-	Snacks.picker.git_branches()
-end, { desc = "git branches" })
-set("n", "<leader>gd", function()
-	Snacks.picker.git_diff()
-end, { desc = "git diff" })
 
--- gitsigns
-set("n", "g]", function()
-	require("gitsigns").next_hunk()
-end, { desc = "next hunk" })
-set("n", "g[", function()
-	require("gitsigns").prev_hunk()
-end, { desc = "prev hunk" })
-set("n", "<leader>hs", function()
-	require("gitsigns").stage_hunk()
-end, { desc = "stage hunk" })
-set("n", "<leader>hS", function()
-	require("gitsigns").stage_buffer()
-end, { desc = "stage buffer" })
-set("n", "<leader>hr", function()
-	require("gitsigns").reset_hunk()
-end, { desc = "reset hunk" })
-set("n", "<leader>hR", function()
-	require("gitsigns").reset_buffer()
-end, { desc = "reset buffer" })
-set("n", "<leader>hp", function()
-	require("gitsigns").preview_hunk()
-end, { desc = "preview hunk" })
-set("n", "<leader>gg", function()
-	require("gitsigns").setqflist("all")
-	vim.cmd("copen")
-end, { desc = "changed files" })
+set("n", "-", function()
+  local path = vim.api.nvim_buf_get_name(0)
+  if vim.fn.filereadable(path) == 0 and vim.fn.isdirectory(path) == 0 then
+    path = nil
+  end
+  require("mini.files").open(path)
+end, { desc = "Open file explorer" })
 
--- scratch
-set("n", "<leader>s", function()
-	Snacks.scratch.select()
-end, { desc = "scratch buffer select" })
-set("n", "<leader>.", function()
-	Snacks.scratch()
-end, { desc = "scratch buffer toggle" })
-
--- todos
-set("n", "<leader>xt", "<cmd>TodoQuickFix<cr>", { desc = "todos" })
-
-set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "previous buffer" })
-set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "next buffer" })
-
--- diagnostics
-set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "line diagnostics" })
-set("n", "grd", function()
-	vim.lsp.buf.definition({
-		on_list = function(options)
-			vim.fn.setqflist({}, " ", options)
-			vim.cmd.copen()
-		end,
-	})
-end, { desc = "lsp definitions" })
-
--- yank
-set("n", "<leader>ya", ":keepjumps normal! ggyG<cr>", { desc = "yank all" })
-set("n", "<leader>yy", function()
+set("n", "<leader>yy", function() -- show file path
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)
 	print("file:", path)
-end, { desc = "yank path" })
+end, { desc = "Copy full file path" })
 
--- inlay hints
-set("n", "<leader>ih", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "toggle inlay hints" })
+-- gitsigns — hunk navigation and staging
+set("n", "g]", function() require("gitsigns").next_hunk() end, { desc = "Next hunk" })
+set("n", "g[", function() require("gitsigns").prev_hunk() end, { desc = "Prev hunk" })
+set("n", "<leader>hs", function() require("gitsigns").stage_hunk() end,   { desc = "Stage hunk" })
+set("n", "<leader>hr", function() require("gitsigns").reset_hunk() end,   { desc = "Reset hunk" })
+set("n", "<leader>hS", function() require("gitsigns").stage_buffer() end, { desc = "Stage buffer" })
+set("n", "<leader>hp", function() require("gitsigns").preview_hunk() end,  { desc = "Preview hunk" })
+set("n", "<leader>hR", function() require("gitsigns").reset_buffer() end,  { desc = "Reset buffer" })
+set("n", "<leader>hb", function() require("gitsigns").blame_line() end,    { desc = "Blame line" })
 
--- code lens
-set("n", "<leader>cl", function()
-	local enabled = vim.lsp.codelens.is_enabled({ bufnr = 0 })
-	vim.lsp.codelens.enable(not enabled, { bufnr = 0 })
-end, { desc = "toggle code lens" })
+-- neogit
+set("n", "<leader>G", function() require("neogit").open() end, { desc = "Neogit" })
 
-set("n", "<leader>cr", vim.lsp.codelens.run, { desc = "run code lens" })
+-- neotest — vitest runner
+--   <leader>tt   run all tests in current file
+--   <leader>tr   run nearest test (under cursor)
+--   <leader>ts   toggle summary panel
+--   <leader>to   toggle output panel
+--   <leader>tx   stop running tests
+set("n", "<leader>tt", function() require("neotest").run.run(vim.fn.expand("%")) end, { desc = "Run file tests" })
+set("n", "<leader>tr", function() require("neotest").run.run() end,                   { desc = "Run nearest test" })
+set("n", "<leader>ts", function() require("neotest").summary.toggle() end,            { desc = "Test summary" })
+set("n", "<leader>to", function() require("neotest").output_panel.toggle() end,       { desc = "Test output" })
+set("n", "<leader>tx", function() require("neotest").run.stop() end,                  { desc = "Stop tests" })
+
+set("n", "<leader>dd", function()
+	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, { desc = "Toggle diagnostics" })
+
+-- LSP keymaps (only active when a server is attached)
+-- LSP keymaps — active only in buffers with an attached server
+-- Built-in 0.11 defaults (no config needed):
+--   K            hover documentation
+--   grn          rename symbol
+--   gra          code action
+--   grr          references
+--   gri          implementation
+--   <C-s>        signature help (insert mode)
+-- Custom (defined below):
+--   grd          go to definition → quickfix list
+--   <leader>i    toggle inlay hints
+-- Completion (mini.completion, triggered automatically):
+--   <C-n>/<C-p>  move down/up in menu
+--   <C-y>        confirm selection
+--   <C-e>        dismiss menu
+--   <C-Space>    manually retrigger menu
+--   <Tab>/<S-Tab> jump between snippet placeholders
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local buf = args.buf
+    -- send definitions to quickfix for multi-result navigation
+    vim.keymap.set("n", "grd", function()
+      vim.lsp.buf.definition({
+        on_list = function(options)
+          vim.fn.setqflist({}, " ", options)
+          vim.cmd.copen()
+        end,
+      })
+    end, { buffer = buf, desc = "LSP definition (quickfix)" })
+    -- toggle inlay hints per buffer
+    vim.keymap.set("n", "<leader>i", function()
+      vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }), { bufnr = buf })
+    end, { buffer = buf, desc = "Toggle inlay hints" })
+
+    -- wire mini.completion to this buffer's LSP client
+    vim.bo[buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
+  end,
+})
+
+-- pickers (mini.pick + mini.extra)
+set("n", "<leader><space>", function() require("mini.pick").builtin.files() end,      { desc = "Find files" })
+set("n", "<leader>/",       function() require("mini.pick").builtin.grep_live() end,  { desc = "Live grep" })
+set("n", "<leader>h",       function() require("mini.pick").builtin.help() end,       { desc = "Help tags" })
+set("n", "<leader>s", function()
+  if #vim.lsp.get_clients({ bufnr = 0 }) == 0 then
+    vim.notify("No LSP client attached to this buffer", vim.log.levels.WARN)
+    return
+  end
+  require("mini.extra").pickers.lsp({ scope = "document_symbol" })
+end, { desc = "LSP symbols" })
+
+set("n", "<leader>g", function()
+  local ok = vim.system({ "git", "rev-parse", "--is-inside-work-tree" }, { text = true }):wait()
+  if ok.code ~= 0 then
+    vim.notify("Not inside a git repository", vim.log.levels.WARN)
+    return
+  end
+  require("mini.extra").pickers.git_files({ scope = "modified" })
+end, { desc = "Git modified files" })
+
+

@@ -5,6 +5,7 @@ alias grep='grep --color=auto'
 # application aliases
 alias vi='nvim'
 alias vim='nvim'
+alias ni='NVIM_APPNAME=nvim-legacy nvim'
 alias lg='lazygit'
 
 # git aliases

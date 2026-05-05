@@ -17,3 +17,6 @@ export PATH="$BREW_PATH/bin:$VOLTA_HOME/bin:$CARGO_PATH:$HOME/.local/bin:$PATH"
    export EDITOR='nvim'
  fi
 
+
+# Added by Obsidian
+export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
