@@ -117,6 +117,9 @@ set("n", "[e", function()
 	vim.diagnostic.jump({ count = -vim.v.count1, severity = vim.diagnostic.severity.ERROR, float = true })
 end, { desc = "Prev error" })
 
+set("n", "]Q", "<cmd>cnfile<CR>", { desc = "Next file in qf" })
+set("n", "[Q", "<cmd>cpfile<CR>", { desc = "Prev file in qf" })
+
 -- LSP keymaps (only active when a server is attached)
 -- LSP keymaps — active only in buffers with an attached server
 -- Built-in 0.11 defaults (no config needed):
@@ -184,5 +187,6 @@ set("n", "<leader>g", function()
 	require("mini.extra").pickers.git_files({ scope = "modified" })
 end, { desc = "Git modified files" })
 
--- zusk todo
+-- zusk
 set("n", "<leader>j", "<cmd>Todo<CR>", { desc = "kws comments to qf" })
+set("n", "<leader>q", "<cmd>QfFiles<CR>", { desc = "Files in qf list" })

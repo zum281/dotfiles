@@ -209,10 +209,13 @@ require("mini.notify").setup({})
 --   <C-n>/<C-p>      move down/up
 --   <Tab>            toggle preview
 --   <C-x>            mark item, <C-a> mark all matched
---   <M-CR>           send marked items to quickfix list
+--   <C-q>            send marked items to quickfix list
 --   <C-Space>        refine (narrow results further)
 --   <C-c> or <Esc>   close
 require("mini.pick").setup({
+	mappings = {
+		choose_marked = "<C-q>",
+	},
 	window = {
 		config = function()
 			return {
