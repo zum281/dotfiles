@@ -75,6 +75,21 @@ local function todo()
 			name = "Kws",
 			choose = choose_kw,
 		},
+		window = {
+			config = function()
+				local height = math.min(#items + 2, 10)
+				local width = 40
+				return {
+					relative = "editor",
+					anchor = "NW",
+					row = math.floor((vim.o.lines - height) / 2),
+					col = math.floor((vim.o.columns - width) / 2),
+					height = height,
+					width = width,
+					border = "rounded",
+				}
+			end,
+		},
 	})
 end
 
