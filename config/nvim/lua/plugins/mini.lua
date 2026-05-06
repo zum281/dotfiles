@@ -10,8 +10,8 @@ local black = "#000000"
 vim.api.nvim_set_hl(0, "SignColumn", { bg = black })
 vim.api.nvim_set_hl(0, "LineNr", { bg = black, fg = "#caffff" })
 vim.api.nvim_set_hl(0, "FoldColumn", { bg = black })
-vim.api.nvim_set_hl(0, "NormalFloat",  { bg = black })
-vim.api.nvim_set_hl(0, "FloatBorder",  { bg = black })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = black })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = black })
 vim.api.nvim_set_hl(0, "MiniFilesNormal", { bg = black })
 vim.api.nvim_set_hl(0, "MiniFilesBorder", { bg = black })
 vim.api.nvim_set_hl(0, "MiniFilesTitle", { bg = black })
@@ -56,6 +56,12 @@ miniclue.setup({
 		miniclue.gen_clues.z(),
 	},
 })
+
+sl_hl("MiniClueNextKey")
+sl_hl("MiniClueNextKeyWithPostkeys")
+sl_hl("MiniClueDescGroup")
+sl_hl("MiniClueDescSingle")
+sl_hl("MiniClueSeparator")
 
 -- mini cursorword
 require("mini.cursorword").setup({})
