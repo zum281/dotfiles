@@ -110,6 +110,13 @@ set("n", "<leader>dd", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle diagnostics" })
 
+set("n", "]e", function()
+	vim.diagnostic.jump({ count = vim.v.count1, severity = vim.diagnostic.severity.ERROR, float = true })
+end, { desc = "Next error" })
+set("n", "[e", function()
+	vim.diagnostic.jump({ count = -vim.v.count1, severity = vim.diagnostic.severity.ERROR, float = true })
+end, { desc = "Prev error" })
+
 -- LSP keymaps (only active when a server is attached)
 -- LSP keymaps — active only in buffers with an attached server
 -- Built-in 0.11 defaults (no config needed):
