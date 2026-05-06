@@ -3,6 +3,7 @@ require("core.keymaps")
 require("core.autocmd")
 require("core.commands")
 require("core.lsp")
+require("zusk.todo")
 require("plugins")
 
 vim.opt.termguicolors = true

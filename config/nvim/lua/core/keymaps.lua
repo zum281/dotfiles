@@ -176,3 +176,6 @@ set("n", "<leader>g", function()
 	end
 	require("mini.extra").pickers.git_files({ scope = "modified" })
 end, { desc = "Git modified files" })
+
+-- zusk todo
+set("n", "<leader>j", "<cmd>Todo<CR>", { desc = "kws comments to qf" })
