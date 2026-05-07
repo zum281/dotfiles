@@ -13,6 +13,8 @@ local ensure_installed = {
   "yaml-language-server",        -- yaml_ls
   "gopls",                       -- go_ls
   "sqls",                        -- sql_ls
+  "pyright",                     -- pyright_ls
+  "ruff",                        -- ruff_ls + ruff_format
   -- formatters
   "stylua",
   "prettierd",

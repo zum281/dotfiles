@@ -10,6 +10,7 @@ require("conform").setup({
     json           = { "prettierd", "prettier", stop_after_first = true },
     markdown       = { "prettierd", "prettier", stop_after_first = true },
     go             = { "goimports" },
+    python         = { "ruff_format" },
     c              = { "clang-format" },
     sh             = { "shfmt" },
     bash           = { "shfmt" },

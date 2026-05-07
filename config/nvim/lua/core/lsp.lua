@@ -12,6 +12,8 @@ vim.lsp.enable({
   "yaml_ls",
   "go_ls",
   "sql_ls",
+  "pyright_ls",
+  "ruff_ls",
 })
 
 vim.diagnostic.config({
