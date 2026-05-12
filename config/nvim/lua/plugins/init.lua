@@ -17,6 +17,7 @@ vim.pack.add({
 	"https://github.com/nvim-neotest/nvim-nio",
 	"https://github.com/antoinemadec/FixCursorHold.nvim",
 	"https://github.com/marilari88/neotest-vitest",
+	"https://github.com/gruvw/strudel.nvim",
 })
 
 require('plugins.mini')
@@ -33,3 +34,4 @@ require('plugins.diffview')
 require('plugins.neogit')
 require('plugins.lazygit')
 require('plugins.neotest')
+require('plugins.strudel')
