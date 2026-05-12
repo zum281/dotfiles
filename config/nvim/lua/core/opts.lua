@@ -19,7 +19,7 @@ vim.opt.incsearch = true
 vim.opt.signcolumn = "yes"
 vim.opt.showmatch = true
 vim.opt.cmdheight = 1
-vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.completeopt = "menuone,noinsert,noselect,fuzzy,nosort"
 vim.opt.showmode = false
 vim.opt.pumheight = 10
 vim.opt.pumblend = 10
@@ -30,8 +30,8 @@ vim.opt.fillchars = { eob = " " } -- hide ~ on empty lines
 
 -- undo directory
 local undodir = vim.fn.expand("~/.vim/undodir")
-if vim.fn.isdirectory(undodir) == 0
-  then vim.fn.mkdir(undodir, "p")
+if vim.fn.isdirectory(undodir) == 0 then
+	vim.fn.mkdir(undodir, "p")
 end
 
 vim.opt.backup = false
