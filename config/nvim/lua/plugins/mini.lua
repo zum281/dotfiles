@@ -247,7 +247,16 @@ require("mini.completion").setup({
 })
 
 -- mini snippets — snippet engine for LSP snippet completions
-require("mini.snippets").setup({})
+require("mini.snippets").setup({
+	expand = {
+		insert = function(snippet, _)
+			return MiniSnippets.default_insert(snippet, {
+				empty_tabstop = "",
+				empty_tabstop_final = "",
+			})
+		end,
+	},
+})
 
 -- mini pairs — auto-closes brackets, quotes, etc. as you type
 require("mini.pairs").setup({})
