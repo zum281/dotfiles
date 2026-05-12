@@ -178,15 +178,12 @@ set("n", "<leader>s", function()
 	require("mini.extra").pickers.lsp({ scope = "document_symbol" })
 end, { desc = "LSP symbols" })
 
-set("n", "<leader>g", function()
-	local ok = vim.system({ "git", "rev-parse", "--is-inside-work-tree" }, { text = true }):wait()
-	if ok.code ~= 0 then
-		vim.notify("Not inside a git repository", vim.log.levels.WARN)
-		return
-	end
-	require("mini.extra").pickers.git_files({ scope = "modified" })
-end, { desc = "Git modified files" })
-
 -- zusk
 set("n", "<leader>j", "<cmd>Todo<CR>", { desc = "kws comments to qf" })
 set("n", "<leader>q", "<cmd>QfFiles<CR>", { desc = "Files in qf list" })
+set("n", "<leader>dl", function()
+	vim.diagnostic.setqflist({ open = true })
+end, { desc = "Buffer diagnostics (qf)" })
+set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Diagnostic detail (float)" })
+set("n", "<leader>ds", "<cmd>DiagnosticSplit<CR>", { desc = "Diagnostic detail (split)" })
+set("n", "<leader>g", "<cmd>GitChanged<CR>", { desc = "git changed files" })
