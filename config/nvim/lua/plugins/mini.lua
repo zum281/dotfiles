@@ -23,6 +23,13 @@ vim.api.nvim_set_hl(0, "MiniClueNormal", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueBorder", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueTitle", { bg = black })
 
+-- disable mini.snippets visual indicators (no underlines on tabstops)
+vim.api.nvim_set_hl(0, "MiniSnippetsCurrent", {})
+vim.api.nvim_set_hl(0, "MiniSnippetsCurrentReplace", {})
+vim.api.nvim_set_hl(0, "MiniSnippetsUnvisited", {})
+vim.api.nvim_set_hl(0, "MiniSnippetsVisited", {})
+vim.api.nvim_set_hl(0, "MiniSnippetsFinal", {})
+
 -- statusline: force black bg on all groups, preserve fg from colorscheme
 local function sl_hl(name)
 	local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
@@ -127,8 +134,8 @@ hipatterns.setup({
 		hex_color = hipatterns.gen_highlighter.hex_color(),
 		todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
 		fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
-		note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
-		deprecated = { pattern = "%f[%w]()DEPRECATED()%f[%W]", group = "DiagnosticWarn" },
+		hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsWarn" },
+		deprecated = { pattern = "%f[%w]()deprecated()%f[%W]", group = "DiagnosticWarn" },
 		trail = { pattern = "%s+$", group = "Error" },
 	},
 })

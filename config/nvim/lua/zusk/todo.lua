@@ -16,7 +16,7 @@ local collect_keywords = function()
 
 	for _, entry in pairs(highlighters) do
 		if type(entry) == "table" and type(entry.pattern) == "string" then
-			local kw = entry.pattern:match("%(%)(%u+)%(%)")
+			local kw = entry.pattern:match("%(%)(%w+)%(%)")
 			if kw and not seen[kw] then
 				seen[kw] = true
 				table.insert(out, kw)
