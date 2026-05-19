@@ -1,10 +1,31 @@
-vim.bo.makeprg = "clang -std=c99 -Wall -Wextra -Werror -g -fsanitize=address,undefined -o %:r %"
+vim.bo.makeprg = "clang -std=c23 -pedantic -Wall -Wextra -Werror -o %:r %"
 
 local set = vim.keymap.set
 local terminal_buf = nil
 
--- Run: execute compiled binary in a bottom split terminal
+-- Build: compile via :make, populate qflist on errors
+local function build()
+	vim.cmd("silent! update")
+	vim.cmd("silent! make")
+	local errors = vim.tbl_filter(function(e)
+		return e.valid == 1
+	end, vim.fn.getqflist())
+	if #errors > 0 then
+		vim.cmd("copen")
+		return false
+	end
+	vim.cmd("cclose")
+	return true
+end
+
+set("n", "<leader>m", build, { buffer = 0, desc = "make (build)" })
+
+-- Run: build first, then execute compiled binary in a bottom split terminal
 set("n", "<leader>r", function()
+	if not build() then
+		return
+	end
+
 	local bin = "./" .. vim.fn.expand("%:r")
 
 	-- Close existing terminal buffer if it exists
