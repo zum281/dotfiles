@@ -61,7 +61,7 @@ else
 fi
 
 echo "🎨 Installing font and essential applications..."
-brew install --cask font-sauce-code-pro-nerd-font
+brew install --cask font-hasklug-nerd-font
 brew install --cask ghostty
 brew install --cask raycast
 
