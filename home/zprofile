@@ -10,6 +10,14 @@ export CARGO_PATH="$HOME/.cargo/bin"
 export RACKET_PATH="/Applications/Racket v9.1/bin"
 export PATH="$BREW_PATH/bin:$VOLTA_HOME/bin:$CARGO_PATH:$RACKET_PATH:$HOME/.local/bin:$PATH"
 
+ # Prefer GNU userland over BSD
+  for gnu_tool in coreutils gnu-sed findutils gawk make grep; do
+      gnubin="$BREW_PATH/opt/$gnu_tool/libexec/gnubin"
+      if [ -d "$gnubin" ]; then
+          PATH="$gnubin:$PATH"
+      fi
+  done
+
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
