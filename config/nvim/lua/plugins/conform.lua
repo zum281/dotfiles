@@ -12,6 +12,7 @@ require("conform").setup({
     go             = { "goimports" },
     python         = { "ruff_format" },
     c              = { "clang-format" },
+    java           = { "google-java-format" },
     sh             = { "shfmt" },
     bash           = { "shfmt" },
   },

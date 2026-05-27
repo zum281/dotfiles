@@ -61,6 +61,7 @@ miniclue.setup({
 		miniclue.gen_clues.registers(),
 		miniclue.gen_clues.windows(),
 		miniclue.gen_clues.z(),
+		{ mode = "n", keys = "<Leader>z", desc = "+debug" },
 	},
 })
 

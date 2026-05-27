@@ -14,6 +14,7 @@ vim.lsp.enable({
   "sql_ls",
   "pyright_ls",
   "ruff_ls",
+  "jdtls_ls",
 })
 
 vim.diagnostic.config({

@@ -18,6 +18,9 @@ vim.pack.add({
 	"https://github.com/antoinemadec/FixCursorHold.nvim",
 	"https://github.com/marilari88/neotest-vitest",
 	"https://github.com/gruvw/strudel.nvim",
+	"https://github.com/mfussenegger/nvim-dap",
+	"https://github.com/rcarriga/nvim-dap-ui",
+	"https://github.com/theHamsta/nvim-dap-virtual-text",
 })
 
 require('plugins.mini')
@@ -35,3 +38,4 @@ require('plugins.neogit')
 require('plugins.lazygit')
 require('plugins.neotest')
 require('plugins.strudel')
+require('plugins.dap')
