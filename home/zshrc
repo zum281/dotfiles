@@ -159,3 +159,4 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 
 # disable annoying bell
 unsetopt BEEP
+eval "$(uv generate-shell-completion zsh)"
