@@ -18,6 +18,8 @@ export PATH="$BREW_PATH/bin:$VOLTA_HOME/bin:$CARGO_PATH:$RACKET_PATH:$HOME/.loca
       fi
   done
 
+export INFOPATH="$HOME/.local/share/info:$INFOPATH"
+
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
