@@ -7,7 +7,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export VOLTA_HOME="$HOME/.volta"
 export BREW_PATH="/opt/homebrew"
 export CARGO_PATH="$HOME/.cargo/bin"
-export PATH="$BREW_PATH/bin:$VOLTA_HOME/bin:$CARGO_PATH:$HOME/.local/bin:$PATH"
+export RACKET_PATH="/Applications/Racket v9.1/bin"
+export PATH="$BREW_PATH/bin:$VOLTA_HOME/bin:$CARGO_PATH:$RACKET_PATH:$HOME/.local/bin:$PATH"
 
 
 # Preferred editor for local and remote sessions
