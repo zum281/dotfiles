@@ -15,6 +15,7 @@ vim.lsp.enable({
   "pyright_ls",
   "ruff_ls",
   "jdtls_ls",
+  "racket_ls",
 })
 
 vim.diagnostic.config({

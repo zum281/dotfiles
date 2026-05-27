@@ -15,9 +15,16 @@ require("conform").setup({
     java           = { "google-java-format" },
     sh             = { "shfmt" },
     bash           = { "shfmt" },
+    racket         = { "raco_fmt" },
+    scheme         = { "raco_fmt" },
   },
   formatters = {
     prettierd = { prepend_args = { "--html-whitespace-sensitivity=ignore" } },
     prettier  = { prepend_args = { "--html-whitespace-sensitivity=ignore" } },
+    raco_fmt = {
+      command = "raco",
+      args = { "fmt" },
+      stdin = true,
+    },
   },
 })
