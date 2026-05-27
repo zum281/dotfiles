@@ -44,3 +44,7 @@ set("n", "<leader>r", function()
 	set("n", "q", "<cmd>close<cr>", { buffer = terminal_buf })
 	set("n", "<Esc>", "<cmd>close<cr>", { buffer = terminal_buf })
 end, { buffer = 0, desc = "run" })
+
+set("n", "<leader>k", function()
+	vim.cmd("Man 3 " .. vim.fn.expand("<cword>"))
+end, { buffer = 0, desc = "man section 3" })
