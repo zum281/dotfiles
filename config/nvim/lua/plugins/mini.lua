@@ -2,13 +2,40 @@
 require("mini.animate").setup({})
 
 -- mini base16
-require("mini.base16").setup({
-	palette = require("mini.base16").mini_palette("#000000", "#ffffff", 49),
-})
+-- Hand-authored "ember" palette (mini_palette can't anchor hues on an achromatic
+-- bg/fg): pure-black bg, warm charcoal greys, soft low-chroma accents, with a gold
+-- base0A as the single "star" hue that the cursor (below) reuses.
+local pal = {
+	base00 = "#000000",
+	base01 = "#161310",
+	base02 = "#2a2521",
+	base03 = "#6f655a",
+	base04 = "#948a7d",
+	base05 = "#c8bfae",
+	base06 = "#ddd4c4",
+	base07 = "#efe7d8",
+	base08 = "#c77b6b",
+	base09 = "#cf9163",
+	base0A = "#e0b341",
+	base0B = "#9aa56b",
+	base0C = "#7fa99b",
+	base0D = "#8ba0bd",
+	base0E = "#b58cb0",
+	base0F = "#a8794f",
+}
+require("mini.base16").setup({ palette = pal })
 
-local black = "#000000"
+local palette = { bg = pal.base00, fg = pal.base05, accent = pal.base0A }
+
+-- mini.base16 colors gitsigns "change" with base0E (magenta) — reads as purple.
+-- Recolor to amber so hunks follow the green/amber/red add/change/delete convention.
+for _, g in ipairs({ "GitSignsChange", "GitSignsChangeLn", "GitSignsChangeInline" }) do
+	vim.api.nvim_set_hl(0, g, { fg = pal.base09, bg = pal.base01 })
+end
+
+local black = palette.bg
 vim.api.nvim_set_hl(0, "SignColumn", { bg = black })
-vim.api.nvim_set_hl(0, "LineNr", { bg = black, fg = "#caffff" })
+vim.api.nvim_set_hl(0, "LineNr", { bg = black })
 vim.api.nvim_set_hl(0, "FoldColumn", { bg = black })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = black })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = black })
@@ -22,6 +49,9 @@ vim.api.nvim_set_hl(0, "MiniPickBorderText", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueNormal", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueBorder", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueTitle", { bg = black })
+
+-- block cursor: gold cell, black glyph
+vim.api.nvim_set_hl(0, "Cursor", { bg = palette.accent, fg = palette.bg })
 
 -- disable mini.snippets visual indicators (no underlines on tabstops)
 vim.api.nvim_set_hl(0, "MiniSnippetsCurrent", {})
@@ -45,6 +75,7 @@ local miniclue = require("mini.clue")
 miniclue.setup({
 	triggers = {
 		{ mode = { "n", "x" }, keys = "<Leader>" },
+		{ mode = { "n", "x" }, keys = "<LocalLeader>" },
 		{ mode = { "n", "x" }, keys = "g" },
 		{ mode = { "n", "x" }, keys = "'" },
 		{ mode = { "n", "x" }, keys = "`" },

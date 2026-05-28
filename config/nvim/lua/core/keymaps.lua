@@ -1,7 +1,7 @@
 local set = vim.keymap.set
 
 vim.g.mapleader = " " -- space for leader
-vim.g.maplocalleader = " " -- space for localleader
+vim.g.maplocalleader = "," -- comma for localleader (Conjure etc.)
 
 -- better movement in wrapped text
 set("n", "j", function()

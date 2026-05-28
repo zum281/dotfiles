@@ -8,29 +8,30 @@ font-feature = +liga
 font-size = 16
 title = ""
 
+# ember palette (mirrors nvim mini.base16 in config/nvim/lua/plugins/mini.lua)
 background = #000000
-foreground = #bdbdbd
-selection-background = #b2ceee
-selection-foreground = #080808
-cursor-color = #8e8e8e
+foreground = #c8bfae
+selection-background = #2a2521
+selection-foreground = #ddd4c4
+cursor-color = #e0b341
 
-palette = 0=#323437
-palette = 1=#ff5d5d
-palette = 2=#8cc85f
-palette = 3=#e3c78a
-palette = 4=#ae81ff
-palette = 5=#cf87e8
-palette = 6=#79dac8
-palette = 7=#c6c6c6
+palette = 0=#000000
+palette = 1=#c77b6b
+palette = 2=#9aa56b
+palette = 3=#e0b341
+palette = 4=#8ba0bd
+palette = 5=#b58cb0
+palette = 6=#7fa99b
+palette = 7=#c8bfae
 
-palette = 8=#949494
-palette = 9=#ff5189
-palette = 10=#36c692
-palette = 11=#c6c684
-palette = 12=#74b2ff
-palette = 13=#ae81ff
-palette = 14=#85dc85
-palette = 15=#e4e4e4
+palette = 8=#6f655a
+palette = 9=#c77b6b
+palette = 10=#9aa56b
+palette = 11=#e0b341
+palette = 12=#8ba0bd
+palette = 13=#b58cb0
+palette = 14=#7fa99b
+palette = 15=#efe7d8
 
 shell-integration-features = no-cursor,sudo,no-title
 cursor-style = block
@@ -43,7 +44,7 @@ macos-titlebar-style = tabs
 title = ""
 macos-titlebar-proxy-icon = hidden
 unfocused-split-opacity = 0.65
-unfocused-split-fill = #1e2326
+unfocused-split-fill = #161310
 
 # keybindings
 keybind = cmd+s>r=reload_config

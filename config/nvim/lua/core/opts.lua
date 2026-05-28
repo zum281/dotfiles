@@ -16,6 +16,10 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
+-- attach the Cursor highlight to every mode so its bg/fg (set in plugins/mini.lua)
+-- actually colors the terminal cursor; without a group the terminal's own color wins
+vim.opt.guicursor = "n-v-c-sm:block-Cursor,i-ci-ve:ver25-Cursor,r-cr-o:hor20-Cursor"
+
 vim.opt.signcolumn = "yes"
 vim.opt.showmatch = true
 vim.opt.cmdheight = 1

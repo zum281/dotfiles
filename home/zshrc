@@ -31,7 +31,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{#cfcfb0}%f%F{#ae81ff}%~%f%F{#cfcfb0}%f %F{#b2b2b2}${vcs_info_msg_0_}%f%F{#ae81ff}%f '
+PROMPT='%F{#948a7d}%f%F{#e0b341}%~%f%F{#948a7d}%f %F{#c8bfae}${vcs_info_msg_0_}%f%F{#e0b341}%f '
 
 # thefuck alias
 eval $(thefuck --alias)
@@ -51,6 +51,9 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light so-fancy/diff-so-fancy
+
+# ember: muted grey ghost text for autosuggestions (base03)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6f655a'
 
 
 ###################
@@ -119,6 +122,9 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --all --
 ### Fzf ###
 ###########
 
+# ember: make bat use the 16 ANSI colors so previews match the terminal palette
+export BAT_THEME="ansi"
+
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
 
@@ -134,24 +140,24 @@ _fzf_comprun() {
 	esac
 }
 
-###########################
-### Everforest Theme fzf ###
-###########################
+#######################
+### ember fzf colors ###
+#######################
 export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color bg:#000000 \
-  --color bg+:#3a3a3a \
-  --color border:#3a3a3a \
-  --color fg:#b2b2b2 \
-  --color fg+:#e4e4e4 \
-  --color gutter:#3a3a3a \
-  --color header:#ae81ff \
-  --color hl+:#f09479 \
-  --color hl:#f09479 \
-  --color info:#cfcfb0 \
-  --color marker:#f09479 \
-  --color pointer:#ff5189 \
-  --color prompt:#ae81ff \
-  --color spinner:#36c692
+  --color bg+:#2a2521 \
+  --color border:#2a2521 \
+  --color fg:#c8bfae \
+  --color fg+:#efe7d8 \
+  --color gutter:#2a2521 \
+  --color header:#e0b341 \
+  --color hl+:#cf9163 \
+  --color hl:#cf9163 \
+  --color info:#948a7d \
+  --color marker:#cf9163 \
+  --color pointer:#c77b6b \
+  --color prompt:#e0b341 \
+  --color spinner:#9aa56b
 "
 #####################
 ### Other options ###
