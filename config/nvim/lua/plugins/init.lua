@@ -22,6 +22,7 @@ vim.pack.add({
 	"https://github.com/rcarriga/nvim-dap-ui",
 	"https://github.com/theHamsta/nvim-dap-virtual-text",
 	"https://gitlab.com/HiPhish/info.vim",
+	"https://github.com/Olical/conjure",
 })
 
 require("plugins.mini")
@@ -40,3 +41,4 @@ require("plugins.lazygit")
 require("plugins.neotest")
 require("plugins.strudel")
 require("plugins.dap")
+require("plugins.conjure")
