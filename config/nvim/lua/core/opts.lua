@@ -28,6 +28,7 @@ vim.opt.showmode = false
 vim.opt.pumheight = 10
 vim.opt.pumblend = 10
 vim.opt.winblend = 0
+vim.opt.winborder = "rounded" -- default frame for floats (LSP hover, etc.)
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.fillchars = { eob = " " } -- hide ~ on empty lines

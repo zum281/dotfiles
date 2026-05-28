@@ -34,6 +34,7 @@ for _, g in ipairs({ "GitSignsChange", "GitSignsChangeLn", "GitSignsChangeInline
 end
 
 local black = palette.bg
+vim.api.nvim_set_hl(0, "hl-WildMenu", { bg = black })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = black })
 vim.api.nvim_set_hl(0, "LineNr", { bg = black })
 vim.api.nvim_set_hl(0, "FoldColumn", { bg = black })
