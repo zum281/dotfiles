@@ -187,3 +187,13 @@ end, { desc = "Buffer diagnostics (qf)" })
 set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Diagnostic detail (float)" })
 set("n", "<leader>ds", "<cmd>DiagnosticSplit<CR>", { desc = "Diagnostic detail (split)" })
 set("n", "<leader>g", "<cmd>GitChanged<CR>", { desc = "git changed files" })
+
+set("n", "<leader>Z", function()
+	if vim.t.zoomed then
+		vim.cmd("wincmd =") -- restore equal sizes
+		vim.t.zoomed = false
+	else
+		vim.cmd("wincmd _ | wincmd |") -- max height + width
+		vim.t.zoomed = true
+	end
+end, { desc = "Toggle window zoom" })
