@@ -54,13 +54,6 @@ vim.api.nvim_set_hl(0, "MiniClueTitle", { bg = black })
 -- block cursor: gold cell, black glyph
 vim.api.nvim_set_hl(0, "Cursor", { bg = palette.accent, fg = palette.bg })
 
--- disable mini.snippets visual indicators (no underlines on tabstops)
-vim.api.nvim_set_hl(0, "MiniSnippetsCurrent", {})
-vim.api.nvim_set_hl(0, "MiniSnippetsCurrentReplace", {})
-vim.api.nvim_set_hl(0, "MiniSnippetsUnvisited", {})
-vim.api.nvim_set_hl(0, "MiniSnippetsVisited", {})
-vim.api.nvim_set_hl(0, "MiniSnippetsFinal", {})
-
 -- statusline: force black bg on all groups, preserve fg from colorscheme
 local function sl_hl(name)
 	local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
@@ -296,6 +289,27 @@ require("mini.snippets").setup({
 			})
 		end,
 	},
+})
+
+-- Strip mini.snippets tabstop indicators (underlines/undercurls) so an expanded
+-- snippet reads as a plain function signature. Must run after setup() — the
+-- defaults are applied there with `default = true`, which repopulates a cleared
+-- group — and re-fire on ColorScheme, which re-applies those defaults.
+local function clear_snippet_hl()
+	for _, g in ipairs({
+		"MiniSnippetsCurrent",
+		"MiniSnippetsCurrentReplace",
+		"MiniSnippetsUnvisited",
+		"MiniSnippetsVisited",
+		"MiniSnippetsFinal",
+	}) do
+		vim.api.nvim_set_hl(0, g, {})
+	end
+end
+clear_snippet_hl()
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = vim.api.nvim_create_augroup("snippet-no-indicators", { clear = true }),
+	callback = clear_snippet_hl,
 })
 
 -- mini pairs — auto-closes brackets, quotes, etc. as you type
