@@ -8,5 +8,3 @@ require("zusk.qffiles")
 require("zusk.diagnostic_split")
 require("zusk.git_changed")
 require("plugins")
-
-vim.opt.termguicolors = true
