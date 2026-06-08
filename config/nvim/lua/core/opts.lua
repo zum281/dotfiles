@@ -1,5 +1,5 @@
 vim.opt.number = true
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 vim.opt.wrap = true
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
@@ -53,6 +53,7 @@ vim.opt.backspace = "indent,eol,start"
 vim.opt.autochdir = false
 vim.opt.iskeyword:append("-")
 vim.opt.path:append("**") -- include subdirs in search
+vim.opt.wildignore:append({ "**/node_modules/**", "**/.git/**", "**/dist/**", "**/build/**" }) -- keep :find matches clean/fast
 vim.opt.selection = "inclusive"
 vim.opt.mouse = "a"
 vim.opt.clipboard:append("unnamedplus")

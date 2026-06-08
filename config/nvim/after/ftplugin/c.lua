@@ -18,8 +18,6 @@ local function build()
 	return true
 end
 
-set("n", "<leader>m", build, { buffer = 0, desc = "make (build)" })
-
 -- Run: build first, then execute compiled binary in a bottom split terminal
 set("n", "<leader>r", function()
 	if not build() then

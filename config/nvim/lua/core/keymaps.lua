@@ -28,16 +28,8 @@ end, { desc = "Move to right split/pane" })
 -- clear search highlights
 set({ "n", "v" }, "<Esc><Esc>", ":nohlsearch<cr>", { desc = "clear search highlights" })
 
-set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
-set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
-
 set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
-set("n", "<leader>bd", function()
-	require("mini.bufremove").delete()
-end, { desc = "Delete buffer" })
-
-set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 set("n", "-", function()
 	local path = vim.api.nvim_buf_get_name(0)
@@ -80,7 +72,7 @@ set("n", "<leader>hb", function()
 end, { desc = "Blame line" })
 
 -- neogit
-set("n", "<leader>G", function()
+set("n", "<leader>g", function()
 	require("neogit").open()
 end, { desc = "Neogit" })
 
@@ -106,9 +98,14 @@ set("n", "<leader>tx", function()
 	require("neotest").run.stop()
 end, { desc = "Stop tests" })
 
-set("n", "<leader>dd", function()
+--- Diagnostics
+set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Diagnostic float" })
+set("n", "<leader>dD", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
-end, { desc = "Toggle diagnostics" })
+end, { desc = "Toggle show/hide diagnostics" })
+set("n", "<leader>dq", function()
+	vim.diagnostic.setqflist({ open = true })
+end, { desc = "Buffer diagnostics (qf)" })
 
 set("n", "]e", function()
 	vim.diagnostic.jump({ count = vim.v.count1, severity = vim.diagnostic.severity.ERROR, float = true })
@@ -161,15 +158,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- pickers (mini.pick + mini.extra)
-set("n", "<leader><space>", function()
-	require("mini.pick").builtin.files()
-end, { desc = "Find files" })
 set("n", "<leader>/", function()
 	require("mini.pick").builtin.grep_live()
 end, { desc = "Live grep" })
-set("n", "<leader>H", function()
-	require("mini.pick").builtin.help()
-end, { desc = "Help tags" })
 set("n", "<leader>s", function()
 	if #vim.lsp.get_clients({ bufnr = 0 }) == 0 then
 		vim.notify("No LSP client attached to this buffer", vim.log.levels.WARN)
@@ -179,15 +170,6 @@ set("n", "<leader>s", function()
 end, { desc = "LSP symbols" })
 
 -- zusk
-set("n", "<leader>j", "<cmd>Todo<CR>", { desc = "kws comments to qf" })
-set("n", "<leader>q", "<cmd>QfFiles<CR>", { desc = "Files in qf list" })
-set("n", "<leader>dl", function()
-	vim.diagnostic.setqflist({ open = true })
-end, { desc = "Buffer diagnostics (qf)" })
-set("n", "<leader>de", vim.diagnostic.open_float, { desc = "Diagnostic detail (float)" })
-set("n", "<leader>ds", "<cmd>DiagnosticSplit<CR>", { desc = "Diagnostic detail (split)" })
-set("n", "<leader>g", "<cmd>GitChanged<CR>", { desc = "git changed files" })
-
 set("n", "<leader>Z", function()
 	if vim.t.zoomed then
 		vim.cmd("wincmd =") -- restore equal sizes

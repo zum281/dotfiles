@@ -61,9 +61,6 @@ local function sl_hl(name)
 	vim.api.nvim_set_hl(0, name, hl)
 end
 
--- mini bufremove
-require("mini.bufremove").setup({})
-
 -- mini clue
 local miniclue = require("mini.clue")
 miniclue.setup({
@@ -95,9 +92,6 @@ sl_hl("MiniClueNextKeyWithPostkeys")
 sl_hl("MiniClueDescGroup")
 sl_hl("MiniClueDescSingle")
 sl_hl("MiniClueSeparator")
-
--- mini cursorword
-require("mini.cursorword").setup({})
 
 -- mini files
 -- Open:       - (from keymaps.lua, opens at current file's directory)
@@ -223,10 +217,6 @@ sl_hl("MiniStatuslineInactive")
 
 -- mini indentscope
 require("mini.indentscope").setup({})
-
--- mini jump2d — label-based jump to any visible spot
--- Trigger: <CR>, then type the label letters shown on screen to jump
-require("mini.jump2d").setup({})
 
 -- mini notify — replaces vim.notify() with floating corner notifications
 require("mini.notify").setup({})
