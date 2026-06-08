@@ -4,10 +4,6 @@
       "rev": "1900f89dc17c603eec29960f57c00bd9ae696495",
       "src": "https://github.com/antoinemadec/FixCursorHold.nvim"
     },
-    "claude-code.nvim": {
-      "rev": "55c0cb59828fbc3bec744288286a46f5d5750b83",
-      "src": "https://github.com/greggh/claude-code.nvim"
-    },
     "conform.nvim": {
       "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -15,10 +11,6 @@
     "conjure": {
       "rev": "c51a9ca7495b36c05686a85e71d888efb81f1e06",
       "src": "https://github.com/Olical/conjure"
-    },
-    "copilot.vim": {
-      "rev": "a12fd5672110c8aa7e3c8419e28c96943ca179be",
-      "src": "https://github.com/github/copilot.vim"
     },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
@@ -31,10 +23,6 @@
     "info.vim": {
       "rev": "1b733161dde2ae73922049fe4301defd8a2eddcd",
       "src": "https://gitlab.com/HiPhish/info.vim"
-    },
-    "lazygit.nvim": {
-      "rev": "a04ad0dbc725134edbee3a5eea29290976695357",
-      "src": "https://github.com/kdheepak/lazygit.nvim"
     },
     "mason.nvim": {
       "rev": "cb8445f8ce85d957416c106b780efd51c6298f89",
@@ -55,18 +43,6 @@
     "neotest-vitest": {
       "rev": "f01addc6f07b79ef1be5f4297eafbee9e0959018",
       "src": "https://github.com/marilari88/neotest-vitest"
-    },
-    "nvim-dap": {
-      "rev": "531771530d4f82ad2d21e436e3cc052d68d7aebb",
-      "src": "https://github.com/mfussenegger/nvim-dap"
-    },
-    "nvim-dap-ui": {
-      "rev": "1a66cabaa4a4da0be107d5eda6d57242f0fe7e49",
-      "src": "https://github.com/rcarriga/nvim-dap-ui"
-    },
-    "nvim-dap-virtual-text": {
-      "rev": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6",
-      "src": "https://github.com/theHamsta/nvim-dap-virtual-text"
     },
     "nvim-eslint": {
       "rev": "3c893af4152a417742e6ce96d9468b3f26359006",
@@ -91,10 +67,6 @@
     "smart-splits.nvim": {
       "rev": "80be31a3d2e37d32bd37794da72a4f69fce7a85f",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
-    },
-    "strudel.nvim": {
-      "rev": "3a7e62c9048a318281328ad08d6269e50b884cd3",
-      "src": "https://github.com/gruvw/strudel.nvim"
     }
   }
 }
