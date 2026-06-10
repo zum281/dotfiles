@@ -1,0 +1,3 @@
+{
+  "TODO comment": { "prefix": "todo", "body": "TODO: $0" }
+}

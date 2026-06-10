@@ -261,7 +261,7 @@ require("mini.extra").setup({})
 --   <C-y>           confirm selection
 --   <C-e>           dismiss menu
 --   <C-Space>       manually trigger menu
---   <Tab> / <S-Tab> jump between snippet placeholders (mini.snippets)
+--   snippets expand on accept; no tabstop jump
 require("mini.completion").setup({
 	lsp_completion = {
 		source_func = "omnifunc",
@@ -270,37 +270,40 @@ require("mini.completion").setup({
 })
 
 -- mini snippets — snippet engine for LSP snippet completions
-require("mini.snippets").setup({
+local mini_snippets = require("mini.snippets")
+local gen_loader = mini_snippets.gen_loader
+
+mini_snippets.setup({
+	snippets = {
+		gen_loader.from_file(vim.fn.stdpath("config") .. "/snippets/global.json"),
+		gen_loader.from_lang(),
+	},
+	mappings = { expand = "", jump_next = "", jump_prev = "", stop = "" },
 	expand = {
 		insert = function(snippet, _)
-			return MiniSnippets.default_insert(snippet, {
+			mini_snippets.default_insert(snippet, {
 				empty_tabstop = "",
 				empty_tabstop_final = "",
 			})
+			local s = mini_snippets.session.get()
+			if s == nil then
+				return
+			end
+			local ok, mark =
+				pcall(vim.api.nvim_buf_get_extmark_by_id, s.buf_id, s.ns_id, s.extmark_id, { details = true })
+
+			while mini_snippets.session.get() do
+				mini_snippets.session.stop()
+			end
+
+			if ok and mark and mark[3] and mark[3].end_row then
+				pcall(vim.api.nvim_win_set_cursor, 0, { mark[3].end_row + 1, mark[3].end_col })
+			end
 		end,
 	},
 })
 
--- Strip mini.snippets tabstop indicators (underlines/undercurls) so an expanded
--- snippet reads as a plain function signature. Must run after setup() — the
--- defaults are applied there with `default = true`, which repopulates a cleared
--- group — and re-fire on ColorScheme, which re-applies those defaults.
-local function clear_snippet_hl()
-	for _, g in ipairs({
-		"MiniSnippetsCurrent",
-		"MiniSnippetsCurrentReplace",
-		"MiniSnippetsUnvisited",
-		"MiniSnippetsVisited",
-		"MiniSnippetsFinal",
-	}) do
-		vim.api.nvim_set_hl(0, g, {})
-	end
-end
-clear_snippet_hl()
-vim.api.nvim_create_autocmd("ColorScheme", {
-	group = vim.api.nvim_create_augroup("snippet-no-indicators", { clear = true }),
-	callback = clear_snippet_hl,
-})
+mini_snippets.start_lsp_server({ match = false })
 
 -- mini pairs — auto-closes brackets, quotes, etc. as you type
 require("mini.pairs").setup({})

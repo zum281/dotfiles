@@ -134,7 +134,7 @@ set("n", "[Q", "<cmd>cpfile<CR>", { desc = "Prev file in qf" })
 --   <C-y>        confirm selection
 --   <C-e>        dismiss menu
 --   <C-Space>    manually retrigger menu
---   <Tab>/<S-Tab> jump between snippet placeholders
+--   snippets expand on accept, no tabstop jumping
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local buf = args.buf
