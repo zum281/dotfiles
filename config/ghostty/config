@@ -3,9 +3,9 @@ window-padding-x = 4
 window-padding-y = 4
 window-padding-balance = true
 #window-decoration = none
-font-family = Hasklug Nerd Font
+font-family = IosevkaTermSlab Nerd Font Mono
 font-feature = +liga
-font-size = 16
+font-size = 20
 title = ""
 
 # ember palette (mirrors nvim mini.base16 in config/nvim/lua/plugins/mini.lua)
