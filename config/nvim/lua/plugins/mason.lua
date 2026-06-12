@@ -23,9 +23,6 @@ local ensure_installed = {
 	"clang-format",
 	"shfmt",
 	"google-java-format",
-	-- debug adapters
-	"java-debug-adapter",
-	"codelldb",
 }
 
 local registry = require("mason-registry")

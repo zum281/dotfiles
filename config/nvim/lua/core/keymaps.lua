@@ -170,7 +170,7 @@ set("n", "<leader>s", function()
 end, { desc = "LSP symbols" })
 
 -- zusk
-set("n", "<leader>Z", function()
+set("n", "<leader>z", function()
 	if vim.t.zoomed then
 		vim.cmd("wincmd =") -- restore equal sizes
 		vim.t.zoomed = false

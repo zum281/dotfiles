@@ -18,12 +18,6 @@ return {
   -- and auto-detects source roots by walking into the deepest dir containing .java files.
   -- That breaks package-mirrored layouts (src/com/foo/Bar.java). Pin the source root to src/.
   init_options = {
-    bundles = vim.fn.glob(
-      vim.fn.stdpath("data")
-        .. "/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
-      true,
-      true
-    ),
     settings = {
       java = {
         project = {
