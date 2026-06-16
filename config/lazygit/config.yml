@@ -3,7 +3,6 @@ gui:
   expandedSidePanelWeight: 2
   timeFormat: 02 Jan 2006
   shortTimeFormat: 13:04
-
   theme:
     activeBorderColor:
       - '#e0b341'
@@ -25,31 +24,24 @@ gui:
       - '#c77b6b'
     defaultFgColor:
       - '#c8bfae'
-
   commitLength:
     show: true
-
   showListFooter: false
   fileTreeSortOrder: mixed
-
   showNumstatInFilesView: true
   showRandomTip: false
   showCommandLog: false
   showBottomLine: false
   showPanelJumps: true
   showDivergenceFromBaseBranch: arrowAndNumber
-
   filterMode: fuzzy
   statusPanelView: allBranchesLog
-
 git:
   pagers:
-    - pager: diff-so-fancy
-
+    - colorArg: always
+      pager: delta --paging=never
   branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=format:'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(dim white)(%cr) %C(blue)<%an>%Creset' {{branchName}} --
-
   log:
     showWholeGraph: true
-
 notARepository: quit
 disableStartupPopups: true

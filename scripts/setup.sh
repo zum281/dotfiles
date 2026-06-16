@@ -65,7 +65,7 @@ brew install --cask raycast
 
 echo "Installing core CLI tools..."
 brew install git gh neovim tmux bat eza fzf ripgrep fd jq
-brew install lazygit diff-so-fancy thefuck zoxide viu
+brew install lazygit git-delta thefuck zoxide viu
 
 echo "Installing TPM (tmux plugin manager)..."
 if [ ! -d ~/.tmux/plugins/tpm ]; then
@@ -99,6 +99,10 @@ create_symlink ~/s/dotfiles/home/zprofile ~/.zprofile
 create_symlink ~/s/dotfiles/home/gitconfig-shared ~/.gitconfig-shared
 create_symlink ~/s/dotfiles/config/bat ~/.config/bat
 create_symlink ~/s/dotfiles/config/lazygit ~/.config/lazygit
+
+# Register the ember bat theme so bat + delta pick it up (delta syntax-theme = ember)
+echo "Building bat theme cache..."
+bat cache --build
 
 echo "Sourcing shell configuration..."
 # Source the new shell configuration (only if it's our symlink)

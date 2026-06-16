@@ -50,7 +50,6 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light so-fancy/diff-so-fancy
 
 # ember: muted grey ghost text for autosuggestions (base03)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6f655a'
