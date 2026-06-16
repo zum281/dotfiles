@@ -46,7 +46,7 @@ git:
   pagers:
     - pager: diff-so-fancy
 
-  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName} --}
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=format:'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(dim white)(%cr) %C(blue)<%an>%Creset' {{branchName}} --
 
   log:
     showWholeGraph: true

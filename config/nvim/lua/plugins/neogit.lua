@@ -36,7 +36,7 @@
 
 require("neogit").setup({
   kind                   = "split_above",
-  graph_style            = "unicode",
+  graph_style            = "kitty",
   disable_insert_on_commit = "auto",
   integrations = { diffview = true },
   signs = {
