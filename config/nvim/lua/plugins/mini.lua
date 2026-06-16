@@ -114,23 +114,6 @@ require("mini.files").setup({
 	},
 })
 
--- mini.files resets row and height internally before firing WindowUpdate,
--- so WindowUpdate is the only reliable place to override both.
--- col is managed by mini.files for side-by-side columns — do not touch it.
-vim.api.nvim_create_autocmd("User", {
-	pattern = "MiniFilesWindowUpdate",
-	callback = function(args)
-		local config = vim.api.nvim_win_get_config(args.data.win_id)
-		local target_row = vim.o.lines - 22
-		local target_h = 20
-		if config.row ~= target_row or config.height ~= target_h then
-			config.row = target_row
-			config.height = target_h
-			vim.api.nvim_win_set_config(args.data.win_id, config)
-		end
-	end,
-})
-
 vim.api.nvim_create_autocmd("User", {
 	pattern = "MiniFilesBufferCreate",
 	callback = function(args)
