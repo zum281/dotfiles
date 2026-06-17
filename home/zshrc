@@ -165,3 +165,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 # disable annoying bell
 unsetopt BEEP
 eval "$(uv generate-shell-completion zsh)"
+
+export C_INCLUDE_PATH=/usr/local/include
+export LD_LIBRARY_PATH=/usr/local/lib
