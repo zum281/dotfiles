@@ -82,57 +82,6 @@ hipatterns.setup({
 require("mini.icons").setup({})
 MiniIcons.mock_nvim_web_devicons() -- redirect require("nvim-web-devicons") to mini.icons
 
--- mini statusline
--- Structure: [mode] [filepath] [git branch] ── [filetype] [line:col]
--- filepath: project-relative, truncated to always show full filename
-require("mini.statusline").setup({
-	content = {
-		active = function()
-			local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 9999 })
-			local git = MiniStatusline.section_git({ trunc_width = 40, icon = "" })
-			local filetype = MiniStatusline.section_fileinfo({ trunc_width = math.huge })
-			local location = MiniStatusline.section_location({ trunc_width = 9999 })
-
-			-- project-relative path, truncated dir keeping full filename always visible
-			local function filepath()
-				local path = vim.api.nvim_buf_get_name(0)
-				if path == "" then
-					return "[No Name]"
-				end
-				if vim.bo.buftype ~= "" then
-					return vim.fn.fnamemodify(path, ":t")
-				end
-				local rel = vim.fn.fnamemodify(path, ":.")
-				local name = vim.fn.fnamemodify(path, ":t")
-				local dir = vim.fn.fnamemodify(rel, ":h")
-				if dir == "." or rel == path then
-					return name
-				end
-				local parts = vim.split(dir, "/", { plain = true })
-				if #parts > 2 then
-					dir = "…/" .. parts[#parts - 1] .. "/" .. parts[#parts]
-				end
-				return dir .. "/" .. name
-			end
-
-			return MiniStatusline.combine_groups({
-				{ hl = mode_hl, strings = { mode } },
-				{ hl = "MiniStatuslineFilename", strings = { filepath() .. "%m%r" } },
-				{ hl = "MiniStatuslineDevinfo", strings = { git } },
-				"%=",
-				{ hl = "MiniStatuslineFileinfo", strings = { filetype } },
-				{ hl = mode_hl, strings = { location } },
-			})
-		end,
-	},
-	use_icons = true,
-})
-
-sl_hl("MiniStatuslineDevinfo")
-sl_hl("MiniStatuslineFilename")
-sl_hl("MiniStatuslineFileinfo")
-sl_hl("MiniStatuslineInactive")
-
 -- mini indentscope
 require("mini.indentscope").setup({})
 
