@@ -2,27 +2,7 @@
 require("mini.animate").setup({})
 
 -- mini base16
--- Hand-authored "ember" palette (mini_palette can't anchor hues on an achromatic
--- bg/fg): pure-black bg, warm charcoal greys, soft low-chroma accents, with a gold
--- base0A as the single "star" hue that the cursor (below) reuses.
-local pal = {
-	base00 = "#000000",
-	base01 = "#161310",
-	base02 = "#2a2521",
-	base03 = "#6f655a",
-	base04 = "#948a7d",
-	base05 = "#c8bfae",
-	base06 = "#ddd4c4",
-	base07 = "#efe7d8",
-	base08 = "#c77b6b",
-	base09 = "#cf9163",
-	base0A = "#e0b341",
-	base0B = "#9aa56b",
-	base0C = "#7fa99b",
-	base0D = "#8ba0bd",
-	base0E = "#b58cb0",
-	base0F = "#a8794f",
-}
+local pal = require("zusk.palette")
 require("mini.base16").setup({ palette = pal })
 
 local palette = { bg = pal.base00, fg = pal.base05, accent = pal.base0A }
