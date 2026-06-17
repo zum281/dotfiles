@@ -15,6 +15,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+vim.opt.grepprg = "rg --vimgrep"
 
 -- attach the Cursor highlight to every mode so its bg/fg (set in plugins/mini.lua)
 -- actually colors the terminal cursor; without a group the terminal's own color wins
