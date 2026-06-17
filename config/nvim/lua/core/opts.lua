@@ -60,7 +60,7 @@ vim.opt.modifiable = true
 vim.opt.encoding = "UTF-8"
 
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.expr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldlevel = 99
 
 vim.opt.splitbelow = true
