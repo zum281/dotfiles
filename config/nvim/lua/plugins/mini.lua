@@ -24,9 +24,6 @@ vim.api.nvim_set_hl(0, "MiniFilesNormal", { bg = black })
 vim.api.nvim_set_hl(0, "MiniFilesBorder", { bg = black })
 vim.api.nvim_set_hl(0, "MiniFilesTitle", { bg = black })
 vim.api.nvim_set_hl(0, "MiniFilesTitleFocused", { bg = black })
-vim.api.nvim_set_hl(0, "MiniPickNormal", { bg = black })
-vim.api.nvim_set_hl(0, "MiniPickBorder", { bg = black })
-vim.api.nvim_set_hl(0, "MiniPickBorderText", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueNormal", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueBorder", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueTitle", { bg = black })
@@ -182,38 +179,6 @@ require("mini.indentscope").setup({})
 
 -- mini notify — replaces vim.notify() with floating corner notifications
 require("mini.notify").setup({})
-
--- mini pick — fuzzy finder (ivy-style bottom window)
--- Keymaps (defined in keymaps.lua):
---   <leader>/        live grep in project
---   <leader>s        LSP document symbols (functions, classes, types…)
--- Files are found via :find (custom findfunc, fd + fzf); git files via :GitChanged.
--- Inside the picker:
---   <C-n>/<C-p>      move down/up
---   <Tab>            toggle preview
---   <C-x>            mark item, <C-a> mark all matched
---   <C-q>            send marked items to quickfix list
---   <C-Space>        refine (narrow results further)
---   <C-c> or <Esc>   close
-require("mini.pick").setup({
-	mappings = {
-		choose_marked = "<C-q>",
-	},
-	window = {
-		config = function()
-			return {
-				anchor = "SW",
-				height = 20,
-				width = vim.o.columns,
-				row = vim.o.lines - 2,
-				col = 0,
-			}
-		end,
-	},
-})
-
--- mini extra — additional pickers (LSP symbols, git files, diagnostics, etc.)
-require("mini.extra").setup({})
 
 -- mini completion — LSP-powered completion popup
 -- Navigation:

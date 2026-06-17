@@ -157,18 +157,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
--- pickers (mini.pick + mini.extra)
-set("n", "<leader>/", function()
-	require("mini.pick").builtin.grep_live()
-end, { desc = "Live grep" })
-set("n", "<leader>s", function()
-	if #vim.lsp.get_clients({ bufnr = 0 }) == 0 then
-		vim.notify("No LSP client attached to this buffer", vim.log.levels.WARN)
-		return
-	end
-	require("mini.extra").pickers.lsp({ scope = "document_symbol" })
-end, { desc = "LSP symbols" })
-
 -- zusk
 set("n", "<leader>z", function()
 	if vim.t.zoomed then
