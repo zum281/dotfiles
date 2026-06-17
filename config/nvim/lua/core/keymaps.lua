@@ -31,14 +31,6 @@ set({ "n", "v" }, "<Esc><Esc>", ":nohlsearch<cr>", { desc = "clear search highli
 set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
 set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
 
-set("n", "-", function()
-	local path = vim.api.nvim_buf_get_name(0)
-	if vim.fn.filereadable(path) == 0 and vim.fn.isdirectory(path) == 0 then
-		path = nil
-	end
-	require("mini.files").open(path)
-end, { desc = "Open file explorer" })
-
 set("n", "<leader>yy", function() -- show file path
 	local path = vim.fn.expand("%:p")
 	vim.fn.setreg("+", path)

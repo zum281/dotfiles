@@ -71,4 +71,9 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.wildoptions:append("fuzzy")
 
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_browse_split = 0
+vim.g.netrw_keepdir = 0
+
 vim.opt.termguicolors = true

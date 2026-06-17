@@ -20,10 +20,6 @@ vim.api.nvim_set_hl(0, "LineNr", { bg = black })
 vim.api.nvim_set_hl(0, "FoldColumn", { bg = black })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = black })
 vim.api.nvim_set_hl(0, "FloatBorder", { bg = black })
-vim.api.nvim_set_hl(0, "MiniFilesNormal", { bg = black })
-vim.api.nvim_set_hl(0, "MiniFilesBorder", { bg = black })
-vim.api.nvim_set_hl(0, "MiniFilesTitle", { bg = black })
-vim.api.nvim_set_hl(0, "MiniFilesTitleFocused", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueNormal", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueBorder", { bg = black })
 vim.api.nvim_set_hl(0, "MiniClueTitle", { bg = black })
@@ -68,43 +64,6 @@ sl_hl("MiniClueNextKeyWithPostkeys")
 sl_hl("MiniClueDescGroup")
 sl_hl("MiniClueDescSingle")
 sl_hl("MiniClueSeparator")
-
--- mini files
--- Open:       - (from keymaps.lua, opens at current file's directory)
--- Navigate:   h/l to go up/down directories, j/k to move within a column
--- Open file:  l or <CR> — both open the file and close the explorer
--- Manipulate files by editing the buffer directly:
---   Create:   type a new filename (or dir/ for directories)
---   Rename:   edit the filename text
---   Delete:   delete the line
---   Move:     dd in source dir, p in target dir
---   Confirm:  = to apply all pending changes
--- Close:      q or <Esc>
-require("mini.files").setup({
-	mappings = { close = "q" },
-	windows = {
-		max_number = math.huge,
-		preview = true,
-		width_focus = 40,
-		width_nofocus = 20,
-		width_preview = 40,
-	},
-})
-
-vim.api.nvim_create_autocmd("User", {
-	pattern = "MiniFilesBufferCreate",
-	callback = function(args)
-		local buf_id = args.data.buf_id
-		vim.keymap.set("n", "<Esc>", function()
-			require("mini.files").close()
-		end, { buffer = buf_id, nowait = true })
-		local go_in_close = function()
-			require("mini.files").go_in({ close_on_file = true })
-		end
-		vim.keymap.set("n", "l", go_in_close, { buffer = buf_id })
-		vim.keymap.set("n", "<CR>", go_in_close, { buffer = buf_id })
-	end,
-})
 
 -- mini hipatterns
 local hipatterns = require("mini.hipatterns")
