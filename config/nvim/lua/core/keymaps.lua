@@ -121,12 +121,6 @@ set("n", "[Q", "<cmd>cpfile<CR>", { desc = "Prev file in qf" })
 -- Custom (defined below):
 --   grd          go to definition → quickfix list
 --   <leader>i    toggle inlay hints
--- Completion (mini.completion, triggered automatically):
---   <C-n>/<C-p>  move down/up in menu
---   <C-y>        confirm selection
---   <C-e>        dismiss menu
---   <C-Space>    manually retrigger menu
---   snippets expand on accept, no tabstop jumping
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local buf = args.buf
@@ -143,9 +137,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>i", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }), { bufnr = buf })
 		end, { buffer = buf, desc = "Toggle inlay hints" })
-
-		-- wire mini.completion to this buffer's LSP client
-		vim.bo[buf].omnifunc = "v:lua.MiniCompletion.completefunc_lsp"
 	end,
 })
 
