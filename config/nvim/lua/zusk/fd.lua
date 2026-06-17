@@ -1,5 +1,8 @@
+---@type string[]|nil Cached list of file paths from `fd`, or nil when unset.
 local cache = nil
 
+---Return the list of file paths, populating the cache on first call.
+---@return string[] files Relative file paths produced by `fd --type f`.
 local function get_files()
 	if cache == nil then
 		cache = vim.fn.systemlist("fd --type f")
@@ -7,15 +10,16 @@ local function get_files()
 	return cache
 end
 
+---Filter file paths with fzf's non-interactive filter mode.
+---Matches against the full path; whitespace acts as AND of fuzzy terms.
+---@param files string[] Candidate file paths to filter.
+---@param query string Search query; an empty string returns `files` unchanged.
+---@return string[] matches File paths matching `query`, best first.
 local function filter_files(files, query)
-	local res = {}
-	for _, file in pairs(files) do
-		local basename = vim.fn.fnamemodify(file, ":t"):lower()
-		if basename:find(query:lower(), 1, true) then
-			table.insert(res, file)
-		end
+	if query == "" then
+		return files
 	end
-	return res
+	return vim.fn.systemlist({ "fzf", "--filter", query }, files)
 end
 
 ---Open the files picker pre-filtered with a query.
@@ -33,25 +37,26 @@ local fd = function(args)
 	local query = args.args
 	if query ~= "" then
 		local files = get_files()
-		local res = filter_files(files, query)
 
-		if res == nil or #res == 0 then
-			vim.notify("No matches found for '" .. query .. "'", vim.log.levels.INFO)
+		if vim.tbl_contains(files, query) then
+			vim.cmd.edit(query)
 			return
 		end
+
+		local res = filter_files(files, query)
 
 		if #res == 1 then
 			vim.cmd.edit(res[1])
 			return
-		else
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "MiniPickStart",
-				once = true,
-				callback = function()
-					pick.set_picker_query(vim.split(query, ""))
-				end,
-			})
 		end
+
+		vim.api.nvim_create_autocmd("User", {
+			pattern = "MiniPickStart",
+			once = true,
+			callback = function()
+				pick.set_picker_query(vim.split(query, ""))
+			end,
+		})
 	end
 
 	pick.builtin.files()
