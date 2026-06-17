@@ -2,6 +2,7 @@ local ensure_installed = {
 	"awk",
 	"bash",
 	"c",
+	"c3",
 	"cmake",
 	"comment",
 	"css",
