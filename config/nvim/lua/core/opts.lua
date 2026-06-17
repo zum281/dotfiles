@@ -68,5 +68,6 @@ vim.opt.splitright = true
 
 vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
+vim.opt.wildoptions:append("fuzzy")
 
 vim.opt.termguicolors = true
