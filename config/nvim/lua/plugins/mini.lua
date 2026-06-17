@@ -185,11 +185,9 @@ require("mini.notify").setup({})
 
 -- mini pick — fuzzy finder (ivy-style bottom window)
 -- Keymaps (defined in keymaps.lua):
---   <leader><space>  find files in project
 --   <leader>/        live grep in project
---   <leader>h        help tags
 --   <leader>s        LSP document symbols (functions, classes, types…)
---   <leader>g        git modified files (one entry per file)
+-- Files are found via :find (custom findfunc, fd + fzf); git files via :GitChanged.
 -- Inside the picker:
 --   <C-n>/<C-p>      move down/up
 --   <Tab>            toggle preview
