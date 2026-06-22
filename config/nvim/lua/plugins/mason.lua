@@ -23,6 +23,7 @@ local ensure_installed = {
 	"clang-format",
 	"shfmt",
 	"google-java-format",
+	"codelldb", -- C/C++ debugger (nvim-dap)
 }
 
 local registry = require("mason-registry")

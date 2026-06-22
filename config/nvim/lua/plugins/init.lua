@@ -16,6 +16,9 @@ vim.pack.add({
 	"https://github.com/marilari88/neotest-vitest",
 	"https://gitlab.com/HiPhish/info.vim",
 	"https://github.com/Olical/conjure",
+	"https://github.com/mfussenegger/nvim-dap",
+	"https://github.com/rcarriga/nvim-dap-ui",
+	"https://github.com/theHamsta/nvim-dap-virtual-text",
 })
 
 require("plugins.mini")
@@ -30,3 +33,4 @@ require("plugins.diffview")
 require("plugins.neogit")
 require("plugins.neotest")
 require("plugins.conjure")
+require("plugins.dap")
