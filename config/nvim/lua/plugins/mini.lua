@@ -91,3 +91,5 @@ require("mini.notify").setup({})
 
 -- mini pairs — auto-closes brackets, quotes, etc. as you type
 require("mini.pairs").setup({})
+-- replace_keycodes = true so orgmode's org_return evaluates this instead of pasting it literally
+vim.keymap.set("i", "<CR>", "v:lua.MiniPairs.cr()", { expr = true, replace_keycodes = true })
