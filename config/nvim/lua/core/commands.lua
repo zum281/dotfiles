@@ -51,3 +51,17 @@ vim.api.nvim_create_user_command("Grep", function(o)
   vim.cmd("silent grep! " .. vim.fn.shellescape(pattern))
   vim.cmd("cwindow")
 end, { nargs = "*", desc = "Project grep into quickfix (rgrep)" })
+
+-- :Imenu lists this file's LSP symbols in the location list (jump within file).
+vim.api.nvim_create_user_command("Imenu", function()
+  if not next(vim.lsp.get_clients({ bufnr = 0, method = "textDocument/documentSymbol" })) then
+    vim.notify("Imenu: no LSP with document symbols here", vim.log.levels.WARN)
+    return
+  end
+  vim.lsp.buf.document_symbol({
+    on_list = function(o)
+      vim.fn.setloclist(0, {}, " ", o)
+      vim.cmd.lopen()
+    end,
+  })
+end, { desc = "File symbols in location list (imenu)" })
