@@ -9,6 +9,29 @@ require("orgmode").setup({
 			target = "~/org/refile.org",
 		},
 	},
+
+	org_agenda_custom_commands = {
+		d = {
+			description = "Done",
+			types = {
+				{
+					type = "tags",
+					match = 'TODO="DONE"',
+					org_agenda_overriding_header = "Global list of TODO items of type: DONE",
+				},
+			},
+		},
+		p = {
+			description = "In progress",
+			types = {
+				{
+					type = "tags_todo",
+					match = 'TODO="PROGRESS"',
+					org_agenda_overriding_header = "Global list of TODO items of type: PROGRESS",
+				},
+			},
+		},
+	},
 	mappings = {
 		global = {
 			org_agenda = false,
