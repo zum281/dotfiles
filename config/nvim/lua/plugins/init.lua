@@ -20,6 +20,7 @@ vim.pack.add({
 	"https://github.com/rcarriga/nvim-dap-ui",
 	"https://github.com/theHamsta/nvim-dap-virtual-text",
 	"https://github.com/gelguy/wilder.nvim",
+	"https://github.com/stevearc/oil.nvim",
 })
 
 require("plugins.mini")
@@ -36,3 +37,4 @@ require("plugins.neotest")
 require("plugins.conjure")
 require("plugins.dap")
 require("plugins.wilder")
+require("plugins.oil")
