@@ -79,6 +79,10 @@
     "smart-splits.nvim": {
       "rev": "2aad9808f289f5d65cfa77840a04b8590e5e34e9",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
+    },
+    "wilder.nvim": {
+      "rev": "679f348dc90d80ff9ba0e7c470c40a4d038dcecf",
+      "src": "https://github.com/gelguy/wilder.nvim"
     }
   }
 }
