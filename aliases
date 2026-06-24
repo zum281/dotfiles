@@ -5,6 +5,7 @@ alias grep='grep --color=auto'
 # application aliases
 alias vi='nvim'
 alias lg='lazygit'
+alias lldb='/opt/homebrew/opt/llvm/bin/lldb'
 
 # git aliases
 alias g='git'
