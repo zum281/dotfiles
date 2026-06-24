@@ -8,6 +8,11 @@ require("orgmode").setup({
 			template = "* TODO [#%^{Priority|A|B|C}] %^{Title} :%^{Project}:\n%?",
 			target = "~/org/refile.org",
 		},
+		m = {
+			description = "Meeting",
+			template = "* Meeting %^{Title|} %t :meeting:%^{Project}:\n%?",
+			target = "~/org/meetings.org",
+		},
 	},
 
 	org_agenda_custom_commands = {
@@ -28,6 +33,27 @@ require("orgmode").setup({
 					type = "tags_todo",
 					match = 'TODO="PROGRESS"',
 					org_agenda_overriding_header = "Global list of TODO items of type: PROGRESS",
+				},
+			},
+		},
+		n = {
+			description = "Search meeting notes",
+			types = {
+				{
+					type = "search",
+					org_agenda_files = { "~/org/meetings.org" },
+					org_agenda_overriding_header = "Search results in MEETING NOTES",
+				},
+			},
+		},
+		l = {
+			description = "List meetings",
+			types = {
+				{
+					type = "tags",
+					match = "+meeting",
+					org_agenda_files = { "~/org/meetings.org" },
+					org_agenda_overriding_header = "Global list of MEETING NOTES",
 				},
 			},
 		},
