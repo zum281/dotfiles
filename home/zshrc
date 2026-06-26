@@ -11,7 +11,10 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-source ~/s/dotfiles/less_colors
+# zsh config modules
+ZSH_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+
+source "$ZSH_CONF/less_colors"
 
 ##############
 ### PROMPT ###
@@ -21,8 +24,9 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{#948a7d}%f%F{#e0b341}%~%f%F{#948a7d}%f %F{#c8bfae}${vcs_info_msg_0_}%f%F{#e0b341}%f '
+PROMPT='%F{#948a7d}%f%F{#e0b341}%~%f%F{#948a7d}%f %F{#c8bfae}${vcs_info_msg_0_}%f%F{#e0b341}%f '
 
+# thefuck (lazy: defer the ~48ms Python fork until first use)
 fuck() {
 	eval "$(thefuck --alias)"
 	fuck "$@"
@@ -31,63 +35,19 @@ fuck() {
 # fzf shell integration
 eval "$(fzf --zsh)"
 
-
 #####################
-### zinit plugins ###
+### Config modules ##
 #####################
-zinit light zsh-users/zsh-completions
-zinit ice wait lucid atload'_zsh_autosuggest_start'
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
-zinit ice wait lucid
-zinit light zdharma-continuum/fast-syntax-highlighting
-
-function zvm_after_init() {
-	bindkey '^R' fzf-history-widget
-	bindkey '^F' fzf-file-widget
-	bindkey '^p' history-search-backward
-	bindkey '^n' history-search-forward
-	eval "$(zoxide init --cmd cd zsh)"
-	compdef _cd_zoxide cd
-	compdef _vim_zoxide nvim vim vi
-}
-
-# ember: muted grey ghost text for autosuggestions (base03)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#6f655a'
-
-
-###################
-### COMPLETIONS ###
-###################
-
-# Load completions
-autoload -U compinit && compinit
-zinit cdreplay -q
-_comp_options+=(globdots) # include hidden files
-
-
-######################
-### History config ###
-######################
-HISTSIZE=10000
-HISTFILE=~/.zsh_history
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+source "$ZSH_CONF/plugins.zsh"
+source "$ZSH_CONF/completion.zsh"
+source "$ZSH_CONF/history.zsh"
+source "$ZSH_CONF/fzf.zsh"
+source "$ZSH_CONF/pickers.zsh"
 
 ###############
 ### Aliases ###
 ###############
-
-source ~/s/dotfiles/aliases
+source "$ZSH_CONF/aliases"
 
 # use bat instead of cat
 alias cat='bat'
@@ -96,179 +56,9 @@ alias cat='bat'
 alias ls="eza --color=always -l --all --git --icons=always --no-time --no-user"
 alias tree="eza --tree --color=always --all --icons=always --git --no-filesize --no-time --no-user --no-permissions --level=3"
 
-##########################
-### Completion styling ###
-##########################
-
-# case insensitive completions
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-# enable colors for completions
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-
-# disable default zsh completion menu (replaced by fzf)
-zstyle ':completion:*' menu no
-
-zstyle ':fzf-tab:*' use-fzf-default-opts yes
-
-# enable preview
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --all --grid --icons=always $realpath'
-
-# have previews work with zoxide
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --all --grid --icons=always $realpath'
-zstyle ':fzf-tab:complete:(nvim|vim|vi):*' fzf-preview 'bat -n --color=always $realpath 2>/dev/null || eza --color=always --all --grid --icons=always $realpath'
-zstyle ':fzf-tab:complete:(cd|nvim|vim|vi):*' query-string input
-
-_fzf_zoxide_dirs() {
-	local -a zdirs
-	zdirs=(${(f)"$(zoxide query --list 2>/dev/null)"})
-	(( $#zdirs )) && compadd -M 'l:|=* r:|=*' -V zoxide-dirs -a zdirs
-}
-
-_cd_zoxide()  { _cd;  _fzf_zoxide_dirs }
-_vim_zoxide() { _vim; _fzf_zoxide_dirs }
-
-zstyle ':fzf-tab:complete:git-(checkout|switch):*' fzf-preview \
-	'case "$group" in
-	"modified file") git diff $word | delta ;;
-	"recent commit object name") git show $word | delta ;;
-	*) git log --oneline --color=always $word ;;
-	esac'
-zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview 'git diff $word | delta'
-zstyle ':fzf-tab:complete:git-branch:*' fzf-preview 'git log --oneline --color=always $word'
-zstyle ':fzf-tab:complete:git-show:*' fzf-preview \
-	'case "$group" in
-	"commit tag") git show $word ;;
-	*) git show $word | delta ;;
-	esac'
-zstyle ':fzf-tab:complete:git-(log|rebase|cherry-pick):*' fzf-preview 'git show $word | delta'
-zstyle ':fzf-tab:complete:git-stash:*' fzf-preview 'git stash show -p $word | delta'
-
-zstyle ':fzf-tab:complete:(nvim|vi|bat|cat):*' fzf-preview 'bat -n --color=always $realpath 2>/dev/null || eza --tree --color=always $realpath'
-zstyle ':fzf-tab:complete:ssh:*' fzf-preview 'dig +short $word'
-zstyle ':fzf-tab:complete:man:*' fzf-preview 'man $word 2>/dev/null | col -bx | bat -l man -p --color=always'
-
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview 'ps -p $word -o command='
-zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
-zstyle ':fzf-tab:complete:docker-(logs|exec|stop|start|restart|attach|rm|inspect|cp):*' fzf-preview \
-	'docker inspect --format "{{.Name}} · {{.State.Status}} · {{.Config.Image}}" $word 2>/dev/null || docker ps'
-
-zstyle ':fzf-tab:complete:npm:*' fzf-preview 'jq -r --arg k "$word" ".scripts[\$k] // empty" package.json 2>/dev/null'
-zstyle ':fzf-tab:complete:(brew|brew-install|brew-info):*' fzf-preview 'brew info $word 2>/dev/null'
-
-
-###########
-### Fzf ###
-###########
-
-export BAT_THEME="ember"
-
-export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-
-_fzf_comprun() {
-	local command=$1
-	shift
-
-	case "$command" in
-		cd)	fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
-		export|unset) fzf --preview "eval 'echo \$' {}"	"$@" ;;
-		ssh)	fzf --preview 'dig {}'	"$@" ;;
-		*)	fzf --preview 'bat -n --color=always --line-range :500 {}' "$@" ;;
-	esac
-}
-
-#######################
-### ember fzf colors ###
-#######################
-export FZF_DEFAULT_OPTS_FILE=~/.config/fzf/opts
-
-#############################
-### Bare-command pickers ###
-#############################
-
-git() {
-	if [ -t 1 ] && [ $# -eq 1 ]; then
-		case "$1" in
-			switch|checkout)
-				local b
-				b=$(command git branch --all --format='%(refname:short)' | sed 's#^origin/##' | sort -u | fzf --preview 'git log --oneline --color=always {}') || return
-				[ -n "$b" ] && command git "$1" "$b"
-				return ;;
-			add|restore)
-				local action=$1 files
-				files=$(command git -c color.status=always status --short | fzf --multi --ansi --nth 2.. \
-					--preview 'echo {} | sed "s/^...//" | xargs -I% git diff -- % | delta' | sed 's/^...//')
-				[ -n "$files" ] && echo "$files" | while IFS= read -r f; do command git "$action" "$f"; done
-				return ;;
-			log)
-				command git log --oneline --color=always | fzf --ansi --no-sort \
-					--preview 'git show --color=always {1} | delta' \
-					--bind 'enter:execute(git show --color=always {1} | delta | less -R)'
-				return ;;
-		esac
-	fi
-	command git "$@"
-}
-
-rg() {
-	if [ -t 1 ] && [ $# -eq 0 ]; then
-		fzf --ansi --disabled --delimiter : \
-			--bind 'start:reload:command rg --column --line-number --no-heading --color=always --smart-case ""' \
-			--bind 'change:reload:command rg --column --line-number --no-heading --color=always --smart-case {q} || true' \
-			--preview 'bat --color=always {1} --highlight-line {2}' \
-			--preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
-			--bind 'enter:become(nvim {1} +{2})'
-		return
-	fi
-	command rg "$@"
-}
-
-man() {
-	if [ -t 1 ] && [ $# -eq 0 ]; then
-		local p
-		p=$(command man -k . 2>/dev/null | fzf --ansi \
-			--preview 'echo {} | sed -E "s/\(.*//" | awk "{print \$1}" | xargs man 2>/dev/null | col -bx | bat -l man -p --color=always' \
-			| sed -E 's/\(.*//' | awk '{print $1}') || return
-		[ -n "$p" ] && command man "$p"
-		return
-	fi
-	command man "$@"
-}
-
-kill() {
-	if [ -t 1 ] && [ $# -eq 0 ]; then
-		local pids
-		pids=$(command ps aux | sed 1d | fzf --multi --header-lines=0 | awk '{print $2}') || return
-		[ -n "$pids" ] && echo "$pids" | xargs kill
-		return
-	fi
-	command kill "$@"
-}
-
-brew() {
-	if [ -t 1 ] && [ $# -eq 0 ]; then
-		local f
-		f=$(command brew formulae | fzf --multi --preview 'brew info {}') || return
-		[ -n "$f" ] && echo "$f" | xargs command brew install
-		return
-	fi
-	command brew "$@"
-}
-
 #####################
 ### Other options ###
 #####################
 
 # disable annoying bell
 unsetopt BEEP
-
-autoload -Uz add-zsh-hook
-_load_uv_comp() {
-	eval "$(uv generate-shell-completion zsh)"
-	add-zsh-hook -d precmd _load_uv_comp
-}
-add-zsh-hook precmd _load_uv_comp
-
-export C_INCLUDE_PATH=/usr/local/include
-export LD_LIBRARY_PATH=/usr/local/lib

@@ -5,8 +5,8 @@ case $- in
 esac
 
 # Shared configs
-source ~/s/dotfiles/aliases
-source ~/s/dotfiles/less_colors
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/aliases"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/less_colors"
 
 # Shell-specific aliases
 alias ls='ls -F --color=auto'

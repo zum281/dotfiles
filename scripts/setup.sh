@@ -94,6 +94,7 @@ create_symlink ~/s/dotfiles/home/zshrc ~/.zshrc
 create_symlink ~/s/dotfiles/config/tmux ~/.config/tmux
 create_symlink ~/s/dotfiles/config/nvim ~/.config/nvim
 create_symlink ~/s/dotfiles/config/fzf ~/.config/fzf
+create_symlink ~/s/dotfiles/config/zsh ~/.config/zsh
 create_symlink ~/s/dotfiles/home/zprofile ~/.zprofile
 
 # Also symlink other config files mentioned in the dotfiles
