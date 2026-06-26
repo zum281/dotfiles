@@ -1,0 +1,14 @@
+--height=~50%
+--layout=reverse
+--border=none
+--info=right
+--highlight-line
+--preview-window=border-left
+--prompt='  '
+--pointer='▌'
+--marker='+'
+--separator='─'
+--scrollbar='▏'
+--ellipsis='…'
+--cycle
+--color=bg:#000000,fg:#c8bfae,bg+:#000000,fg+:#e0b341:bold,hl:#e0b341:bold,hl+:#e0b341:bold,gutter:#000000,border:#2a2521,preview-border:#2a2521,separator:#2a2521,scrollbar:#2a2521,label:#e0b341,header:#e0b341,info:#948a7d,prompt:#e0b341,pointer:#e0b341,marker:#9aa56b,selected-bg:#2a2521,selected-fg:#cf9163,query:#efe7d8,spinner:#9aa56b

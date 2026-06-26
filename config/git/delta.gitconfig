@@ -1,0 +1,14 @@
+[delta]
+	syntax-theme = ember
+	minus-style = syntax "#2a1a17"
+	minus-emph-style = syntax "#4a2420"
+	plus-style = syntax "#1c2417"
+	plus-emph-style = syntax "#2f3d22"
+	line-numbers-minus-style = "#c77b6b"
+	line-numbers-plus-style = "#9aa56b"
+	line-numbers-zero-style = "#6f655a"
+	hunk-header-decoration-style = "#6f655a" box
+	file-style = "#e0b341" bold
+	file-decoration-style = "#6f655a" ul
+	commit-decoration-style = "#e0b341" box
+	blame-palette = "#000000" "#1a1714" "#2a2521"
