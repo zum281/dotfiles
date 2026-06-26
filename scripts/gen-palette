@@ -39,6 +39,7 @@ EOF
 
 # ---------------------------------------------------------------- tmux
 cat > "$repo/config/tmux/palette.conf" <<EOF
+set -g @gold '${C[base0A]}'
 set -g status-bg '${C[base00]}'
 set -g status-fg '${C[base03]}'
 setw -g window-status-current-style fg=${C[base0A]}
