@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+# Single source of truth: render every tool's palette from the nvim base16
+# palette (config/nvim/lua/zusk/palette.lua). Re-run after editing the palette.
+#   - config/fzf/opts            (FZF_DEFAULT_OPTS_FILE)
+#   - config/tmux/palette.conf   (sourced by tmux.conf)
+#   - config/ghostty/palette     (config-file include)
+#   - config/git/delta.gitconfig ([include] in gitconfig-shared)
+# Not generated (full-file artifacts, hand-maintained): config/bat/themes/ember.tmTheme,
+# config/lazygit/config.yml. They are already palette-correct; update by hand if the palette changes.
+set -euo pipefail
+
+repo="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+palette="$repo/config/nvim/lua/zusk/palette.lua"
+
+declare -A C
+while read -r k v; do C[$k]="$v"; done < <(
+	sed -nE 's/^[[:space:]]*(base[0-9A-Fa-f]+)[[:space:]]*=[[:space:]]*"(#[0-9A-Fa-f]+)".*/\1 \2/p' "$palette"
+)
+[[ -n "${C[base00]:-}" && -n "${C[base0F]:-}" ]] || { echo "gen-palette: failed to parse $palette" >&2; exit 1; }
+
+# ---------------------------------------------------------------- fzf
+mkdir -p "$repo/config/fzf"
+cat > "$repo/config/fzf/opts" <<EOF
+--height=~50%
+--layout=reverse
+--border=none
+--info=right
+--highlight-line
+--preview-window=border-left
+--prompt='  '
+--pointer='▌'
+--marker='+'
+--separator='─'
+--scrollbar='▏'
+--ellipsis='…'
+--cycle
+--color=bg:${C[base00]},fg:${C[base05]},bg+:${C[base00]},fg+:${C[base0A]}:bold,hl:${C[base0A]}:bold,hl+:${C[base0A]}:bold,gutter:${C[base00]},border:${C[base02]},preview-border:${C[base02]},separator:${C[base02]},scrollbar:${C[base02]},label:${C[base0A]},header:${C[base0A]},info:${C[base04]},prompt:${C[base0A]},pointer:${C[base0A]},marker:${C[base0B]},selected-bg:${C[base02]},selected-fg:${C[base09]},query:${C[base07]},spinner:${C[base0B]}
+EOF
+
+# ---------------------------------------------------------------- tmux
+cat > "$repo/config/tmux/palette.conf" <<EOF
+set -g status-bg '${C[base00]}'
+set -g status-fg '${C[base03]}'
+setw -g window-status-current-style fg=${C[base0A]}
+set -g message-style fg=${C[base00]},bg=${C[base0A]}
+set -g message-command-style fg=${C[base05]},bg=${C[base02]}
+set -g pane-border-style fg=${C[base02]}
+set -g pane-active-border-style fg=${C[base0A]}
+set -g mode-style fg=${C[base00]},bg=${C[base0A]}
+set -g clock-mode-colour '${C[base0A]}'
+set -g copy-mode-match-style fg=${C[base00]},bg=${C[base0B]}
+set -g copy-mode-current-match-style fg=${C[base00]},bg=${C[base0A]}
+set -g @prefix_highlight_fg '${C[base00]}'
+set -g @prefix_highlight_bg '${C[base0A]}'
+set -g @prefix_highlight_copy_mode_attr 'fg=${C[base00]},bg=${C[base0B]}'
+EOF
+
+# ---------------------------------------------------------------- ghostty
+cat > "$repo/config/ghostty/palette" <<EOF
+background = ${C[base00]}
+foreground = ${C[base05]}
+selection-background = ${C[base02]}
+selection-foreground = ${C[base06]}
+cursor-color = ${C[base0A]}
+unfocused-split-fill = ${C[base01]}
+palette = 0=${C[base00]}
+palette = 1=${C[base08]}
+palette = 2=${C[base0B]}
+palette = 3=${C[base0A]}
+palette = 4=${C[base0D]}
+palette = 5=${C[base0E]}
+palette = 6=${C[base0C]}
+palette = 7=${C[base05]}
+palette = 8=${C[base03]}
+palette = 9=${C[base08]}
+palette = 10=${C[base0B]}
+palette = 11=${C[base0A]}
+palette = 12=${C[base0D]}
+palette = 13=${C[base0E]}
+palette = 14=${C[base0C]}
+palette = 15=${C[base07]}
+EOF
+
+# ---------------------------------------------------------------- delta (git)
+mkdir -p "$repo/config/git"
+cat > "$repo/config/git/delta.gitconfig" <<EOF
+[delta]
+	syntax-theme = ember
+	minus-style = syntax "#2a1a17"
+	minus-emph-style = syntax "#4a2420"
+	plus-style = syntax "#1c2417"
+	plus-emph-style = syntax "#2f3d22"
+	line-numbers-minus-style = "${C[base08]}"
+	line-numbers-plus-style = "${C[base0B]}"
+	line-numbers-zero-style = "${C[base03]}"
+	hunk-header-decoration-style = "${C[base03]}" box
+	file-style = "${C[base0A]}" bold
+	file-decoration-style = "${C[base03]}" ul
+	commit-decoration-style = "${C[base0A]}" box
+	blame-palette = "${C[base00]}" "#1a1714" "${C[base02]}"
+EOF
+
+echo "gen-palette: wrote fzf, tmux, ghostty, delta"
