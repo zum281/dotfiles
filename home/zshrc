@@ -11,16 +11,6 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
-
 source ~/s/dotfiles/less_colors
 
 ##############
@@ -46,10 +36,12 @@ eval "$(fzf --zsh)"
 ### zinit plugins ###
 #####################
 zinit light zsh-users/zsh-completions
+zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
+zinit ice wait lucid
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 function zvm_after_init() {
@@ -271,7 +263,12 @@ brew() {
 # disable annoying bell
 unsetopt BEEP
 
-eval "$(uv generate-shell-completion zsh)"
+autoload -Uz add-zsh-hook
+_load_uv_comp() {
+	eval "$(uv generate-shell-completion zsh)"
+	add-zsh-hook -d precmd _load_uv_comp
+}
+add-zsh-hook precmd _load_uv_comp
 
 export C_INCLUDE_PATH=/usr/local/include
 export LD_LIBRARY_PATH=/usr/local/lib
