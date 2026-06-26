@@ -24,7 +24,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{#948a7d}%f%F{#e0b341}%~%f%F{#948a7d}%f %F{#c8bfae}${vcs_info_msg_0_}%f%F{#e0b341}%f '
+PROMPT='%F{#948a7d}%f%F{#e0b341}%~%f%F{#948a7d}%f %F{#c8bfae}${vcs_info_msg_0_}%f%F{#e0b341}%f '
 
 # thefuck (lazy: defer the ~48ms Python fork until first use)
 fuck() {
