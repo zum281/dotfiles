@@ -8,43 +8,11 @@ set -e
 # EDIT THIS: Your GitHub username for dotfiles repo
 GITHUB_USERNAME="zum281"
 
-# Function to safely create symlinks with backup
-create_symlink() {
-  local source="$1"
-  local target="$2"
-
-  # Create target directory if it doesn't exist
-  mkdir -p "$(dirname "$target")"
-
-  # If target exists and is not already the correct symlink
-  if [ -e "$target" ] || [ -L "$target" ]; then
-    if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
-      echo "✅ $target already correctly symlinked"
-      return 0
-    else
-      echo "🔄 Backing up existing $target to ${target}.bak"
-      mv "$target" "${target}.bak"
-    fi
-  fi
-
-  # Create the symlink
-  ln -sf "$source" "$target"
-
-  # Verify the symlink was created successfully
-  if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
-    echo "✅ Successfully symlinked $target"
-    return 0
-  else
-    echo "❌ Failed to create symlink $target"
-    return 1
-  fi
-}
-
 echo "Starting Setup"
 echo "======================================"
 
 echo ""
-echo "PHASE 1: Terminal Environment"
+echo "Terminal Environment"
 echo "=========================================="
 
 # Check if Homebrew is already installed
@@ -60,20 +28,12 @@ fi
 
 echo "Installing font and essential applications..."
 brew install --cask font-iosevka-term-slab-nerd-font
-brew install --cask ghostty
+brew install --cask wezterm@nightly
 brew install --cask raycast
 
 echo "Installing core CLI tools..."
-brew install git gh neovim tmux bat eza fzf ripgrep fd jq
+brew install git gh neovim bat eza fzf ripgrep fd jq
 brew install lazygit git-delta thefuck zoxide viu
-
-echo "Installing TPM (tmux plugin manager)..."
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-  echo "[SUCCESS] TPM installed"
-else
-  echo "TPM already exists"
-fi
 
 echo "Setting up dotfiles..."
 mkdir -p ~/s/
@@ -87,20 +47,7 @@ else
   echo "Dotfiles already exist in ~/s/dotfiles"
 fi
 
-echo "Creating symlinks..."
-# Create all the necessary symlinks
-create_symlink ~/s/dotfiles/config/ghostty ~/.config/ghostty
-create_symlink ~/s/dotfiles/home/zshrc ~/.zshrc
-create_symlink ~/s/dotfiles/config/tmux ~/.config/tmux
-create_symlink ~/s/dotfiles/config/nvim ~/.config/nvim
-create_symlink ~/s/dotfiles/config/fzf ~/.config/fzf
-create_symlink ~/s/dotfiles/config/zsh ~/.config/zsh
-create_symlink ~/s/dotfiles/home/zprofile ~/.zprofile
-
-# Also symlink other config files mentioned in the dotfiles
-create_symlink ~/s/dotfiles/home/gitconfig-shared ~/.gitconfig-shared
-create_symlink ~/s/dotfiles/config/bat ~/.config/bat
-create_symlink ~/s/dotfiles/config/lazygit ~/.config/lazygit
+./dotfiles-symlink
 
 # Register the ember bat theme so bat + delta pick it up (delta syntax-theme = ember)
 echo "Building bat theme cache..."
@@ -118,11 +65,11 @@ else
 fi
 
 echo ""
-echo "[SUCCESS] Phase 1 Complete!"
+echo "[SUCCESS] Terminal setup complete!"
 echo "===================="
 
 echo ""
-echo "PHASE 2: Programming Languages & Runtimes"
+echo "Programming Languages & Runtimes"
 echo "==============================================="
 
 echo "Installing Volta..."
@@ -159,19 +106,16 @@ echo "Phase 2 Complete!"
 echo "======================"
 
 echo ""
-echo "PHASE 3: Essential Applications"
+echo "Essential Applications"
 echo "=================================="
 
 echo "Installing browsers and GUI applications..."
 brew install --cask brave-browser
-brew install --cask obsidian
 brew install --cask signal
 brew install --cask vlc
-brew install --cask maccy
-brew install --cask keycastr
 
 echo ""
-echo "Phase 3 Complete!"
+echo "Setup complete!"
 echo "===================="
 
 echo "MANUAL STEPS NEEDED:"
@@ -179,8 +123,7 @@ echo "1. Set keyboard layout to International English (System Settings > Keyboar
 echo "2. Remap CAPS LOCK → ESC (System Settings > Keyboard > Modifier Keys)"
 echo "3. Run: gh auth login"
 echo "4. Start new shell for full setup: exec zsh"
-echo "5. Start tmux, then press Ctrl+; + I to install tmux plugins"
-echo "6. Install Node.js: volta install node@lts"
+echo "5. Install Node.js: volta install node@lts"
 echo ""
 echo "If any programming language tools seem missing after step 4, they should be available."
 echo "If not, the installation completed but PATH wasn't updated - exec zsh should fix it."
