@@ -1,19 +1,34 @@
 require("oil").setup({
 	default_file_explorer = true,
 	view_options = { show_hidden = true },
-	columns = { "icon" },
+	columns = { "icon", "permissions", "size" },
 })
 
--- open Oil on startup (replaces old mini.starter screen)
-vim.api.nvim_create_autocmd("VimEnter", {
-	nested = true,
-	callback = function()
-		if vim.fn.argc() ~= 0 or vim.o.insertmode or not vim.o.modifiable then
-			return
-		end
+require("oil-lsp-diagnostics").setup({
+	count = true,
+	parent_dirs = true,
+	diagnostic_colors = {
+		error = "DiagnosticError",
+		warn = "DiagnosticWarn",
+		info = "DiagnosticInfo",
+		hint = "DiagnosticHint",
+	},
+	diagnostic_symbols = {
+		error = "",
+		warn = "",
+		info = "",
+		hint = "󰌶",
+	},
+})
 
-		require("oil").open()
-		vim.wo.number = false
-		vim.wo.relativenumber = false
-	end,
+local pal = require("zusk.palette")
+require("oil-git").setup({
+
+	highlights = {
+		OilGitAdded = { fg = pal.base0B },
+		OilGitModified = { fg = pal.base0A },
+		OilGitRenamed = { fg = pal.base0E },
+		OilGitUntracked = { fg = pal.base0D },
+		OilGitIgnored = { fg = pal.base04 },
+	},
 })
