@@ -1,15 +1,19 @@
 #!/usr/bin/env bash
 
+gold=$(tput setaf 3); red=$(tput setaf 1); dim=$(tput dim); reset=$(tput sgr0)
+
 script_name=$1
 
 if [[ -z "$script_name" ]];then
-    echo 'provide a script name.' >&2
+    printf "%s✗%s provide a script name.\n" "$red" "$reset" >&2
     exit 1
 fi
 
 if [[ -s $script_name ]]; then
-    echo "$script_name already exists."
+    printf "%s↻%s %s already exists.\n" "$gold" "$reset" "$script_name"
+    printf "%s" "$dim"
     head -n 5 "$script_name"
+    printf "%s" "$reset"
     read -p "open file? (y/n) " open
     case "$open" in
         y)

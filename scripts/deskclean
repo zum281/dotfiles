@@ -1,10 +1,12 @@
 #!/bin/zsh
 
+gold=$(tput setaf 3); green=$(tput setaf 2); red=$(tput setaf 1); dim=$(tput dim); reset=$(tput sgr0)
+
 all_flag=false
 preview_flag=false
 
 usage() {
-  echo "Usage: $0 [-a] [-p]"
+  printf "%sUsage:%s %s [-a] [-p]\n" "$gold" "$reset" "$0"
   echo "  -a           Delete all screenshots without confirmation for each one"
   echo "  -p           Show preview of files before delete (doesn't work with -a)"
   exit 1
@@ -16,30 +18,30 @@ process_file() {
   local filename=$3
 
 
-  echo "File $current of $total: ${file:t}"
+  printf "%sFile %s of %s:%s %s\n" "$dim" "$current" "$total" "$reset" "${file:t}"
   if $preview_flag; then
     viu $file
   fi
-  echo "Delete the file? (y/n/q):"
+  printf "Delete the file? %s(y/n/q):%s " "$dim" "$reset"
   read command
 
   case $command in
     "y")
       rm "$file"
-      echo "File removed"
+      printf "%s✓%s file removed\n" "$green" "$reset"
       ((current++))
       continue 2
       ;;
     "n")
-      echo "Keeping file"
+      printf "%s↻%s keeping file\n" "$gold" "$reset"
       ((current++))
       continue 2
       ;;
     "q")
       exit 0
-      ;;      
+      ;;
     *)
-      echo "Invalid command. Type y to delete, n to keep, q to quit:"
+      printf "%s✗%s invalid command. type y to delete, n to keep, q to quit:\n" "$red" "$reset"
       ;;
     esac
 
@@ -54,7 +56,7 @@ while getopts ":pa" opt; do
       preview_flag=true
       ;;
     \?)
-      echo "Invalid option: -$OPTARG"
+      printf "%s✗%s invalid option: -%s\n" "$red" "$reset" "$OPTARG"
       usage
       ;;
   esac
@@ -68,7 +70,7 @@ files=(~/Desktop/{Screenshot,screenshot}*.png)
 
 # Check if any files were found
 if [ ${#files} -eq 0 ]; then
-    echo "No matching files found!"
+    printf "%s✗%s no matching files found\n" "$red" "$reset"
     exit 0
 fi
 
@@ -88,9 +90,9 @@ if ! $all_flag; then
       process_file $current $total $file
     done
 else
-  echo "Removing file: ${file:t}"
+  printf "%s✓%s removing file: %s\n" "$green" "$reset" "${file:t}"
   rm $file
 fi
 done
 
-echo "Processing complete!"
+printf "%s✓%s processing complete\n" "$green" "$reset"

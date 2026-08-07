@@ -15,7 +15,7 @@ while read -r k v; do C[$k]="$v"; done < <(
   sed -nE 's/^[[:space:]]*(base[0-9A-Fa-f]+)[[:space:]]*=[[:space:]]*"(#[0-9A-Fa-f]+)".*/\1 \2/p' "$palette"
 )
 [[ -n "${C[base00]:-}" && -n "${C[base0F]:-}" ]] || {
-  echo "gen-palette: failed to parse $palette" >&2
+  printf "%s✗%s gen-palette: failed to parse %s\n" "$(tput setaf 1)" "$(tput sgr0)" "$palette" >&2
   exit 1
 }
 
@@ -73,4 +73,5 @@ cat >"$repo/config/git/delta.gitconfig" <<EOF
 	blame-palette = "${C[base00]}" "#1a1714" "${C[base02]}"
 EOF
 
-echo "gen-palette: wrote fzf, wezterm, delta"
+green=$(tput setaf 2); reset=$(tput sgr0)
+printf "%s✓%s gen-palette: wrote fzf, wezterm, delta\n" "$green" "$reset"

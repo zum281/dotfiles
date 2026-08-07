@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 
+gold=$(tput setaf 3)
+green=$(tput setaf 2)
+red=$(tput setaf 1)
+dim=$(tput dim)
+reset=$(tput sgr0)
+bold=$(tput bold)
+
 # Function to safely create symlinks with backup
 create_symlink() {
   local source="$1"
   local target="$2"
+  local display_source="${source/#$HOME/\~}"
+  local display_target="${target/#$HOME/\~}"
 
   # Create target directory if it doesn't exist
   mkdir -p "$(dirname "$target")"
@@ -11,10 +20,10 @@ create_symlink() {
   # If target exists and is not already the correct symlink
   if [ -e "$target" ] || [ -L "$target" ]; then
     if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
-      echo "✅ $target already correctly symlinked"
+      printf "  %s✓%s %s %s->%s %s\n" "$green" "$reset" "$display_target" "$dim" "$reset" "$display_source"
       return 0
     else
-      echo "🔄 Backing up existing $target to ${target}.bak"
+      printf "  %s↻%s %s %sbacked up ->%s %s.bak\n" "$gold" "$reset" "$display_target" "$dim" "$reset" "$display_target"
       mv "$target" "${target}.bak"
     fi
   fi
@@ -24,15 +33,15 @@ create_symlink() {
 
   # Verify the symlink was created successfully
   if [ -L "$target" ] && [ "$(readlink "$target")" = "$source" ]; then
-    echo "✅ Successfully symlinked $target"
+    printf "  %s✓%s %s %s->%s %s\n" "$green" "$reset" "$display_target" "$dim" "$reset" "$display_source"
     return 0
   else
-    echo "❌ Failed to create symlink $target"
+    printf "  %s✗%s %s\n" "$red" "$reset" "$display_target"
     return 1
   fi
 }
 
-echo "Creating symlinks..."
+printf "%s%sdotfiles-symlink%s\n" "$bold" "$gold" "$reset"
 # Create all the necessary symlinks
 create_symlink ~/s/dotfiles/config/wezterm ~/.config/wezterm
 create_symlink ~/s/dotfiles/home/zshrc ~/.zshrc

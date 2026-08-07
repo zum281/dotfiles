@@ -3,7 +3,9 @@
 # Simple Homebrew Package Backup
 # Backs up only the packages you manually installed
 
-echo "🍺 Creating Homebrew package backup..."
+gold=$(tput setaf 3); green=$(tput setaf 2); dim=$(tput dim); reset=$(tput sgr0); bold=$(tput bold)
+
+printf "%s%sCreating Homebrew package backup...%s\n" "$bold" "$gold" "$reset"
 
 # Create backup file with timestamp
 BACKUP_FILE="$HOME/homebrew_packages_$(date +%Y%m%d).txt"
@@ -33,12 +35,12 @@ BACKUP_FILE="$HOME/homebrew_packages_$(date +%Y%m%d).txt"
 
 } > "$BACKUP_FILE"
 
-echo "✅ Backup saved to: $BACKUP_FILE"
+printf "%s✓%s backup saved to %s\n" "$green" "$reset" "$BACKUP_FILE"
 echo ""
-echo "📋 Your manually installed packages:"
-echo "   • Formulae: $(brew leaves | wc -l)"
-echo "   • Casks: $(brew list --cask 2>/dev/null | wc -l || echo 0)"
+printf "%smanually installed packages%s\n" "$dim" "$reset"
+printf "  %sFormulae:%s %s\n" "$gold" "$reset" "$(brew leaves | wc -l)"
+printf "  %sCasks:%s %s\n" "$gold" "$reset" "$(brew list --cask 2>/dev/null | wc -l || echo 0)"
 echo ""
-echo "💡 To restore on another machine:"
-echo "   cat $BACKUP_FILE"
-echo "   # Then copy & paste the commands"
+printf "%sto restore on another machine%s\n" "$dim" "$reset"
+printf "  cat %s\n" "$BACKUP_FILE"
+printf "  %s# then copy & paste the commands%s\n" "$dim" "$reset"
