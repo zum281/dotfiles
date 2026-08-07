@@ -4,8 +4,8 @@ local config = wezterm.config_builder()
 local sessionizer = wezterm.plugin.require("https://github.com/mikkasendke/sessionizer.wezterm")
 local sessionizer_schema = {
 	sessionizer.FdSearch({ wezterm.home_dir .. "/s", fd_path = "/opt/homebrew/bin/fd" }),
+	{ label = "general", id = wezterm.home_dir },
 	{ label = "~/notes", id = wezterm.home_dir .. "/notes" },
-	{ label = "~/s/l/py", id = wezterm.home_dir .. "/s/l/py" },
 	{ label = "~/s/l/learn-node", id = wezterm.home_dir .. "/s/l/learn-node" },
 	processing = sessionizer.for_each_entry(function(entry)
 		entry.label = entry.label:gsub(wezterm.home_dir, "~")
