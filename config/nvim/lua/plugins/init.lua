@@ -22,6 +22,7 @@ vim.pack.add({
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/nvim-orgmode/orgmode",
+	"https://github.com/nvim-telescope/telescope.nvim",
 })
 
 require("plugins.mini")
@@ -40,3 +41,4 @@ require("plugins.dap")
 require("plugins.wilder")
 require("plugins.oil")
 require("plugins.org")
+require("plugins.telescope")

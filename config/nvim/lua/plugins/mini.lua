@@ -75,6 +75,8 @@ hipatterns.setup({
 		fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
 		hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsWarn" },
 		deprecated = { pattern = "%f[%w]()deprecated()%f[%W]", group = "DiagnosticWarn" },
+		review = { pattern = "%f[%w]()REVIEW()%f[%W]", group = "MiniHipatternsTodo" },
+		exploration = { pattern = "%f[%w]()EXPLORATION()%f[%W]", group = "MiniHipatternsHack" },
 		trail = { pattern = "%s+$", group = "Error" },
 	},
 })
