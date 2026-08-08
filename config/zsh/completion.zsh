@@ -26,7 +26,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # disable default zsh completion menu (replaced by fzf)
-zstyle ':completion:*' menu no
 
 zstyle ':fzf-tab:*' use-fzf-default-opts yes
 
@@ -37,15 +36,6 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --all --grid --i
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --all --grid --icons=always $realpath'
 zstyle ':fzf-tab:complete:(nvim|vim|vi):*' fzf-preview 'bat -n --color=always $realpath 2>/dev/null || eza --color=always --all --grid --icons=always $realpath'
 zstyle ':fzf-tab:complete:(cd|nvim|vim|vi):*' query-string input
-
-_fzf_zoxide_dirs() {
-	local -a zdirs
-	zdirs=(${(f)"$(zoxide query --list 2>/dev/null)"})
-	(( $#zdirs )) && compadd -M 'l:|=* r:|=*' -V zoxide-dirs -a zdirs
-}
-
-_cd_zoxide()  { _cd;  _fzf_zoxide_dirs }
-_vim_zoxide() { _vim; _fzf_zoxide_dirs }
 
 zstyle ':fzf-tab:complete:git-(checkout|switch):*' fzf-preview \
 	'case "$group" in

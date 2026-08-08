@@ -15,8 +15,6 @@ function zvm_after_init() {
 	bindkey '^p' history-search-backward
 	bindkey '^n' history-search-forward
 	eval "$(zoxide init --cmd cd zsh)"
-	compdef _cd_zoxide cd
-	compdef _vim_zoxide nvim vim vi
 }
 
 # ember: muted grey ghost text for autosuggestions (base03)
