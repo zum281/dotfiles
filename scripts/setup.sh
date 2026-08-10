@@ -5,7 +5,12 @@
 
 set -e
 
-gold=$(tput setaf 3); green=$(tput setaf 2); red=$(tput setaf 1); dim=$(tput dim); reset=$(tput sgr0); bold=$(tput bold)
+gold=$(tput setaf 3)
+green=$(tput setaf 2)
+red=$(tput setaf 1)
+dim=$(tput dim)
+reset=$(tput sgr0)
+bold=$(tput bold)
 phase() { printf "\n%s%s%s\n" "$bold$gold" "$1" "$reset"; }
 ok() { printf "%s✓%s %s\n" "$green" "$reset" "$1"; }
 warn() { printf "%s⚠%s %s\n" "$gold" "$reset" "$1"; }
@@ -30,7 +35,7 @@ else
 fi
 
 info "Installing font and essential applications..."
-brew install --cask font-iosevka-term-slab-nerd-font
+brew install --cask font-jetbrains-mono-nerd-font
 brew install --cask wezterm@nightly
 brew install --cask raycast
 

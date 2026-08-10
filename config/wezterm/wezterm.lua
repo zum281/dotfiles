@@ -38,7 +38,7 @@ wezterm.on("gui-startup", resurrect.state_manager.resurrect_on_gui_startup)
 local palette = dofile(wezterm.config_dir .. "/palette.lua")
 config.colors = palette
 
-config.font = wezterm.font("IosevkaTermSlab Nerd Font Mono")
+config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 16
 
 config.window_close_confirmation = "NeverPrompt"
