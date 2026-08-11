@@ -92,6 +92,15 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover)
 	}
 end)
 
+wezterm.on("update-status", function(window, _)
+	local workspace = window:active_workspace():gsub("^.*/", "")
+	window:set_left_status(wezterm.format({
+		{ Background = { Color = palette.background } },
+		{ Foreground = { Color = palette.ansi[4] } },
+		{ Text = " " .. workspace .. " " },
+	}))
+end)
+
 config.keys = {
 	{
 		key = "n",
