@@ -15,6 +15,7 @@ autoload -Uz _zinit
 ZSH_CONF="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
 
 source "$ZSH_CONF/less_colors"
+source "$ZSH_CONF/palette.zsh"
 
 ##############
 ### PROMPT ###
@@ -24,7 +25,23 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%F{#948a7d}%f%F{#e0b341}%~%f%F{#948a7d}%f %F{#c8bfae}${vcs_info_msg_0_}%f%F{#e0b341}%f '
+PROMPT='%F{$P_BASE04_HEX}%f%F{$P_BASE0A_HEX}%~%f%F{$P_BASE04_HEX}%f %F{$P_BASE05_HEX}${vcs_info_msg_0_}%f%F{$P_BASE0A_HEX}%f '
+
+# Switch color palette and reload every shell (all wezterm panes/tabs) to
+# pick it up: `palette <name>`
+palette() {
+	"${DOTFILES:-$HOME/s/dotfiles}/scripts/gen-palette" "$@" || return
+	[[ "$1" == "list" ]] && return
+	if command -v wezterm >/dev/null && command -v jq >/dev/null; then
+		wezterm cli list --format json 2>/dev/null |
+			jq -r --arg self "${WEZTERM_PANE:-}" \
+				'.[] | select((.title == "zsh" or .title == "bash") and (.pane_id | tostring) != $self) | "\(.pane_id) \(.title)"' |
+			while read -r pane_id shell; do
+				wezterm cli send-text --pane-id "$pane_id" --no-paste "exec $shell"$'\n'
+			done
+	fi
+	exec zsh
+}
 
 # thefuck (lazy: defer the ~48ms Python fork until first use)
 fuck() {

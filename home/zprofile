@@ -3,6 +3,7 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export DOTFILES="$HOME/s/dotfiles"
 
 export VOLTA_HOME="$HOME/.volta"
 export BREW_PATH="/opt/homebrew"

@@ -7,6 +7,7 @@ esac
 # Shared configs
 source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/aliases"
 source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/less_colors"
+source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/palette.zsh"
 
 # Shell-specific aliases
 alias ls='ls -F --color=auto'
@@ -29,5 +30,4 @@ __git_branch() {
 
 # Prompt: warm-white path + red branch + gold $
 # Distinct from zsh (gold path) — path color identifies the shell at a glance
-# #ddd4c4 = 221,212,196  |  #c77b6b = 199,123,107  |  #e0b341 = 224,179,65
-PS1='\[\e[38;2;221;212;196m\]\w\[\e[0m\] \[\e[38;2;199;123;107m\]$(__git_branch )\[\e[0m\]\[\e[38;2;224;179;65m\]\$\[\e[0m\] '
+PS1='\[\e[38;2;'"$P_BASE06_RGB"'m\]\w\[\e[0m\] \[\e[38;2;'"$P_BASE08_RGB"'m\]$(__git_branch )\[\e[0m\]\[\e[38;2;'"$P_BASE0A_RGB"'m\]\$\[\e[0m\] '
