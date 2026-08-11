@@ -57,7 +57,7 @@ config.colors.tab_bar = { background = palette.background }
 
 local tab_names = { "code", "gen", "ai" }
 
-wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
+wezterm.on("format-tab-title", function(tab, tabs, _, _, hover)
 	local background = palette.background
 	local foreground = palette.foreground
 
