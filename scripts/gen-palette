@@ -88,26 +88,51 @@ cat >"$repo/config/fzf/opts" <<EOF
 EOF
 
 # ---------------------------------------------------------------- wezterm
+# palette.lua reads straight from the nvim base16 table (dofile) so it never
+# needs regenerating here — only writes once if missing.
 mkdir -p "$repo/config/wezterm"
-cat >"$repo/config/wezterm/palette.lua" <<EOF
+if [[ ! -f "$repo/config/wezterm/palette.lua" ]]; then
+cat >"$repo/config/wezterm/palette.lua" <<'EOF'
+local wezterm = require("wezterm")
+local base16 = dofile(wezterm.config_dir .. "/../nvim/lua/zusk/palette.lua")
+
 return {
-	foreground = "${C[base05]}",
-	background = "${C[base00]}",
-	cursor_bg = "${C[base0A]}",
-	cursor_border = "${C[base0A]}",
-	cursor_fg = "${C[base00]}",
-	selection_fg = "${C[base06]}",
-	selection_bg = "${C[base02]}",
-	ansi = { "${C[base00]}", "${C[base08]}", "${C[base0B]}", "${C[base0A]}", "${C[base0D]}", "${C[base0E]}", "${C[base0C]}", "${C[base05]}" },
-	brights = { "${C[base03]}", "${C[base08]}", "${C[base0B]}", "${C[base0A]}", "${C[base0D]}", "${C[base0E]}", "${C[base0C]}", "${C[base07]}" },
+	foreground = base16.base05,
+	background = base16.base00,
+	cursor_bg = base16.base0A,
+	cursor_border = base16.base0A,
+	cursor_fg = base16.base00,
+	selection_fg = base16.base06,
+	selection_bg = base16.base02,
+	ansi = {
+		base16.base00,
+		base16.base08,
+		base16.base0B,
+		base16.base0A,
+		base16.base0D,
+		base16.base0E,
+		base16.base0C,
+		base16.base05,
+	},
+	brights = {
+		base16.base03,
+		base16.base08,
+		base16.base0B,
+		base16.base0A,
+		base16.base0D,
+		base16.base0E,
+		base16.base0C,
+		base16.base07,
+	},
 	tab_bar = {
-		background = "${C[base00]}",
-		active_tab = { bg_color = "${C[base00]}", fg_color = "${C[base0A]}" },
-		inactive_tab = { bg_color = "${C[base00]}", fg_color = "${C[base05]}" },
-		new_tab = { bg_color = "${C[base00]}", fg_color = "${C[base05]}" },
+		background = base16.base00,
+		active_tab = { bg_color = base16.base00, fg_color = base16.base0A },
+		inactive_tab = { bg_color = base16.base00, fg_color = base16.base05 },
+		new_tab = { bg_color = base16.base00, fg_color = base16.base05 },
 	},
 }
 EOF
+fi
 
 # ---------------------------------------------------------------- delta (git)
 mkdir -p "$repo/config/git"

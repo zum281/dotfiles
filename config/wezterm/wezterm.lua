@@ -62,7 +62,7 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, max_width)
 	local foreground = palette.foreground
 
 	if tab.is_active then
-		background = "#e0b341"
+		background = palette.ansi[4]
 		foreground = palette.background
 	elseif hover then
 		background = palette.selection_bg
