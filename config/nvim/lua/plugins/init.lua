@@ -21,10 +21,7 @@ vim.pack.add({
 	"https://github.com/theHamsta/nvim-dap-virtual-text",
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/stevearc/oil.nvim",
-	"https://github.com/nvim-orgmode/orgmode",
 	"https://github.com/nvim-telescope/telescope.nvim",
-	"https://github.com/JezerM/oil-lsp-diagnostics.nvim",
-	"https://github.com/benomahony/oil-git.nvim",
 })
 
 require("plugins.mini")
@@ -42,5 +39,4 @@ require("plugins.conjure")
 require("plugins.dap")
 require("plugins.wilder")
 require("plugins.oil")
-require("plugins.org")
 require("plugins.telescope")
