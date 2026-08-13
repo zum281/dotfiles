@@ -5,10 +5,10 @@
 	plus-style = syntax "#1c2417"
 	plus-emph-style = syntax "#2f3d22"
 	line-numbers-minus-style = "#5f8787"
-	line-numbers-plus-style = "#f3ecd4"
+	line-numbers-plus-style = "#dd9999"
 	line-numbers-zero-style = "#333333"
 	hunk-header-decoration-style = "#333333" box
-	file-style = "#eecc6c" bold
+	file-style = "#a06666" bold
 	file-decoration-style = "#333333" ul
-	commit-decoration-style = "#eecc6c" box
+	commit-decoration-style = "#a06666" box
 	blame-palette = "#000000" "#1a1714" "#222222"
