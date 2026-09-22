@@ -60,6 +60,10 @@
       "rev": "3c893af4152a417742e6ce96d9468b3f26359006",
       "src": "https://github.com/esmuellert/nvim-eslint"
     },
+    "nvim-lint": {
+      "rev": "3d55c8f67c6ae5c15e1042571e107c7a3d5c5f4e",
+      "src": "https://github.com/mfussenegger/nvim-lint"
+    },
     "nvim-nio": {
       "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
       "src": "https://github.com/nvim-neotest/nvim-nio"

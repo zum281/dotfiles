@@ -2,6 +2,7 @@ vim.pack.add({
 	"https://www.github.com/echasnovski/mini.nvim",
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/stevearc/conform.nvim",
+	"https://github.com/mfussenegger/nvim-lint",
 	"https://github.com/esmuellert/nvim-eslint",
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 	"https://github.com/mrjones2014/smart-splits.nvim",
@@ -33,6 +34,7 @@ require("plugins.smart-splits")
 require("plugins.autotag")
 require("plugins.gitsigns")
 require("plugins.diffview")
+require("plugins.lint")
 require("plugins.neogit")
 require("plugins.neotest")
 require("plugins.conjure")

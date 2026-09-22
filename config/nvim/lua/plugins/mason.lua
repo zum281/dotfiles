@@ -17,6 +17,12 @@ local ensure_installed = {
 	"ruff", -- ruff_ls + ruff_format
 	"jdtls", -- jdtls_ls (java)
 	"rust-analyzer", -- rust_analyzer
+	"dockerfile-language-server", -- dockerls
+	"docker-compose-language-service", -- docker_compose_language_service
+
+	-- linters
+	"hadolint", -- dockerfile linter (nvim-lint)
+
 	-- formatters
 	"stylua",
 	"prettierd",
