@@ -143,6 +143,9 @@ chord.maps(config, {
 	{ "<leader><Space>", sessionizer.show(sessionizer_schema), "sessionizer" },
 	{ "<leader>w", act.SplitPane({ direction = "Right" }), "split horizontal" },
 	{ "<leader>v", act.SplitPane({ direction = "Down" }), "split vertical" },
+	{ "<leader>e", wezterm.action_callback(function(_w, pane)
+		pane:send_text("spf\n")
+	end), "spf" },
 })
 
 local resurrect_mode = chord.mode("resurrect_mode", {
