@@ -1,0 +1,5 @@
+vim.api.nvim_create_user_command("Info", function(opts)
+	pcall(vim.api.nvim_del_user_command, "Info")
+	vim.cmd.packadd("info.vim")
+	vim.cmd("Info " .. opts.args)
+end, { nargs = "*" })

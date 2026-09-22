@@ -1,5 +1,5 @@
 vim.pack.add({
-	"https://www.github.com/echasnovski/mini.nvim",
+	"https://github.com/echasnovski/mini.nvim",
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/mfussenegger/nvim-lint",
@@ -8,22 +8,25 @@ vim.pack.add({
 	"https://github.com/mrjones2014/smart-splits.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/windwp/nvim-ts-autotag",
-	"https://github.com/sindrets/diffview.nvim",
-	"https://github.com/NeogitOrg/neogit",
 	"https://github.com/lewis6991/gitsigns.nvim",
-	"https://github.com/nvim-neotest/neotest",
-	"https://github.com/nvim-neotest/nvim-nio",
-	"https://github.com/antoinemadec/FixCursorHold.nvim",
-	"https://github.com/marilari88/neotest-vitest",
-	"https://gitlab.com/HiPhish/info.vim",
-	"https://github.com/Olical/conjure",
-	"https://github.com/mfussenegger/nvim-dap",
-	"https://github.com/rcarriga/nvim-dap-ui",
-	"https://github.com/theHamsta/nvim-dap-virtual-text",
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 })
+
+vim.pack.add({
+	"https://github.com/sindrets/diffview.nvim",
+	"https://github.com/NeogitOrg/neogit",
+	"https://github.com/mfussenegger/nvim-dap",
+	"https://github.com/rcarriga/nvim-dap-ui",
+	"https://github.com/theHamsta/nvim-dap-virtual-text",
+	"https://github.com/nvim-neotest/neotest",
+	"https://github.com/nvim-neotest/nvim-nio",
+	"https://github.com/antoinemadec/FixCursorHold.nvim",
+	"https://github.com/marilari88/neotest-vitest",
+	"https://github.com/Olical/conjure",
+	"https://gitlab.com/HiPhish/info.vim",
+}, { load = false })
 
 require("plugins.mini")
 require("plugins.mason")

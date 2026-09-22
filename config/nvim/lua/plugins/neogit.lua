@@ -1,4 +1,4 @@
--- Neogit quick reference  (open with <leader>G)
+-- Neogit quick reference  (open with <leader>g)
 -- All actions are popup-driven: press a letter to open a popup, then a sub-letter to act.
 --
 -- STAGE / ADD
@@ -34,22 +34,47 @@
 --   d          open diffview for file under cursor (status) or commit under cursor (log view)
 --   x          discard file or hunk under cursor
 
-require("neogit").setup({
-  kind                   = "split_above",
-  graph_style            = "kitty",
-  disable_insert_on_commit = "auto",
-  integrations = { diffview = true },
-  signs = {
-    hunk    = { "", "" },
-    item    = { "", "" },
-    section = { "", "" },
-  },
-  mappings = {
-    status = {
-      ["<space>"] = "Toggle",
-      ["x"]       = "Discard",
-      ["R"]       = "RefreshBuffer",
-      ["a"]       = "StageAll",
-    },
-  },
-})
+local M = {}
+local loaded = false
+function M.ensure()
+	if loaded then
+		return
+	end
+	loaded = true
+
+	require("plugins.diffview").ensure()
+	vim.cmd.packadd("neogit")
+
+	require("neogit").setup({
+		kind = "split_above",
+		graph_style = "kitty",
+		disable_insert_on_commit = "auto",
+		integrations = { diffview = true },
+		signs = {
+			hunk = { "", "" },
+			item = { "", "" },
+			section = { "", "" },
+		},
+		mappings = {
+			status = {
+				["<space>"] = "Toggle",
+				["x"] = "Discard",
+				["R"] = "RefreshBuffer",
+				["a"] = "StageAll",
+			},
+		},
+	})
+end
+
+function M.open(...)
+	M.ensure()
+	return require("neogit").open(...)
+end
+
+vim.api.nvim_create_user_command("Neogit", function(opts)
+	pcall(vim.api.nvim_del_user_command, "Neogit")
+	M.ensure()
+	vim.cmd("Neogit " .. opts.args)
+end, { nargs = "*" })
+
+return M

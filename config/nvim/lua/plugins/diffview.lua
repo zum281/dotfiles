@@ -1,15 +1,26 @@
--- diffview — side-by-side diff viewer, used by neogit (<enter> on file or d on commit)
--- q closes the entire diffview layout and returns to neogit
-require("diffview").setup({
-  keymaps = {
-    view = {
-      { "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Close diffview" } },
-    },
-    file_panel = {
-      { "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Close diffview" } },
-    },
-    file_history_panel = {
-      { "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Close diffview" } },
-    },
-  },
-})
+local M = {}
+local loaded = false
+function M.ensure()
+	if loaded then
+		return
+	end
+	loaded = true
+
+	vim.cmd.packadd("diffview.nvim")
+
+	require("diffview").setup({
+		keymaps = {
+			view = {
+				{ "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Close diffview" } },
+			},
+			file_panel = {
+				{ "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Close diffview" } },
+			},
+			file_history_panel = {
+				{ "n", "q", "<cmd>DiffviewClose<CR>", { desc = "Close diffview" } },
+			},
+		},
+	})
+end
+
+return M

@@ -65,7 +65,7 @@ end, { desc = "Blame line" })
 
 -- neogit
 set("n", "<leader>g", function()
-	require("neogit").open()
+	require("plugins.neogit").open()
 end, { desc = "Neogit" })
 
 -- neotest — vitest runner
@@ -75,18 +75,23 @@ end, { desc = "Neogit" })
 --   <leader>to   toggle output panel
 --   <leader>tx   stop running tests
 set("n", "<leader>tt", function()
+	require("plugins.neotest").ensure()
 	require("neotest").run.run(vim.fn.expand("%"))
 end, { desc = "Run file tests" })
 set("n", "<leader>tr", function()
+	require("plugins.neotest").ensure()
 	require("neotest").run.run()
 end, { desc = "Run nearest test" })
 set("n", "<leader>ts", function()
+	require("plugins.neotest").ensure()
 	require("neotest").summary.toggle()
 end, { desc = "Test summary" })
 set("n", "<leader>to", function()
+	require("plugins.neotest").ensure()
 	require("neotest").output_panel.toggle()
 end, { desc = "Test output" })
 set("n", "<leader>tx", function()
+	require("plugins.neotest").ensure()
 	require("neotest").run.stop()
 end, { desc = "Stop tests" })
 

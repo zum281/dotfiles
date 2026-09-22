@@ -17,6 +17,8 @@ end
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "racket",
 	callback = function(ev)
+		vim.cmd.packadd("conjure")
+		vim.cmd("runtime! ftplugin/racket.vim ftplugin/racket_*.vim ftplugin/racket/*.lua")
 		vim.api.nvim_buf_create_user_command(ev.buf, "RacketKill", racket_kill, {})
 		vim.keymap.set("n", "<LocalLeader>rk", racket_kill, {
 			buffer = ev.buf,
