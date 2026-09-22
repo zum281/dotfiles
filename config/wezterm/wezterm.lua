@@ -8,6 +8,18 @@ local sessionizer = plug("https://github.com/mikkasendke/sessionizer.wezterm")
 local chord = plug("https://github.com/sravioli/chord.wz")
 local resurrect = plug("https://github.com/StephenGemin/resurrect.wezterm")
 
+local function switch_workspace(window, pane, id)
+	wezterm.GLOBAL.previous_workspace = window:active_workspace()
+	window:perform_action(act.SwitchToWorkspace({ name = id, spawn = { cwd = id } }))
+end
+local function toggle_previous_workspace(window, pane)
+	local previous = wezterm.GLOBAL.previous_workspace
+	if not previous then
+		return
+	end
+	switch_workspace(window, pane, previous)
+end
+
 local sessionizer_schema = {
 	{ label = "general", id = wezterm.home_dir },
 	{ label = "~/notes", id = wezterm.home_dir .. "/notes" },
@@ -20,6 +32,12 @@ local sessionizer_schema = {
 		title = "",
 		prompt = "> ",
 		always_fuzzy = true,
+		callback = function(window, pane, id)
+			if not id then
+				return
+			end
+			switch_workspace(window, pane, id)
+		end,
 	},
 }
 
@@ -111,6 +129,11 @@ config.keys = {
 		key = ",",
 		mods = "CTRL",
 		action = act.PaneSelect({ alphabet = "1234567890" }),
+	},
+	{
+		key = "6",
+		mods = "ALT",
+		action = wezterm.action_callback(toggle_previous_workspace),
 	},
 }
 
