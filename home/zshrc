@@ -66,12 +66,6 @@ source "$ZSH_CONF/pickers.zsh"
 ###############
 source "$ZSH_CONF/aliases"
 
-# use bat instead of cat
-alias cat='bat'
-
-# eza aliases
-alias ls="eza --color=always -l --all --git --icons=always --no-time --no-user"
-alias tree="eza --tree --color=always --all --icons=always --git --no-filesize --no-time --no-user --no-permissions --level=3"
 
 #####################
 ### Other options ###
