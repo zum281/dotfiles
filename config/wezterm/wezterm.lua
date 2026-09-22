@@ -9,9 +9,9 @@ local chord = plug("https://github.com/sravioli/chord.wz")
 local resurrect = plug("https://github.com/StephenGemin/resurrect.wezterm")
 
 local sessionizer_schema = {
-	sessionizer.FdSearch({ wezterm.home_dir .. "/s", fd_path = "/opt/homebrew/bin/fd" }),
 	{ label = "general", id = wezterm.home_dir },
 	{ label = "~/notes", id = wezterm.home_dir .. "/notes" },
+	sessionizer.FdSearch({ wezterm.home_dir .. "/s", fd_path = "/opt/homebrew/bin/fd" }),
 	{ label = "~/s/l/learn-node", id = wezterm.home_dir .. "/s/l/learn-node" },
 	processing = sessionizer.for_each_entry(function(entry)
 		entry.label = entry.label:gsub(wezterm.home_dir, "~")
