@@ -4,6 +4,7 @@ fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export DOTFILES="$HOME/s/dotfiles"
+export IS_FAST_CONFIG_PATH="$XDC_CONFIG_HOME/is-fast/config.toml"
 
 export VOLTA_HOME="$HOME/.volta"
 export BREW_PATH="/opt/homebrew"
@@ -32,7 +33,3 @@ export LD_LIBRARY_PATH=/usr/local/lib
  else
    export EDITOR='nvim'
  fi
-
-
-# Added by Obsidian
-export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
