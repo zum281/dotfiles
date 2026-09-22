@@ -54,3 +54,7 @@ create_symlink ~/s/dotfiles/home/zprofile ~/.zprofile
 create_symlink ~/s/dotfiles/home/gitconfig-shared ~/.gitconfig-shared
 create_symlink ~/s/dotfiles/config/bat ~/.config/bat
 create_symlink ~/s/dotfiles/config/lazygit ~/.config/lazygit
+create_symlink ~/s/dotfiles/config/is-fast ~/.config/is-fast
+create_symlink ~/s/dotfiles/config/superfile/config.toml ~/.config/superfile/config.toml
+create_symlink ~/s/dotfiles/config/superfile/hotkeys.toml ~/.config/superfile/hotkeys.toml
+create_symlink ~/s/dotfiles/config/superfile/theme/dotfiles.toml ~/.config/superfile/theme/dotfiles.toml
