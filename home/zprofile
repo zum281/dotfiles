@@ -4,7 +4,7 @@ fi
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export DOTFILES="$HOME/s/dotfiles"
-export IS_FAST_CONFIG_PATH="$XDC_CONFIG_HOME/is-fast/config.toml"
+export IS_FAST_CONFIG_DIR="$XDG_CONFIG_HOME/is-fast"
 
 export VOLTA_HOME="$HOME/.volta"
 export BREW_PATH="/opt/homebrew"
