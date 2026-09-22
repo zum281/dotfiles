@@ -16,6 +16,7 @@ local ensure_installed = {
 	"pyright", -- pyright_ls
 	"ruff", -- ruff_ls + ruff_format
 	"jdtls", -- jdtls_ls (java)
+	"rust-analyzer", -- rust_analyzer
 	-- formatters
 	"stylua",
 	"prettierd",

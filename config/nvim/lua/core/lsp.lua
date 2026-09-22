@@ -16,6 +16,7 @@ vim.lsp.enable({
   "ruff_ls",
   "jdtls_ls",
   "racket_ls",
+  "rust_analyzer",
 })
 
 vim.diagnostic.config({

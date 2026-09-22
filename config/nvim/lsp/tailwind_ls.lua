@@ -6,4 +6,11 @@ return {
     { "postcss.config.js",  "postcss.config.cjs",  "postcss.config.ts",  "postcss.config.mjs" },
     ".git",
   },
+  settings = {
+    tailwindCSS = {
+      lint = {
+        cssConflict = "ignore",
+      },
+    },
+  },
 }
