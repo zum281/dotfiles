@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+GREEN='\033[0;32m'
+GOLD='\033[0;33m'
+DIM='\033[2m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+require_volta() {
+  if ! command -v volta &>/dev/null; then
+    echo -e "${RED}x${NC} volta not found on PATH"
+    exit 1
+  fi
+}
+
+list_runtimes() {
+  volta list all | sed -n 's/^runtime //p' | while read -r line; do
+    printf "${GOLD}%s${NC}\n" "$line"
+  done
+}
+
+list_managers() {
+  volta list all | sed -n 's/^package-manager //p' | while read -r line; do
+    printf "${GOLD}%s${NC}\n" "$line"
+  done
+}
+
+list_tools() {
+  volta list all | awk '
+  /^package/ {
+    pkg = $2
+    rt= ""
+    for (i = 1; i <= NF; i++) if ($i ~ /^node@/) rt = $i
+    print pkg, rt
+  }' | while read -r pkg rt; do
+    printf "${GOLD}%-45s${NC} ${DIM}%s${NC}\n" "$pkg" "$rt"
+  done
+}
+
+main() {
+  require_volta
+
+  echo -e "${GREEN}runtimes${NC}"
+  list_runtimes
+
+  managers=$(list_managers)
+  if [ -n "$managers" ]; then
+    echo
+    echo -e "${GREEN}package managers${NC}"
+    echo "$managers"
+  fi
+
+  tools=$(list_tools)
+  if [ -n "$tools" ]; then
+    echo
+    echo -e "${GREEN}tools${NC}"
+    echo "$tools"
+  else
+    echo
+    echo -e "${GOLD}no tools installed${NC}"
+  fi
+}
+
+main "$@"
