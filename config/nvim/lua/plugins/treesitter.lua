@@ -53,6 +53,8 @@ if ok then
 	end
 end
 
+vim.treesitter.language.register("css", "tailwindcss")
+
 vim.api.nvim_create_autocmd("FileType", {
 	callback = function(ev)
 		local max_filesize = 100 * 1024

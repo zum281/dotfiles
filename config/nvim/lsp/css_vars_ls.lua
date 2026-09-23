@@ -1,4 +1,4 @@
 return {
   cmd = { "css-variables-language-server", "--stdio" },
-  filetypes = { "css", "scss", "less" },
+  filetypes = { "css", "tailwindcss", "scss", "less" },
 }
