@@ -7,10 +7,11 @@ local plug = wezterm.plugin.require
 local sessionizer = plug("https://github.com/mikkasendke/sessionizer.wezterm")
 local chord = plug("https://github.com/sravioli/chord.wz")
 local resurrect = plug("https://github.com/StephenGemin/resurrect.wezterm")
+resurrect.pane_tree.max_nlines = 300
 
 local function switch_workspace(window, pane, id)
 	wezterm.GLOBAL.previous_workspace = window:active_workspace()
-	window:perform_action(act.SwitchToWorkspace({ name = id, spawn = { cwd = id } }))
+	window:perform_action(act.SwitchToWorkspace({ name = id, spawn = { cwd = id } }), pane)
 end
 local function toggle_previous_workspace(window, pane)
 	local previous = wezterm.GLOBAL.previous_workspace
@@ -48,7 +49,7 @@ chord.setup({
 
 resurrect.setup(config, {
 	periodic_interval = 300,
-	save_on_focus_loss = true,
+	save_on_focus_loss = false,
 	keybindings = false,
 	status_bar = false,
 })
@@ -74,7 +75,7 @@ config.show_close_tab_button_in_tabs = false
 
 config.colors.tab_bar = { background = palette.background }
 
-local tab_names = { "code", "gen", "ai" }
+local tab_names = { "code", "gen", "search", "ai" }
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover)
 	local background = palette.background
