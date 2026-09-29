@@ -1,0 +1,122 @@
+#!/usr/bin/env bash
+
+read_input() {
+	cat
+}
+
+dir_segment() {
+	local cwd=$1
+	if [[ $cwd == "$HOME" ]]; then
+		printf '~'
+	elif [[ $cwd == "$HOME"/* ]]; then
+		printf '~%s' "${cwd#"$HOME"}"
+	else
+		printf '%s' "$cwd"
+	fi
+}
+
+branch_segment() {
+	local cwd=$1 branch
+	command -v git > /dev/null 2>&1 || return 0
+	git -C "$cwd" rev-parse --git-dir > /dev/null 2>&1 || return 0
+	branch=$(git -C "$cwd" branch --show-current 2>/dev/null)
+	if [[ -z $branch ]]; then
+		branch=$(git -C "$cwd" rev-parse --short HEAD 2>/dev/null)
+	fi
+	printf '%s' "$branch"
+}
+
+context_segment() {
+	local pct=$1
+	printf '%s' "${pct%.*}"
+}
+
+agent_segment() {
+	local agent=$1
+	[[ -n $agent && $agent != "null" ]] && printf '%s' "$agent"
+}
+
+caveman_segment() {
+	local flag="${CLAUDE_CONFIG_DIR:-$HOME/.claude}/.caveman-active"
+	local mode
+
+	if [[ -L $flag || ! -f $flag ]]; then
+		printf 'caveman:off'
+		return 0
+	fi
+
+	mode=$(head -c 64 "$flag" 2>/dev/null | tr -d '\n\r' | tr '[:upper:]' '[:lower:]')
+	mode=$(printf '%s' "$mode" | tr -cd 'a-z0-9-')
+
+	case "$mode" in
+		off | lite | full | ultra | wenyan | wenyan-lite | wenyan-full | wenyan-ultra | commit | review | compress)
+			printf 'caveman:%s' "$mode"
+			;;
+		*)
+			printf 'caveman:off'
+			;;
+	esac
+}
+
+join_segments() {
+	local sep=' | ' out='' seg
+	for seg in "$@"; do
+		[[ -z $seg ]] && continue
+		if [[ -z $out ]]; then
+			out=$seg
+		else
+			out="${out}${sep}${seg}"
+		fi
+	done
+	printf '%s' "$out"
+}
+
+supports_truecolor() {
+	[[ $COLORTERM == "truecolor" || $COLORTERM == "24bit" ]]
+}
+
+colorize() {
+	local text=$1 rgb=$2
+	if supports_truecolor; then
+		printf '\033[38;2;%sm%s\033[0m' "$rgb" "$text"
+	else
+		printf '%s' "$text"
+	fi
+}
+
+main() {
+	local input cwd agent pct
+	local dir branch context agent_seg caveman
+	local line1 line2
+
+	input=$(read_input)
+	cwd=$(printf '%s' "$input" | jq -r '.workspace.current_dir // .cwd // empty')
+	agent=$(printf '%s' "$input" | jq -r '.agent.name // empty')
+	pct=$(printf '%s' "$input" | jq -r '.context_window.used_percentage // 0')
+
+	dir=$(dir_segment "$cwd")
+	branch=$(branch_segment "$cwd")
+
+	context=$(context_segment "$pct")
+	if ((context >= 65)); then
+		# base08 #c77b6b, config/nvim/lua/zusk/palette.lua
+		context=$(colorize "${context}%" '199;123;107')
+	elif ((context >= 50)); then
+		# base0A #e0b341, config/nvim/lua/zusk/palette.lua
+		context=$(colorize "${context}%" '224;179;65')
+	else
+		# base0B #9aa56b, config/nvim/lua/zusk/palette.lua
+		context=$(colorize "${context}%" '154;165;107')
+	fi
+
+	agent_seg=$(agent_segment "$agent")
+	caveman=$(caveman_segment)
+
+	line1=$(join_segments "$dir" "$branch")
+	line2=$(join_segments "$context" "$agent_seg" "$caveman")
+
+	printf '%s\n' "$line1"
+	printf '%s\n' "$line2"
+}
+
+main
