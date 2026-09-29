@@ -13,6 +13,7 @@ alias vi='nvim'
 alias lg='lazygit'
 alias lldb='/opt/homebrew/opt/llvm/bin/lldb'
 alias /='is-fast'
+alias c='claude'
 
 # git aliases
 alias g='git'
