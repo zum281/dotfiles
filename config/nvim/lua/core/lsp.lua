@@ -60,20 +60,16 @@ vim.diagnostic.config({
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		local provider = client and client.server_capabilities.completionProvider
-		if not provider then
+		if not (client and client.server_capabilities.completionProvider) then
 			return
 		end
-		-- autotrigger only fires on triggerCharacters; add word chars to complete as you type
-		local chars = provider.triggerCharacters or {}
-		for c = ("a"):byte(), ("z"):byte() do
-			chars[#chars + 1] = string.char(c)
-		end
-		for c = ("A"):byte(), ("Z"):byte() do
-			chars[#chars + 1] = string.char(c)
-		end
-		chars[#chars + 1] = "_"
-		provider.triggerCharacters = chars
-		vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+		vim.lsp.completion.enable(true, client.id, args.buf)
+		vim.keymap.set("i", "<C-j>", function()
+			if vim.fn.complete_info({ "mode" }).mode == "eval" then
+				vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "n", false)
+			else
+				vim.lsp.completion.get()
+			end
+		end, { buffer = args.buf, desc = "LSP completion/cycle" })
 	end,
 })

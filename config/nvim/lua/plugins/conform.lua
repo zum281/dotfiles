@@ -9,6 +9,7 @@ require("conform").setup({
     css            = { "prettierd", "prettier", stop_after_first = true },
     tailwindcss    = { "prettierd", "prettier", stop_after_first = true },
     json           = { "prettierd", "prettier", stop_after_first = true },
+    jsonc          = { "prettierd", "prettier", stop_after_first = true },
     markdown       = { "prettierd", "prettier", stop_after_first = true },
     go             = { "goimports" },
     python         = { "ruff_format" },
