@@ -36,6 +36,7 @@ fi
 
 info "Installing font and essential applications..."
 brew install --cask font-jetbrains-mono-nerd-font
+brew install --cask font-iosevka-term-slab-nerd-font
 brew install --cask wezterm@nightly
 brew install --cask raycast
 

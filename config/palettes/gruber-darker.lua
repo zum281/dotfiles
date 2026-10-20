@@ -1,0 +1,19 @@
+-- base16: Gruber Darker, ported from https://github.com/rexim/gruber-darker-theme
+return {
+	base00 = "#080808",
+	base01 = "#181818",
+	base02 = "#453d41",
+	base03 = "#52494e",
+	base04 = "#95a99f",
+	base05 = "#e4e4ef",
+	base06 = "#f4f4ff",
+	base07 = "#ffffff",
+	base08 = "#f43841",
+	base09 = "#cc8c3c",
+	base0A = "#ffdd33",
+	base0B = "#73c936",
+	base0C = "#95a99f",
+	base0D = "#96a6c8",
+	base0E = "#9e95c7",
+	base0F = "#c73c3f",
+}

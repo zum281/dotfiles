@@ -17,48 +17,48 @@ engine = "duckduckgo"
 theme = "base16-ocean.dark"
 
 [display]
-border_color = "#e0b341"
+border_color = "#ffdd33"
 
 [history]
-title_color = "#e0b341"
-url_color = "#948a7d"
-time_color = "#cf9163"
-text_color = "#7fa99b"
+title_color = "#ffdd33"
+url_color = "#95a99f"
+time_color = "#cc8c3c"
+text_color = "#95a99f"
 
 [styles.a]
-fg = "#8ba0bd"
+fg = "#96a6c8"
 
 [styles.img]
-fg = "#c77b6b"
+fg = "#f43841"
 bold = true
 
 [styles.blockquote]
-fg = "#6f655a"
+fg = "#52494e"
 italic = true
 
 [styles.mark]
-fg = "#000000"
-bg = "#e0b341"
+fg = "#080808"
+bg = "#ffdd33"
 
 [styles.kbd]
-fg = "#000000"
-bg = "#2a2521"
+fg = "#080808"
+bg = "#453d41"
 
 [styles.var]
-fg = "#c77b6b"
+fg = "#f43841"
 italic = true
 
 [styles.samp]
-fg = "#b58cb0"
+fg = "#9e95c7"
 
 [styles.small]
-fg = "#948a7d"
+fg = "#95a99f"
 
 [styles.sub]
-fg = "#948a7d"
+fg = "#95a99f"
 
 [styles.sup]
-fg = "#948a7d"
+fg = "#95a99f"
 
 [styles.dd]
-fg = "#948a7d"
+fg = "#95a99f"
