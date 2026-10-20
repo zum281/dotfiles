@@ -1,3 +1,5 @@
+require("plugins.markdown-preview")
+
 vim.pack.add({
 	"https://github.com/echasnovski/mini.nvim",
 	"https://github.com/mason-org/mason.nvim",
@@ -12,6 +14,7 @@ vim.pack.add({
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/iamcco/markdown-preview.nvim",
 })
 
 vim.pack.add({
