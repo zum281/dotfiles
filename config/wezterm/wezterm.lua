@@ -58,6 +58,7 @@ wezterm.on("gui-startup", resurrect.state_manager.resurrect_on_gui_startup)
 local palette = dofile(wezterm.config_dir .. "/palette.lua")
 config.colors = palette
 
+-- usually "IosevkaTermSlab Nerd Font" or "JetBrainsMono Nerd Font"
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 16
 
