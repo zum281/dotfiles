@@ -1,1 +1,1 @@
-require("smart-splits").setup({ at_edge = "wrap" })
+require("smart-splits").setup({ move = { at_edge = "wrap" } })
