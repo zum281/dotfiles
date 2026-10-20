@@ -26,7 +26,6 @@ local sessionizer_schema = {
 	{ label = "~/music", id = wezterm.home_dir .. "/Music/mp3" },
 	{ label = "~/notes", id = wezterm.home_dir .. "/notes" },
 	sessionizer.FdSearch({ wezterm.home_dir .. "/s", fd_path = "/opt/homebrew/bin/fd" }),
-	{ label = "~/s/l/learn-node", id = wezterm.home_dir .. "/s/l/learn-node" },
 	processing = sessionizer.for_each_entry(function(entry)
 		entry.label = entry.label:gsub(wezterm.home_dir, "~")
 	end),
