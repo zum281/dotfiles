@@ -14,6 +14,7 @@ vim.pack.add({
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/MunifTanjim/nui.nvim",
 	"https://github.com/X3eRo0/dired.nvim",
+	"https://github.com/nvim-tree/nvim-tree.lua",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/iamcco/markdown-preview.nvim",
 })
@@ -48,4 +49,5 @@ require("plugins.conjure")
 require("plugins.dap")
 require("plugins.wilder")
 require("plugins.dired")
+require("plugins.nvim-tree")
 require("plugins.telescope")
