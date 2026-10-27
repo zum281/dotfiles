@@ -37,6 +37,9 @@ set("n", "<leader>yy", function() -- show file path
 	print("file:", path)
 end, { desc = "Copy full file path" })
 
+-- dired
+set("n", "-", ":Dired<cr>", { desc = "Dired" })
+
 -- gitsigns — hunk navigation and staging
 set("n", "g]", function()
 	require("gitsigns").next_hunk()

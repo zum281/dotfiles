@@ -16,6 +16,10 @@
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
     },
+    "dired.nvim": {
+      "rev": "7cf5ceb69a6bbea547f97397fa5310b1571eb03a",
+      "src": "https://github.com/X3eRo0/dired.nvim"
+    },
     "gitsigns.nvim": {
       "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
@@ -48,6 +52,10 @@
       "rev": "b0c265743c877058068dbc40d104ea5d40e6b257",
       "src": "https://github.com/marilari88/neotest-vitest"
     },
+    "nui.nvim": {
+      "rev": "10fc361835c856ba4233ef5ea135b919bf3dce97",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
     "nvim-dap": {
       "rev": "cfa2d58f4537aca6ca83e2de1a0d9f1491121264",
       "src": "https://github.com/mfussenegger/nvim-dap"
@@ -79,18 +87,6 @@
     "nvim-ts-autotag": {
       "rev": "d7220b55e16ed3c04e88086256def5d282429493",
       "src": "https://github.com/windwp/nvim-ts-autotag"
-    },
-    "oil-git.nvim": {
-      "rev": "95b0d83f70e5e3e889f4d2f8b70eba5185ff67b6",
-      "src": "https://github.com/benomahony/oil-git.nvim"
-    },
-    "oil-lsp-diagnostics.nvim": {
-      "rev": "282308383d8d8485937aaf3c28b44fa1cb26007a",
-      "src": "https://github.com/JezerM/oil-lsp-diagnostics.nvim"
-    },
-    "oil.nvim": {
-      "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
-      "src": "https://github.com/stevearc/oil.nvim"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
