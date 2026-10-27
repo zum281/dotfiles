@@ -77,3 +77,4 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_keepdir = 0
 
 vim.opt.termguicolors = true
+vim.opt.cursorline = true
