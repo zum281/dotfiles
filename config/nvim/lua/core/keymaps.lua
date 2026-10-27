@@ -25,6 +25,9 @@ set("n", "<C-l>", function()
 	require("smart-splits").move_cursor_right()
 end, { desc = "Move to right split/pane" })
 
+-- find-file: prompt prefilled with the buffer's directory
+set("n", "<C-f>", ":edit <C-r>=expand('%:p:h')<CR>/", { desc = "Edit file from buffer dir" })
+
 -- clear search highlights
 set({ "n", "v" }, "<Esc><Esc>", ":nohlsearch<cr>", { desc = "clear search highlights" })
 
