@@ -63,8 +63,8 @@ config.font_size = 16
 
 config.window_close_confirmation = "NeverPrompt"
 
-config.window_background_opacity = 0.92
-config.macos_window_background_blur = 28
+config.window_background_opacity = 1
+config.macos_window_background_blur = 0
 
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
@@ -145,9 +145,6 @@ chord.maps(config, {
 	{ "<leader><Space>", sessionizer.show(sessionizer_schema), "sessionizer" },
 	{ "<leader>w", act.SplitPane({ direction = "Right" }), "split horizontal" },
 	{ "<leader>v", act.SplitPane({ direction = "Down" }), "split vertical" },
-	{ "<leader>e", wezterm.action_callback(function(_w, pane)
-		pane:send_text("spf\n")
-	end), "spf" },
 })
 
 local resurrect_mode = chord.mode("resurrect_mode", {
