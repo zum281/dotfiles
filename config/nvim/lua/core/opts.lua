@@ -25,7 +25,6 @@ vim.opt.signcolumn = "yes"
 vim.opt.showmatch = true
 vim.opt.cmdheight = 1
 vim.opt.completeopt = "fuzzy,nosort"
-vim.opt.showmode = false
 vim.opt.pumheight = 10
 vim.opt.pumblend = 10
 vim.opt.winblend = 0
