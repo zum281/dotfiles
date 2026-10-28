@@ -28,6 +28,7 @@ wilder.set_option(
 	wilder.wildmenu_renderer({
 		mode = "statusline",
 		highlighter = wilder.basic_highlighter(),
+		hl = "WilderDefault",
 		highlights = {
 			accent = "WilderAccent",
 			selected = "WilderSelected",

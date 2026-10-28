@@ -20,6 +20,10 @@
       "rev": "fd780920613e541cbdfac41bf711583ed49f9249",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "gruber-darker-renaissance": {
+      "rev": "f38cf942f797e869aebcdb7ae5e9c16c39869008",
+      "src": "https://github.com/kryptamine/gruber-darker-renaissance"
+    },
     "info.vim": {
       "rev": "1b733161dde2ae73922049fe4301defd8a2eddcd",
       "src": "https://gitlab.com/HiPhish/info.vim"

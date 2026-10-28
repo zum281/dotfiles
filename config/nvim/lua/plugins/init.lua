@@ -14,7 +14,10 @@ vim.pack.add({
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/iamcco/markdown-preview.nvim",
+	"https://github.com/kryptamine/gruber-darker-renaissance",
 })
+
+require("plugins.colorscheme")
 
 vim.pack.add({
 	"https://github.com/sindrets/diffview.nvim",
