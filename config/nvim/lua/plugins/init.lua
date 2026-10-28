@@ -9,6 +9,7 @@ vim.pack.add({
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
 	"https://github.com/kryptamine/gruber-darker-renaissance",
+	"https://github.com/echasnovski/mini.surround",
 })
 
 require("plugins.colorscheme")
@@ -31,3 +32,4 @@ require("plugins.neogit")
 require("plugins.neotest")
 require("plugins.wilder")
 require("plugins.telescope")
+require("plugins.mini-surround")
