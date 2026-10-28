@@ -8,10 +8,6 @@
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
     },
-    "conjure": {
-      "rev": "b23c76a8c874fe7ac5ad95255efc66173b049088",
-      "src": "https://github.com/Olical/conjure"
-    },
     "diffview.nvim": {
       "rev": "4516612fe98ff56ae0415a259ff6361a89419b0a",
       "src": "https://github.com/sindrets/diffview.nvim"
@@ -23,10 +19,6 @@
     "gruber-darker-renaissance": {
       "rev": "f38cf942f797e869aebcdb7ae5e9c16c39869008",
       "src": "https://github.com/kryptamine/gruber-darker-renaissance"
-    },
-    "info.vim": {
-      "rev": "1b733161dde2ae73922049fe4301defd8a2eddcd",
-      "src": "https://gitlab.com/HiPhish/info.vim"
     },
     "markdown-preview.nvim": {
       "rev": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",

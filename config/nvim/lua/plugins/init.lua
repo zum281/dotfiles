@@ -29,8 +29,6 @@ vim.pack.add({
 	"https://github.com/nvim-neotest/nvim-nio",
 	"https://github.com/antoinemadec/FixCursorHold.nvim",
 	"https://github.com/marilari88/neotest-vitest",
-	"https://github.com/Olical/conjure",
-	"https://gitlab.com/HiPhish/info.vim",
 }, { load = false })
 
 require("plugins.mini")
@@ -45,7 +43,6 @@ require("plugins.diffview")
 require("plugins.lint")
 require("plugins.neogit")
 require("plugins.neotest")
-require("plugins.conjure")
 require("plugins.dap")
 require("plugins.wilder")
 require("plugins.telescope")
