@@ -5,25 +5,40 @@ gui:
   shortTimeFormat: 13:04
   theme:
     activeBorderColor:
-      - '#ffdd33'
+      - '#efd45b'
       - bold
     inactiveBorderColor:
-      - '#52494e'
+      - '#484848'
     searchingActiveBorderColor:
-      - '#cc8c3c'
+      - '#9fb2d6'
       - bold
     optionsTextColor:
-      - '#95a99f'
+      - '#9fb2d6'
+    selectedLineFgColor:
+      - '#efd45b'
+      - bold
     selectedLineBgColor:
-      - '#453d41'
-    cherryPickedCommitBgColor:
-      - '#ffdd33'
+      - '#1e1e1e'
+    inactiveViewSelectedLineBgColor:
+      - '#1e1e1e'
     cherryPickedCommitFgColor:
-      - '#080808'
+      - '#000000'
+    cherryPickedCommitBgColor:
+      - '#9fb2d6'
+    markedBaseCommitFgColor:
+      - '#000000'
+    markedBaseCommitBgColor:
+      - '#9e95c7'
     unstagedChangesColor:
-      - '#f43841'
+      - '#d64c4b'
     defaultFgColor:
-      - '#e4e4ef'
+      - '#d2d2cc'
+    authorColors:
+      '*': '#96a29c'
+    branchColorPatterns:
+      '^(main|master)$': '#efd45b'
+      '^(feat|feature)/': '#8ac568'
+      '^(fix|hotfix|bug)/': '#d64c4b'
   commitLength:
     show: true
   showListFooter: false

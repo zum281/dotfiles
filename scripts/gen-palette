@@ -7,7 +7,7 @@
 #   - config/zsh/palette.zsh     (sourced by home/zshrc and home/bashrc)
 #   - config/is-fast/config.toml (only its color keys; other sections are
 #     hand-maintained and left untouched — see comment above that block)
-# Not generated (full-file artifacts, hand-maintained): config/bat/themes/ember.tmTheme.
+# Not generated (full-file artifacts, hand-maintained): config/bat/themes/gruber-darker-renaissance.tmTheme.
 # It is already palette-correct; update by hand if the palette changes.
 
 log_info() { printf "%sℹ%s gen-palette: %s\n" "$(tput setaf 4)" "$(tput sgr0)" "$*"; }
@@ -97,11 +97,11 @@ EOF
 mkdir -p "$repo/config/git"
 cat >"$repo/config/git/delta.gitconfig" <<EOF
 [delta]
-	syntax-theme = ember
-	minus-style = syntax "#2a1a17"
-	minus-emph-style = syntax "#4a2420"
-	plus-style = syntax "#1c2417"
-	plus-emph-style = syntax "#2f3d22"
+	syntax-theme = gruber-darker-renaissance
+	minus-style = syntax "#2a1516"
+	minus-emph-style = syntax "#732727"
+	plus-style = syntax "#1b2e12"
+	plus-emph-style = syntax "#476834"
 	line-numbers-minus-style = "${C[base08]}"
 	line-numbers-plus-style = "${C[base0B]}"
 	line-numbers-zero-style = "${C[base03]}"
@@ -109,7 +109,7 @@ cat >"$repo/config/git/delta.gitconfig" <<EOF
 	file-style = "${C[base0A]}" bold
 	file-decoration-style = "${C[base03]}" ul
 	commit-decoration-style = "${C[base0A]}" box
-	blame-palette = "${C[base00]}" "#1a1714" "${C[base02]}"
+	blame-palette = "${C[base00]}" "${C[base01]}" "${C[base02]}"
 EOF
 
 # ---------------------------------------------------------------- lazygit
@@ -125,22 +125,37 @@ gui:
       - '${C[base0A]}'
       - bold
     inactiveBorderColor:
-      - '${C[base03]}'
+      - '${C[base02]}'
     searchingActiveBorderColor:
-      - '${C[base09]}'
+      - '${C[base0D]}'
       - bold
     optionsTextColor:
-      - '${C[base04]}'
-    selectedLineBgColor:
-      - '${C[base02]}'
-    cherryPickedCommitBgColor:
+      - '${C[base0D]}'
+    selectedLineFgColor:
       - '${C[base0A]}'
+      - bold
+    selectedLineBgColor:
+      - '${C[base01]}'
+    inactiveViewSelectedLineBgColor:
+      - '${C[base01]}'
     cherryPickedCommitFgColor:
       - '${C[base00]}'
+    cherryPickedCommitBgColor:
+      - '${C[base0D]}'
+    markedBaseCommitFgColor:
+      - '${C[base00]}'
+    markedBaseCommitBgColor:
+      - '${C[base0E]}'
     unstagedChangesColor:
       - '${C[base08]}'
     defaultFgColor:
       - '${C[base05]}'
+    authorColors:
+      '*': '${C[base0C]}'
+    branchColorPatterns:
+      '^(main|master)\$': '${C[base0A]}'
+      '^(feat|feature)/': '${C[base0B]}'
+      '^(fix|hotfix|bug)/': '${C[base08]}'
   commitLength:
     show: true
   showListFooter: false

@@ -17,48 +17,48 @@ engine = "duckduckgo"
 theme = "base16-ocean.dark"
 
 [display]
-border_color = "#ffdd33"
+border_color = "#efd45b"
 
 [history]
-title_color = "#ffdd33"
-url_color = "#95a99f"
+title_color = "#efd45b"
+url_color = "#8c8c8c"
 time_color = "#cc8c3c"
-text_color = "#95a99f"
+text_color = "#96a29c"
 
 [styles.a]
-fg = "#96a6c8"
+fg = "#9fb2d6"
 
 [styles.img]
-fg = "#f43841"
+fg = "#d64c4b"
 bold = true
 
 [styles.blockquote]
-fg = "#52494e"
+fg = "#6e6a64"
 italic = true
 
 [styles.mark]
-fg = "#080808"
-bg = "#ffdd33"
+fg = "#000000"
+bg = "#efd45b"
 
 [styles.kbd]
-fg = "#080808"
-bg = "#453d41"
+fg = "#000000"
+bg = "#484848"
 
 [styles.var]
-fg = "#f43841"
+fg = "#d64c4b"
 italic = true
 
 [styles.samp]
 fg = "#9e95c7"
 
 [styles.small]
-fg = "#95a99f"
+fg = "#8c8c8c"
 
 [styles.sub]
-fg = "#95a99f"
+fg = "#8c8c8c"
 
 [styles.sup]
-fg = "#95a99f"
+fg = "#8c8c8c"
 
 [styles.dd]
-fg = "#95a99f"
+fg = "#8c8c8c"

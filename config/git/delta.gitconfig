@@ -1,14 +1,14 @@
 [delta]
-	syntax-theme = ember
-	minus-style = syntax "#2a1a17"
-	minus-emph-style = syntax "#4a2420"
-	plus-style = syntax "#1c2417"
-	plus-emph-style = syntax "#2f3d22"
-	line-numbers-minus-style = "#f43841"
-	line-numbers-plus-style = "#73c936"
-	line-numbers-zero-style = "#52494e"
-	hunk-header-decoration-style = "#52494e" box
-	file-style = "#ffdd33" bold
-	file-decoration-style = "#52494e" ul
-	commit-decoration-style = "#ffdd33" box
-	blame-palette = "#080808" "#1a1714" "#453d41"
+	syntax-theme = gruber-darker-renaissance
+	minus-style = syntax "#2a1516"
+	minus-emph-style = syntax "#732727"
+	plus-style = syntax "#1b2e12"
+	plus-emph-style = syntax "#476834"
+	line-numbers-minus-style = "#d64c4b"
+	line-numbers-plus-style = "#8ac568"
+	line-numbers-zero-style = "#6e6a64"
+	hunk-header-decoration-style = "#6e6a64" box
+	file-style = "#efd45b" bold
+	file-decoration-style = "#6e6a64" ul
+	commit-decoration-style = "#efd45b" box
+	blame-palette = "#000000" "#1e1e1e" "#484848"

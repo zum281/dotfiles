@@ -11,4 +11,4 @@
 --scrollbar='▏'
 --ellipsis='…'
 --cycle
---color=bg:#080808,fg:#e4e4ef,bg+:#080808,fg+:#ffdd33:bold,hl:#ffdd33:bold,hl+:#ffdd33:bold,gutter:#080808,border:#453d41,preview-border:#453d41,separator:#453d41,scrollbar:#453d41,label:#ffdd33,header:#ffdd33,info:#95a99f,prompt:#ffdd33,pointer:#ffdd33,marker:#73c936,selected-bg:#453d41,selected-fg:#cc8c3c,query:#ffffff,spinner:#73c936
+--color=bg:#000000,fg:#d2d2cc,bg+:#000000,fg+:#efd45b:bold,hl:#efd45b:bold,hl+:#efd45b:bold,gutter:#000000,border:#484848,preview-border:#484848,separator:#484848,scrollbar:#484848,label:#efd45b,header:#efd45b,info:#8c8c8c,prompt:#efd45b,pointer:#efd45b,marker:#8ac568,selected-bg:#484848,selected-fg:#cc8c3c,query:#ebebe6,spinner:#8ac568
