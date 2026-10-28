@@ -70,32 +70,11 @@ set("n", "<leader>g", function()
 	require("plugins.neogit").open()
 end, { desc = "Neogit" })
 
--- neotest — vitest runner
---   <leader>tt   run all tests in current file
---   <leader>tr   run nearest test (under cursor)
---   <leader>ts   toggle summary panel
---   <leader>to   toggle output panel
---   <leader>tx   stop running tests
+-- neotest (vitest): run all tests in current file
 set("n", "<leader>tt", function()
 	require("plugins.neotest").ensure()
 	require("neotest").run.run(vim.fn.expand("%"))
 end, { desc = "Run file tests" })
-set("n", "<leader>tr", function()
-	require("plugins.neotest").ensure()
-	require("neotest").run.run()
-end, { desc = "Run nearest test" })
-set("n", "<leader>ts", function()
-	require("plugins.neotest").ensure()
-	require("neotest").summary.toggle()
-end, { desc = "Test summary" })
-set("n", "<leader>to", function()
-	require("plugins.neotest").ensure()
-	require("neotest").output_panel.toggle()
-end, { desc = "Test output" })
-set("n", "<leader>tx", function()
-	require("plugins.neotest").ensure()
-	require("neotest").run.stop()
-end, { desc = "Stop tests" })
 
 --- Diagnostics
 set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Diagnostic float" })

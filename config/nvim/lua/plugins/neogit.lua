@@ -31,7 +31,6 @@
 --
 -- LOG
 --   l l        open log/graph view (graph_style: "ascii" | "unicode" | "kitty")
---   d          open diffview for file under cursor (status) or commit under cursor (log view)
 --   x          discard file or hunk under cursor
 
 local M = {}
@@ -42,14 +41,12 @@ function M.ensure()
 	end
 	loaded = true
 
-	require("plugins.diffview").ensure()
 	vim.cmd.packadd("neogit")
 
 	require("neogit").setup({
 		kind = "split_above",
 		graph_style = "kitty",
 		disable_insert_on_commit = "auto",
-		integrations = { diffview = true },
 		signs = {
 			hunk = { "", "" },
 			item = { "", "" },
