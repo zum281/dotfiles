@@ -1,5 +1,5 @@
 vim.opt.number = true
-vim.opt.cursorline = false
+vim.opt.cursorline = true
 vim.opt.wrap = true
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
@@ -29,7 +29,7 @@ vim.opt.showmode = false
 vim.opt.pumheight = 10
 vim.opt.pumblend = 10
 vim.opt.winblend = 0
-vim.opt.winborder = "rounded" -- default frame for floats (LSP hover, etc.)
+vim.opt.winborder = "single" -- default frame for floats (LSP hover, etc.)
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.fillchars = { eob = " " } -- hide ~ on empty lines
@@ -71,10 +71,11 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.wildoptions:append("fuzzy")
 
+-- netrw
 vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
+vim.g.netrw_liststyle = 1
 vim.g.netrw_browse_split = 0
 vim.g.netrw_keepdir = 0
+vim.g.netrw_hide = 0
 
 vim.opt.termguicolors = true
-vim.opt.cursorline = true
