@@ -1,7 +1,8 @@
 require("plugins.markdown-preview")
 
 vim.pack.add({
-	"https://github.com/echasnovski/mini.nvim",
+	"https://github.com/nvim-tree/nvim-web-devicons",
+	"https://github.com/prichrd/netrw.nvim",
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/mfussenegger/nvim-lint",
@@ -31,7 +32,8 @@ vim.pack.add({
 	"https://github.com/marilari88/neotest-vitest",
 }, { load = false })
 
-require("plugins.mini")
+require("plugins.devicons")
+require("plugins.netrw")
 require("plugins.mason")
 require("plugins.conform")
 require("plugins.eslint")
