@@ -66,8 +66,4 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.wildoptions:append("fuzzy")
 
--- netrw replaced by fyler
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.opt.termguicolors = true
