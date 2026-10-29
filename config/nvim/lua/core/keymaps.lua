@@ -62,8 +62,8 @@ set("n", "<leader>hR", function()
 	require("gitsigns").reset_buffer()
 end, { desc = "Reset buffer" })
 set("n", "<leader>hb", function()
-	require("gitsigns").blame_line()
-end, { desc = "Blame line" })
+	require("gitsigns").toggle_current_line_blame()
+end, { desc = "Toggle line blame" })
 
 -- neogit
 set("n", "<leader>g", function()
