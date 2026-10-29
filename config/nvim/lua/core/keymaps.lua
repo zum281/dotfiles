@@ -40,10 +40,10 @@ set("n", "<leader>yy", function() -- show file path
 end, { desc = "Copy full file path" })
 
 -- gitsigns — hunk navigation and staging
-set("n", "g]", function()
+set("n", "]h", function()
 	require("gitsigns").next_hunk()
 end, { desc = "Next hunk" })
-set("n", "g[", function()
+set("n", "[h", function()
 	require("gitsigns").prev_hunk()
 end, { desc = "Prev hunk" })
 set("n", "<leader>hs", function()
