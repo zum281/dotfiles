@@ -4,6 +4,10 @@
       "rev": "1900f89dc17c603eec29960f57c00bd9ae696495",
       "src": "https://github.com/antoinemadec/FixCursorHold.nvim"
     },
+    "autoclose.nvim": {
+      "rev": "bcad8e84d9cd78ba73433cb396b68e489af11e31",
+      "src": "https://github.com/m4xshen/autoclose.nvim"
+    },
     "conform.nvim": {
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -67,6 +71,10 @@
     "smart-splits.nvim": {
       "rev": "3629711db18279843618fda2e908700dcdc4b040",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
+    },
+    "tabout.nvim": {
+      "rev": "9a3499480a8e53dcaa665e2836f287e3b7764009",
+      "src": "https://github.com/abecodes/tabout.nvim"
     },
     "telescope.nvim": {
       "rev": "40aedd8a68c78a656a10a8d62d80c54af59420fb",

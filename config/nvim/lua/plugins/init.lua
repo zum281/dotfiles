@@ -13,6 +13,8 @@ vim.pack.add({
 	"https://github.com/echasnovski/mini.icons",
 	"https://github.com/j-hui/fidget.nvim",
 	"https://github.com/FylerOrg/fyler.nvim",
+	"https://github.com/m4xshen/autoclose.nvim",
+	"https://github.com/abecodes/tabout.nvim",
 })
 
 require("plugins.colorscheme")
@@ -38,3 +40,4 @@ require("plugins.telescope")
 require("plugins.mini-surround")
 require("plugins.fidget")
 require("plugins.fyler")
+require("plugins.autopairs")
