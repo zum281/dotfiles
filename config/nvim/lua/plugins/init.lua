@@ -11,7 +11,6 @@ vim.pack.add({
 	"https://github.com/kryptamine/gruber-darker-renaissance",
 	"https://github.com/echasnovski/mini.surround",
 	"https://github.com/j-hui/fidget.nvim",
-	"https://github.com/akinsho/toggleterm.nvim",
 })
 
 require("plugins.colorscheme")
@@ -36,4 +35,3 @@ require("plugins.wilder")
 require("plugins.telescope")
 require("plugins.mini-surround")
 require("plugins.fidget")
-require("plugins.toggleterm")
