@@ -63,7 +63,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if not (client and client.server_capabilities.completionProvider) then
 			return
 		end
-		vim.lsp.completion.enable(true, client.id, args.buf)
+		vim.lsp.completion.enable(true, client.id, args.buf, {
+			convert = function(item)
+				return { abbr = item.label:gsub("%b()", "") }
+			end,
+		})
 		vim.keymap.set("i", "<C-j>", function()
 			if vim.fn.complete_info({ "mode" }).mode == "eval" then
 				vim.api.nvim_feedkeys(vim.keycode("<C-n>"), "n", false)
@@ -71,5 +75,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				vim.lsp.completion.get()
 			end
 		end, { buffer = args.buf, desc = "LSP completion/cycle" })
+	end,
+})
+
+-- no option borders the completion docs popup yet (neovim/neovim#38248)
+vim.api.nvim_create_autocmd("CompleteChanged", {
+	callback = function()
+		vim.schedule(function()
+			local winid = vim.fn.complete_info({ "selected" }).preview_winid
+			if winid and vim.api.nvim_win_is_valid(winid) then
+				vim.api.nvim_win_set_config(winid, { border = "single" })
+			end
+		end)
 	end,
 })

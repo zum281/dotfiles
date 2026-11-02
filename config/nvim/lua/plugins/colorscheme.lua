@@ -6,6 +6,9 @@ require("gruber-darker-renaissance").setup({
 		hl.WilderAccent = { italic = true }
 		hl.WilderSelected = { fg = c.yellow, bold = true }
 		hl.WilderSelectedAccent = { fg = c.black, bg = c.yellow, bold = true }
+		hl.ErrorMsg = { fg = c.red }
+		hl.PmenuKind = { fg = c.gray }
+		hl.PmenuBorder = { fg = c.gray }
 		hl.OilDirHeader = { fg = c.syntax.string, bold = true }
 		hl.OilPermissions = { fg = c.fg }
 	end,

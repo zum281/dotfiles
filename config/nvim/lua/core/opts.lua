@@ -20,14 +20,19 @@ vim.opt.grepprg = "rg --vimgrep"
 vim.opt.signcolumn = "yes"
 vim.opt.showmatch = true
 vim.opt.cmdheight = 1
-vim.opt.completeopt = "menu,noinsert,noselect,fuzzy,nosort"
-vim.opt.pumheight = 10
-vim.opt.pumblend = 10
 vim.opt.winblend = 0
 vim.opt.winborder = "single" -- default frame for floats (LSP hover, etc.)
 vim.opt.conceallevel = 0
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.fillchars = { eob = " " } -- hide ~ on empty lines
+
+-- completion menu
+vim.opt.completeopt = "menu,menuone,noinsert,noselect,fuzzy,nosort,popup"
+vim.opt.completetimeout = 100
+vim.opt.pumheight = 10
+vim.opt.pumwidth = 25
+vim.opt.pummaxwidth = 70
+vim.opt.pumborder = "single"
 
 -- undo directory
 local undodir = vim.fn.expand("~/.vim/undodir")
