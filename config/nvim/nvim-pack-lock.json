@@ -40,6 +40,10 @@
       "rev": "a6549816e62cec7037f1549d8f1659d45635370c",
       "src": "https://github.com/NeogitOrg/neogit"
     },
+    "neoscroll.nvim": {
+      "rev": "c8d29979cb0cb3a2437a8e0ae683fd82f340d3b8",
+      "src": "https://github.com/karb94/neoscroll.nvim"
+    },
     "neotest": {
       "rev": "27bf921498043f7ecd821d6db68d05de244bbd02",
       "src": "https://github.com/nvim-neotest/neotest"
@@ -76,6 +80,10 @@
     "smart-splits.nvim": {
       "rev": "3629711db18279843618fda2e908700dcdc4b040",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
+    },
+    "smear-cursor.nvim": {
+      "rev": "f6cb57c342268177f719acc3968b9d8de3ecc969",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
     },
     "tabout.nvim": {
       "rev": "9a3499480a8e53dcaa665e2836f287e3b7764009",

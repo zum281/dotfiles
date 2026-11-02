@@ -15,6 +15,8 @@ vim.pack.add({
 	"https://github.com/stevearc/oil.nvim",
 	"https://github.com/j-hui/fidget.nvim",
 	"https://github.com/m4xshen/autoclose.nvim",
+	"https://github.com/sphamba/smear-cursor.nvim",
+	"https://github.com/karb94/neoscroll.nvim",
 	"https://github.com/abecodes/tabout.nvim",
 })
 
@@ -44,3 +46,4 @@ require("plugins.mini-icons")
 require("plugins.oil")
 require("plugins.fidget")
 require("plugins.autopairs")
+require("plugins.animate")
