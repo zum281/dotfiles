@@ -59,7 +59,7 @@ config.colors = palette
 
 -- usually "IosevkaTermSlab Nerd Font" or "JetBrainsMono Nerd Font"
 config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 16
+config.font_size = 18
 
 config.window_close_confirmation = "NeverPrompt"
 
