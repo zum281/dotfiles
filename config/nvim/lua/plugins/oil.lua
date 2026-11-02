@@ -17,11 +17,12 @@ local function ensure_header(bufnr)
 	end
 	local modified = vim.bo[bufnr].modified
 	local undolevels = vim.bo[bufnr].undolevels
+	local modifiable = vim.bo[bufnr].modifiable
 	vim.bo[bufnr].modifiable = true
 	vim.bo[bufnr].undolevels = -1
 	vim.api.nvim_buf_set_lines(bufnr, 0, 0, true, { header })
 	vim.bo[bufnr].undolevels = undolevels
-	vim.bo[bufnr].modifiable = false
+	vim.bo[bufnr].modifiable = modifiable
 	vim.bo[bufnr].modified = modified
 	vim.api.nvim_buf_clear_namespace(bufnr, ns, 0, -1)
 	vim.api.nvim_buf_set_extmark(bufnr, ns, 0, 0, { end_col = #prefix, conceal = "" })
