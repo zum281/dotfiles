@@ -26,8 +26,6 @@ zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
 PROMPT='%~ ${vcs_info_msg_0_} '
 
-# fzf shell integration
-eval "$(fzf --zsh)"
 
 #####################
 ### Config modules ##
@@ -35,7 +33,6 @@ eval "$(fzf --zsh)"
 source "$ZSH_CONF/plugins.zsh"
 source "$ZSH_CONF/completion.zsh"
 source "$ZSH_CONF/history.zsh"
-source "$ZSH_CONF/fzf.zsh"
 
 ###############
 ### Aliases ###
