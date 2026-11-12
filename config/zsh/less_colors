@@ -1,7 +1,11 @@
-export LESS_TERMCAP_mb=$'\e[2;33m'
-export LESS_TERMCAP_md=$'\e[2;33m'
+# abyss hexes, same as config/wezterm/wezterm.lua and config/claude/themes/abyss.json
+export LESS_TERMCAP_mb=$'\e[1;38;2;255;150;51m'
+export LESS_TERMCAP_md=$'\e[1;38;2;255;150;51m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[2;43;1;30m'
+export LESS_TERMCAP_so=$'\e[1;38;2;0;0;0;48;2;255;150;51m'
 export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[2;4;31m'
+export LESS_TERMCAP_us=$'\e[4;38;2;105;195;170m'
+
+# -q: no bell at end of file. -FRX replicates the default git sets when LESS is unset.
+export LESS="-FRXq"
