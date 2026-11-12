@@ -23,3 +23,12 @@
 	sort = -committerdate
 [rebase]
 	updateRefs = true
+[status]
+    short = true
+    branch = true
+    showStash = true
+[alias]
+    st = status
+    d = diff
+    ds = diff --staged
+    l = log --oneline --graph --decorate -20

@@ -106,6 +106,6 @@
     "command": "~/.claude/statusline",
     "type": "command"
   },
-  "theme": "dark-ansi",
+  "theme": "custom:abyss",
   "tui": "fullscreen"
 }

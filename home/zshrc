@@ -24,7 +24,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%b '
 setopt PROMPT_SUBST
-PROMPT='%~ ${vcs_info_msg_0_} '
+PROMPT='%F{#FF9633}%~%f %F{#F5F5DC}${vcs_info_msg_0_}%f%F{#FF9633}%f '
 
 
 #####################

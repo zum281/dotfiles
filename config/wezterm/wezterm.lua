@@ -67,13 +67,35 @@ config.hide_tab_bar_if_only_one_tab = false
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
 
+local accent = "#FF9633"
+
 config.colors = {
+	foreground = "#F5F5DC",
+	background = "#000000",
+	cursor_bg = "#F0E68C",
+	cursor_border = "#F0E68C",
+	cursor_fg = "#000000",
+	selection_bg = "#666666",
+	selection_fg = "#F5F5DC",
+	ansi = { "#000000", "#FF7979", "#7FCF78", "#F0E68C", "#81C0FF", "#C695FF", "#69C3AA", "#F5F5DC" },
+	brights = { "#605C4D", "#FFA0A0", "#A3E39A", "#F8B471", "#87CEEB", "#D2ADFF", "#8AD3BE", "#FFFFF0" },
 	tab_bar = { background = "#000000" },
 }
 
 local tab_names = { "code", "gen", "search", "ai" }
 
-wezterm.on("format-tab-title", function(tab, tabs, _, _, _)
+wezterm.on("format-tab-title", function(tab, tabs, _, _, hover)
+	local background = config.colors.background
+	local foreground = config.colors.foreground
+
+	if tab.is_active then
+		background = accent
+		foreground = config.colors.background
+	elseif hover then
+		background = "#1C1C1C"
+		foreground = "#FF7979"
+	end
+
 	local index = 1
 	for i, t in ipairs(tabs) do
 		if t.tab_id == tab.tab_id then
@@ -86,7 +108,8 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, _)
 	local title = " " .. index .. " " .. name .. " "
 
 	return {
-		{ Background = { Color = "none" } },
+		{ Background = { Color = background } },
+		{ Foreground = { Color = foreground } },
 		{ Text = title },
 	}
 end)
@@ -94,6 +117,8 @@ end)
 wezterm.on("update-status", function(window, _)
 	local workspace = window:active_workspace():gsub("^.*/", "")
 	window:set_left_status(wezterm.format({
+		{ Background = { Color = config.colors.background } },
+		{ Foreground = { Color = accent } },
 		{ Text = " " .. workspace .. " " },
 	}))
 end)

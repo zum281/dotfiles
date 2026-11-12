@@ -54,3 +54,4 @@ create_symlink ~/s/dotfiles/home/gitconfig-shared ~/.gitconfig-shared
 create_symlink ~/s/dotfiles/config/claude/CLAUDE.md ~/.claude/CLAUDE.md
 create_symlink ~/s/dotfiles/config/claude/settings.json ~/.claude/settings.json
 create_symlink ~/s/dotfiles/config/claude/statusline ~/.claude/statusline
+create_symlink ~/s/dotfiles/config/claude/themes ~/.claude/themes
