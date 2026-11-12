@@ -23,7 +23,6 @@ end
 
 local sessionizer_schema = {
 	{ label = "general", id = wezterm.home_dir },
-	{ label = "~/music", id = wezterm.home_dir .. "/Music/mp3" },
 	{ label = "~/notes", id = wezterm.home_dir .. "/notes" },
 	sessionizer.FdSearch({ wezterm.home_dir .. "/s", fd_path = "/opt/homebrew/bin/fd" }),
 	processing = sessionizer.for_each_entry(function(entry)
@@ -41,10 +40,6 @@ local sessionizer_schema = {
 		end,
 	},
 }
-
-chord.setup({
-	command = { key = "<leader>c" },
-})
 
 resurrect.setup(config, {
 	periodic_interval = 300,
@@ -72,6 +67,10 @@ config.hide_tab_bar_if_only_one_tab = false
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
 
+config.colors = {
+	tab_bar = { background = "#000000" },
+}
+
 local tab_names = { "code", "gen", "search", "ai" }
 
 wezterm.on("format-tab-title", function(tab, tabs, _, _, _)
@@ -89,7 +88,6 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, _)
 	return {
 		{ Background = { Color = "none" } },
 		{ Text = title },
-		{ Background = { Color = "none" } },
 	}
 end)
 
@@ -101,11 +99,6 @@ wezterm.on("update-status", function(window, _)
 end)
 
 config.keys = {
-	{
-		key = "n",
-		mods = "CTRL",
-		action = act.RotatePanes("Clockwise"),
-	},
 	{
 		key = ",",
 		mods = "CTRL",
