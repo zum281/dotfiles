@@ -13,6 +13,40 @@
 	autoSetupRemote = true
 [init]
 	defaultBranch = main
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = true
+	true-color = always
+	# ansi maps to the terminal palette, which wezterm sets to abyss
+	syntax-theme = ansi
+	# diff chrome in abyss hexes (same as config/claude/themes/abyss.json)
+	minus-style = "#FF7979"
+	minus-emph-style = "#FFA0A0" bold underline
+	plus-style = "#7FCF78"
+	plus-emph-style = "#A3E39A" bold underline
+	line-numbers-minus-style = "#FF7979"
+	line-numbers-plus-style = "#7FCF78"
+	line-numbers-zero-style = "#605C4D"
+	line-numbers-left-style = "#605C4D"
+	line-numbers-right-style = "#605C4D"
+	line-numbers-left-format = "{nm:>4} │"
+	line-numbers-right-format = "{np:>4} │"
+	hunk-header-style = line-number syntax
+	hunk-header-decoration-style = none
+	file-style = "#FF9633" bold
+	file-decoration-style = "#605C4D" ul
+	commit-decoration-style = "#FF9633" box
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	colorMovedWS = allow-indentation-change
+	mnemonicPrefix = true
+	renames = true
 [merge]
 	conflictStyle = zdiff3
 [rerere]

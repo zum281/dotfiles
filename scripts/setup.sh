@@ -40,7 +40,7 @@ brew install --cask wezterm@nightly
 brew install --cask raycast
 
 info "Installing core CLI tools..."
-brew install git gh neovim eza ripgrep fd jq zoxide
+brew install git gh neovim eza ripgrep fd jq zoxide git-delta
 
 info "Setting up dotfiles..."
 mkdir -p ~/s/
