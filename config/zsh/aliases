@@ -11,12 +11,23 @@ alias vi='nvim'
 
 # git aliases
 alias g='git'
-alias gdiff='git diff --output-indicator-new=" " --output-indicator-old=" "'
-alias gp='git push --force-with-lease'
+alias gd='git diff --output-indicator-new=" " --output-indicator-old=" "'
+alias ga='git add'
+alias gap='git add -p'
+alias gus='git restore --staged'
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
+alias gp='git push'
+alias gpf='git push --force-with-lease'
 alias gu='git pull'
 alias gsw='git switch'
 alias gs='git status'
 alias lg='git status'
+alias gl='git log --graph --oneline --decorate --all'
+alias gb='git branch -vv --sort=-committerdate'
+alias gsh='git stash list'
+alias gshu='git stash -u'
 
 # npm aliases
 alias nd="npm run dev"
