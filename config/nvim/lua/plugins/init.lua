@@ -8,6 +8,7 @@ vim.pack.add({
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/uhs-robert/oasis.nvim",
 	"https://github.com/echasnovski/mini.surround",
 	"https://github.com/echasnovski/mini.icons",
 	"https://github.com/stevearc/oil.nvim",
@@ -17,6 +18,8 @@ vim.pack.add({
 	"https://github.com/karb94/neoscroll.nvim",
 	"https://github.com/abecodes/tabout.nvim",
 })
+
+require("plugins.colorscheme")
 
 vim.pack.add({
 	"https://github.com/NeogitOrg/neogit",

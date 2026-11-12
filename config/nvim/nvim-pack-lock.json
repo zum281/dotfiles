@@ -65,6 +65,10 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
+    "oasis.nvim": {
+      "rev": "171689960eeec9f3ad1e8686a20f6db780a6c72c",
+      "src": "https://github.com/uhs-robert/oasis.nvim"
+    },
     "oil.nvim": {
       "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
