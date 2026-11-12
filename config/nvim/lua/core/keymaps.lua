@@ -10,28 +10,8 @@ set("n", "k", function()
 	return vim.v.count == 0 and "gk" or "k"
 end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
 
--- window / tmux pane navigation (smart-splits)
-set("n", "<C-h>", function()
-	require("smart-splits").move_cursor_left()
-end, { desc = "Move to left split/pane" })
-set("n", "<C-j>", function()
-	require("smart-splits").move_cursor_down()
-end, { desc = "Move to lower split/pane" })
-set("n", "<C-k>", function()
-	require("smart-splits").move_cursor_up()
-end, { desc = "Move to upper split/pane" })
-set("n", "<C-l>", function()
-	require("smart-splits").move_cursor_right()
-end, { desc = "Move to right split/pane" })
-
--- find-file: prompt prefilled with the buffer's directory
-set("n", "<C-f>", ":edit <C-r>=expand('%:p:h')<CR>/", { desc = "Edit file from buffer dir" })
-
 -- clear search highlights
 set({ "n", "v" }, "<Esc><Esc>", ":nohlsearch<cr>", { desc = "clear search highlights" })
-
-set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
-set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
 
 set("n", "<leader>yy", function() -- show file path
 	local path = vim.fn.expand("%:p")
@@ -52,15 +32,6 @@ end, { desc = "Stage hunk" })
 set("n", "<leader>hr", function()
 	require("gitsigns").reset_hunk()
 end, { desc = "Reset hunk" })
-set("n", "<leader>hS", function()
-	require("gitsigns").stage_buffer()
-end, { desc = "Stage buffer" })
-set("n", "<leader>hp", function()
-	require("gitsigns").preview_hunk()
-end, { desc = "Preview hunk" })
-set("n", "<leader>hR", function()
-	require("gitsigns").reset_buffer()
-end, { desc = "Reset buffer" })
 set("n", "<leader>hb", function()
 	require("gitsigns").toggle_current_line_blame()
 end, { desc = "Toggle line blame" })
@@ -78,10 +49,10 @@ end, { desc = "Run file tests" })
 
 --- Diagnostics
 set("n", "<leader>dd", vim.diagnostic.open_float, { desc = "Diagnostic float" })
-set("n", "<leader>dD", function()
+set("n", "<leader>dt", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 end, { desc = "Toggle show/hide diagnostics" })
-set("n", "<leader>dq", function()
+set("n", "<leader>db", function()
 	vim.diagnostic.setqflist({ open = true })
 end, { desc = "Buffer diagnostics (qf)" })
 
@@ -110,29 +81,9 @@ set("n", "[Q", "<cmd>cpfile<CR>", { desc = "Prev file in qf" })
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local buf = args.buf
-		-- send definitions to quickfix for multi-result navigation
-		vim.keymap.set("n", "grd", function()
-			vim.lsp.buf.definition({
-				on_list = function(options)
-					vim.fn.setqflist({}, " ", options)
-					vim.cmd.copen()
-				end,
-			})
-		end, { buffer = buf, desc = "LSP definition (quickfix)" })
 		-- toggle inlay hints per buffer
 		vim.keymap.set("n", "<leader>i", function()
 			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = buf }), { bufnr = buf })
 		end, { buffer = buf, desc = "Toggle inlay hints" })
 	end,
 })
-
--- zusk
-set("n", "<leader>z", function()
-	if vim.t.zoomed then
-		vim.cmd("wincmd =") -- restore equal sizes
-		vim.t.zoomed = false
-	else
-		vim.cmd("wincmd _ | wincmd |") -- max height + width
-		vim.t.zoomed = true
-	end
-end, { desc = "Toggle window zoom" })

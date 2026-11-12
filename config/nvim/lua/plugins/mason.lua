@@ -10,27 +10,14 @@ local ensure_installed = {
 	"css-lsp", -- css_ls  (vscode-css-language-server)
 	"css-variables-language-server", -- css_vars_ls
 	"tailwindcss-language-server", -- tailwind_ls
-	"yaml-language-server", -- yaml_ls
-	"gopls", -- go_ls
 	"sqls", -- sql_ls
-	"pyright", -- pyright_ls
-	"ruff", -- ruff_ls + ruff_format
-	"jdtls", -- jdtls_ls (java)
 	"rust-analyzer", -- rust_analyzer
-	"dockerfile-language-server", -- dockerls
-	"docker-compose-language-service", -- docker_compose_language_service
-
-	-- linters
-	"hadolint", -- dockerfile linter (nvim-lint)
 
 	-- formatters
 	"stylua",
 	"prettierd",
-	"goimports",
 	"clang-format",
 	"shfmt",
-	"google-java-format",
-	"codelldb", -- C/C++ debugger (nvim-dap)
 }
 
 local registry = require("mason-registry")

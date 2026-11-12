@@ -7,7 +7,6 @@ alias grep='grep --color=auto'
 
 # application aliases
 alias lg='lazygit'
-alias lldb='/opt/homebrew/opt/llvm/bin/lldb'
 alias c='claude'
 
 # git aliases

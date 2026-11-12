@@ -4,12 +4,10 @@ vim.pack.add({
 	"https://github.com/esmuellert/nvim-eslint",
 	"https://github.com/nvim-treesitter/nvim-treesitter",
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects", version = "main" },
-	"https://github.com/mrjones2014/smart-splits.nvim",
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
 	"https://github.com/gelguy/wilder.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
-	"https://github.com/kryptamine/gruber-darker-renaissance",
 	"https://github.com/echasnovski/mini.surround",
 	"https://github.com/echasnovski/mini.icons",
 	"https://github.com/stevearc/oil.nvim",
@@ -18,10 +16,7 @@ vim.pack.add({
 	"https://github.com/sphamba/smear-cursor.nvim",
 	"https://github.com/karb94/neoscroll.nvim",
 	"https://github.com/abecodes/tabout.nvim",
-	"https://github.com/basola21/pdfview",
 })
-
-require("plugins.colorscheme")
 
 vim.pack.add({
 	"https://github.com/NeogitOrg/neogit",
@@ -36,7 +31,6 @@ require("plugins.conform")
 require("plugins.eslint")
 require("plugins.treesitter")
 require("plugins.textobjects")
-require("plugins.smart-splits")
 require("plugins.gitsigns")
 require("plugins.neogit")
 require("plugins.neotest")
@@ -48,4 +42,3 @@ require("plugins.oil")
 require("plugins.fidget")
 require("plugins.autopairs")
 require("plugins.animate")
-require("plugins.pdfview")

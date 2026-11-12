@@ -17,12 +17,6 @@ local function uses_tailwind(bufnr)
 end
 
 vim.filetype.add({
-	filename = {
-		["docker-compose.yaml"] = "yaml.docker-compose",
-		["docker-compose.yml"] = "yaml.docker-compose",
-		["compose.yaml"] = "yaml.docker-compose",
-		["compose.yml"] = "yaml.docker-compose",
-	},
 	extension = {
 		-- css in tailwind projects gets its own ft so tailwind_css_ls attaches instead of css_ls
 		css = function(_, bufnr)
@@ -41,16 +35,8 @@ vim.lsp.enable({
 	"css_vars_ls",
 	"tailwind_ls",
 	"tailwind_css_ls",
-	"yaml_ls",
-	"go_ls",
 	"sql_ls",
-	"pyright_ls",
-	"ruff_ls",
-	"jdtls_ls",
-	"racket_ls",
 	"rust_analyzer",
-	"docker_ls",
-	"docker_compose_ls",
 })
 
 vim.diagnostic.config({
