@@ -6,7 +6,6 @@ alias type='type -a'
 alias grep='grep --color=auto'
 
 # application aliases
-alias lg='lazygit'
 alias c='claude'
 
 # git aliases

@@ -51,7 +51,6 @@ create_symlink ~/s/dotfiles/home/zprofile ~/.zprofile
 
 # Also symlink other config files mentioned in the dotfiles
 create_symlink ~/s/dotfiles/home/gitconfig-shared ~/.gitconfig-shared
-create_symlink ~/s/dotfiles/config/lazygit ~/.config/lazygit
 create_symlink ~/s/dotfiles/config/claude/CLAUDE.md ~/.claude/CLAUDE.md
 create_symlink ~/s/dotfiles/config/claude/settings.json ~/.claude/settings.json
 create_symlink ~/s/dotfiles/config/claude/statusline ~/.claude/statusline
