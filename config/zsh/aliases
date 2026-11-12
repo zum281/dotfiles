@@ -1,6 +1,3 @@
-# use bat instead of cat
-alias cat='bat'
-
 # eza aliases
 alias ls="eza --color=always -l --all --git --icons=always --no-time --no-user"
 alias tree="eza --tree --color=always --all --icons=always --git --no-filesize --no-time --no-user --no-permissions --level=3"
@@ -9,10 +6,8 @@ alias type='type -a'
 alias grep='grep --color=auto'
 
 # application aliases
-alias vi='nvim'
 alias lg='lazygit'
 alias lldb='/opt/homebrew/opt/llvm/bin/lldb'
-alias /='is-fast'
 alias c='claude'
 
 # git aliases
@@ -28,5 +23,3 @@ alias nn="npm run check && npm run lint && npm run test"
 
 # custom scripts aliases
 alias cb="clean-branches"
-
-

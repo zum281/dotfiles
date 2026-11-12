@@ -73,6 +73,10 @@
       "rev": "d3733d933833a0e59b813ecec99341527adf0c28",
       "src": "https://github.com/stevearc/oil.nvim"
     },
+    "pdfview": {
+      "rev": "972dfcce5c0de578865649940f44bf57a700498d",
+      "src": "https://github.com/basola21/pdfview"
+    },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"

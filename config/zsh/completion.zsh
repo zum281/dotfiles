@@ -7,14 +7,6 @@ autoload -U compinit && compinit
 zinit cdreplay -q
 _comp_options+=(globdots) # include hidden files
 
-# uv completion (deferred: 6800-line script parsed after first prompt, not at startup)
-autoload -Uz add-zsh-hook
-_load_uv_comp() {
-	eval "$(uv generate-shell-completion zsh)"
-	add-zsh-hook -d precmd _load_uv_comp
-}
-add-zsh-hook precmd _load_uv_comp
-
 ##########################
 ### Completion styling ###
 ##########################

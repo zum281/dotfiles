@@ -7,7 +7,6 @@ set -e
 
 gold=$(tput setaf 3)
 green=$(tput setaf 2)
-red=$(tput setaf 1)
 dim=$(tput dim)
 reset=$(tput sgr0)
 bold=$(tput bold)
@@ -41,8 +40,8 @@ brew install --cask wezterm@nightly
 brew install --cask raycast
 
 info "Installing core CLI tools..."
-brew install git gh neovim bat eza fzf ripgrep fd jq
-brew install lazygit git-delta thefuck zoxide viu
+brew install git gh neovim eza fzf ripgrep fd jq
+brew install lazygit git-delta zoxide
 
 info "Setting up dotfiles..."
 mkdir -p ~/s/
@@ -57,10 +56,6 @@ else
 fi
 
 ./dotfiles-symlink
-
-# Register the ember bat theme so bat + delta pick it up (delta syntax-theme = ember)
-info "Building bat theme cache..."
-bat cache --build
 
 info "Sourcing shell configuration..."
 # Source the new shell configuration (only if it's our symlink)

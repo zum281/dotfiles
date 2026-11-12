@@ -18,6 +18,7 @@ vim.pack.add({
 	"https://github.com/sphamba/smear-cursor.nvim",
 	"https://github.com/karb94/neoscroll.nvim",
 	"https://github.com/abecodes/tabout.nvim",
+	"https://github.com/basola21/pdfview",
 })
 
 require("plugins.colorscheme")
@@ -47,3 +48,4 @@ require("plugins.oil")
 require("plugins.fidget")
 require("plugins.autopairs")
 require("plugins.animate")
+require("plugins.pdfview")

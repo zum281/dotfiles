@@ -61,6 +61,8 @@ config.colors = palette
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 18
 
+config.enable_kitty_graphics = true
+
 config.window_close_confirmation = "NeverPrompt"
 
 config.window_background_opacity = 1

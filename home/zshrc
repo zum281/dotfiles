@@ -43,11 +43,6 @@ palette() {
 	exec zsh
 }
 
-# thefuck (lazy: defer the ~48ms Python fork until first use)
-fuck() {
-	eval "$(thefuck --alias)"
-	fuck "$@"
-}
 
 # fzf shell integration
 eval "$(fzf --zsh)"
@@ -59,7 +54,6 @@ source "$ZSH_CONF/plugins.zsh"
 source "$ZSH_CONF/completion.zsh"
 source "$ZSH_CONF/history.zsh"
 source "$ZSH_CONF/fzf.zsh"
-source "$ZSH_CONF/pickers.zsh"
 
 ###############
 ### Aliases ###

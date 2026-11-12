@@ -1,12 +1,12 @@
 #####################
 ### zinit plugins ###
 #####################
-zinit light zsh-users/zsh-completions
 zinit ice wait lucid atload'_zsh_autosuggest_start'
+zinit ice depth=1
 zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
+zinit ice depth=1
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 function zvm_after_init() {
