@@ -54,9 +54,6 @@ resurrect.setup(config, {
 })
 wezterm.on("gui-startup", resurrect.state_manager.resurrect_on_gui_startup)
 
-local palette = dofile(wezterm.config_dir .. "/palette.lua")
-config.colors = palette
-
 -- usually "IosevkaTermSlab Nerd Font" or "JetBrainsMono Nerd Font"
 config.font = wezterm.font("JetBrainsMono Nerd Font")
 config.font_size = 18
@@ -75,22 +72,9 @@ config.hide_tab_bar_if_only_one_tab = false
 config.show_new_tab_button_in_tab_bar = false
 config.show_close_tab_button_in_tabs = false
 
-config.colors.tab_bar = { background = palette.background }
-
 local tab_names = { "code", "gen", "search", "ai" }
 
-wezterm.on("format-tab-title", function(tab, tabs, _, _, hover)
-	local background = palette.background
-	local foreground = palette.foreground
-
-	if tab.is_active then
-		background = palette.ansi[4]
-		foreground = palette.background
-	elseif hover then
-		background = palette.selection_bg
-		foreground = palette.selection_fg
-	end
-
+wezterm.on("format-tab-title", function(tab, tabs, _, _, _)
 	local index = 1
 	for i, t in ipairs(tabs) do
 		if t.tab_id == tab.tab_id then
@@ -99,26 +83,19 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover)
 		end
 	end
 
-	local edge_foreground = background
 	local name = tab_names[index] or tab.active_pane.title
 	local title = " " .. index .. " " .. name .. " "
 
 	return {
 		{ Background = { Color = "none" } },
-		{ Foreground = { Color = edge_foreground } },
-		{ Background = { Color = background } },
-		{ Foreground = { Color = foreground } },
 		{ Text = title },
 		{ Background = { Color = "none" } },
-		{ Foreground = { Color = edge_foreground } },
 	}
 end)
 
 wezterm.on("update-status", function(window, _)
 	local workspace = window:active_workspace():gsub("^.*/", "")
 	window:set_left_status(wezterm.format({
-		{ Background = { Color = palette.background } },
-		{ Foreground = { Color = palette.ansi[4] } },
 		{ Text = " " .. workspace .. " " },
 	}))
 end)

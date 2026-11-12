@@ -11,4 +11,3 @@
 --scrollbar='▏'
 --ellipsis='…'
 --cycle
---color=bg:#000000,fg:#d2d2cc,bg+:#000000,fg+:#efd45b:bold,hl:#efd45b:bold,hl+:#efd45b:bold,gutter:#000000,border:#484848,preview-border:#484848,separator:#484848,scrollbar:#484848,label:#efd45b,header:#efd45b,info:#8c8c8c,prompt:#efd45b,pointer:#efd45b,marker:#8ac568,selected-bg:#484848,selected-fg:#cc8c3c,query:#ebebe6,spinner:#8ac568

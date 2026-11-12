@@ -22,8 +22,6 @@
 	line-numbers = true
 	true-color = always
 	hunk-header-style = file line-number syntax
-[include]
-	path = ~/s/dotfiles/config/git/delta.gitconfig
 [merge]
 	conflictStyle = zdiff3
 [rerere]

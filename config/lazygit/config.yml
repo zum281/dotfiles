@@ -3,42 +3,6 @@ gui:
   expandedSidePanelWeight: 2
   timeFormat: 02 Jan 2006
   shortTimeFormat: 13:04
-  theme:
-    activeBorderColor:
-      - '#efd45b'
-      - bold
-    inactiveBorderColor:
-      - '#484848'
-    searchingActiveBorderColor:
-      - '#9fb2d6'
-      - bold
-    optionsTextColor:
-      - '#9fb2d6'
-    selectedLineFgColor:
-      - '#efd45b'
-      - bold
-    selectedLineBgColor:
-      - '#1e1e1e'
-    inactiveViewSelectedLineBgColor:
-      - '#1e1e1e'
-    cherryPickedCommitFgColor:
-      - '#000000'
-    cherryPickedCommitBgColor:
-      - '#9fb2d6'
-    markedBaseCommitFgColor:
-      - '#000000'
-    markedBaseCommitBgColor:
-      - '#9e95c7'
-    unstagedChangesColor:
-      - '#d64c4b'
-    defaultFgColor:
-      - '#d2d2cc'
-    authorColors:
-      '*': '#96a29c'
-    branchColorPatterns:
-      '^(main|master)$': '#efd45b'
-      '^(feat|feature)/': '#8ac568'
-      '^(fix|hotfix|bug)/': '#d64c4b'
   commitLength:
     show: true
   showListFooter: false
