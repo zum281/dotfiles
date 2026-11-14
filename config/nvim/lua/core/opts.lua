@@ -27,7 +27,7 @@ vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.fillchars = { eob = " " } -- hide ~ on empty lines
 
 -- completion menu
-vim.opt.completeopt = "menu,menuone,fuzzy,nosort,popup"
+vim.opt.completeopt = "menu,popup,fuzzy"
 vim.opt.completetimeout = 100
 vim.opt.pumheight = 10
 vim.opt.pumwidth = 25
